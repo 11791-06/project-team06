@@ -27,6 +27,7 @@ import edu.cmu.lti.oaqa.type.retrieval.Passage;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 import util.TypeFactory;
 
+//test branch
 public class JsonCollectionReaderHelper {
 
 	public static void main(String[] args) {
