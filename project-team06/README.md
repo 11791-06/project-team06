@@ -1,4 +1,2 @@
-DEIIS-project-archetype
-=======================
 
-Archetype for 11791 final project
+11791 final project
