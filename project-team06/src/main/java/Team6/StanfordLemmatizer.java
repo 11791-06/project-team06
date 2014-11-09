@@ -1,3 +1,4 @@
+package Team6;
 
 import edu.stanford.nlp.process.Morphology;
 

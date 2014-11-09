@@ -1,3 +1,4 @@
+package Team6;
 import java.io.FileNotFoundException;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
