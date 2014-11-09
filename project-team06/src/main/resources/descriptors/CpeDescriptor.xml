@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cpeDescription>
+	<collectionReader>
+		<collectionIterator>
+			<descriptor>
+				<import location="ReaderDescriptor.xml" />
+			</descriptor>
+		</collectionIterator>
+	</collectionReader>
+	<casProcessors casPoolSize="5" processingUnitThreadCount="1">
+
+		<casProcessor deployment="integrated" name="NLPProcessDescriptor">
+			<descriptor>
+				<import location="NLPProcessDescriptor.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="terminate" value="10/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+	</casProcessors>
+	<cpeConfig>
+		<numToProcess>-1</numToProcess>
+		<deployAs>immediate</deployAs>
+	</cpeConfig>
+</cpeDescription>

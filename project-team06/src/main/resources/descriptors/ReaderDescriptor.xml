@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collectionReaderDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <implementationName>Team6.QuestionReader</implementationName>
+  <processingResourceMetaData>
+    <name>ReaderDescriptor</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters/>
+    <configurationParameterSettings/>
+    <typeSystemDescription>
+      <imports>
+        <import location="/usr0/home/diyiy/git/project-team06/project-team06/src/main/resources/type/OAQATypes.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">edu.cmu.lti.oaqa.type.kb.Triple</type>
+          <type allAnnotatorFeatures="true">edu.cmu.lti.oaqa.type.input.Question</type>
+          <type allAnnotatorFeatures="true">edu.cmu.lti.oaqa.type.retrieval.Document</type>
+          <type allAnnotatorFeatures="true">edu.cmu.lti.oaqa.type.kb.Concept</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+  <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>true</outputsNewCASes>
+    </operationalProperties>
+  </processingResourceMetaData>
+  <resourceManagerConfiguration/>
+</collectionReaderDescription>
