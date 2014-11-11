@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 /** A superclass for EntityConcept and RelationConcept.
- * Updated by JCasGen Sat Nov 08 20:20:41 EST 2014
+ * Updated by JCasGen Mon Nov 10 23:34:54 EST 2014
  * @generated */
 public class Concept_Type extends TOP_Type {
   /** @generated 
@@ -117,6 +117,30 @@ public class Concept_Type extends TOP_Type {
     ll_cas.ll_setRefValue(addr, casFeatCode_mentions, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_Score;
+  /** @generated */
+  final int     casFeatCode_Score;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getScore(int addr) {
+        if (featOkTst && casFeat_Score == null)
+      jcas.throwFeatMissing("Score", "edu.cmu.lti.oaqa.type.kb.Concept");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_Score);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setScore(int addr, double v) {
+        if (featOkTst && casFeat_Score == null)
+      jcas.throwFeatMissing("Score", "edu.cmu.lti.oaqa.type.kb.Concept");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_Score, v);}
+    
+  
 
 
 
@@ -140,6 +164,10 @@ public class Concept_Type extends TOP_Type {
  
     casFeat_mentions = jcas.getRequiredFeatureDE(casType, "mentions", "uima.cas.FSList", featOkTst);
     casFeatCode_mentions  = (null == casFeat_mentions) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_mentions).getCode();
+
+ 
+    casFeat_Score = jcas.getRequiredFeatureDE(casType, "Score", "uima.cas.Double", featOkTst);
+    casFeatCode_Score  = (null == casFeat_Score) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_Score).getCode();
 
   }
 }

@@ -13,8 +13,8 @@ import org.apache.uima.jcas.cas.TOP;
 
 
 /** A superclass for EntityConcept and RelationConcept.
- * Updated by JCasGen Sat Nov 08 20:20:41 EST 2014
- * XML source: /usr0/home/diyiy/git/project-team06/project-team06/src/main/resources/descriptors/ReaderDescriptor.xml
+ * Updated by JCasGen Mon Nov 10 23:34:54 EST 2014
+ * XML source: C:/Users/rgoutam/git/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Concept extends TOP {
   /** @generated
@@ -130,6 +130,28 @@ public class Concept extends TOP {
     if (Concept_Type.featOkTst && ((Concept_Type)jcasType).casFeat_mentions == null)
       jcasType.jcas.throwFeatMissing("mentions", "edu.cmu.lti.oaqa.type.kb.Concept");
     jcasType.ll_cas.ll_setRefValue(addr, ((Concept_Type)jcasType).casFeatCode_mentions, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: Score
+
+  /** getter for Score - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public double getScore() {
+    if (Concept_Type.featOkTst && ((Concept_Type)jcasType).casFeat_Score == null)
+      jcasType.jcas.throwFeatMissing("Score", "edu.cmu.lti.oaqa.type.kb.Concept");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((Concept_Type)jcasType).casFeatCode_Score);}
+    
+  /** setter for Score - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setScore(double v) {
+    if (Concept_Type.featOkTst && ((Concept_Type)jcasType).casFeat_Score == null)
+      jcasType.jcas.throwFeatMissing("Score", "edu.cmu.lti.oaqa.type.kb.Concept");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((Concept_Type)jcasType).casFeatCode_Score, v);}    
   }
 
     

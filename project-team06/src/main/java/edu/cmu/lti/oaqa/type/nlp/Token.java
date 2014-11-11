@@ -13,8 +13,8 @@ import org.apache.uima.jcas.cas.StringArray;
 
 
 /** Annotation on a token, which may have arguments if they are predicates; useful in transforming text into a "logical form", with affordances similar to the ones provided in Extended WordNet and the like. --- Source: Murdock
- * Updated by JCasGen Sat Nov 08 20:20:42 EST 2014
- * XML source: /usr0/home/diyiy/git/project-team06/project-team06/src/main/resources/descriptors/ReaderDescriptor.xml
+ * Updated by JCasGen Mon Nov 10 23:34:55 EST 2014
+ * XML source: C:/Users/rgoutam/git/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Token extends Annotation {
   /** @generated
