@@ -19,7 +19,7 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
 	    iter.moveToNext();
 	    Question question = (Question) iter.get(); //here is where I get the Question type object from the previous stage
 	    try {
-		normalization(question); //this functin will directly modify the text in Question object
+		normalization(jcas, question); //this functin will directly modify the text in Question object
 	    } catch (FileNotFoundException e) {
 		e.printStackTrace();
 	    }
@@ -44,7 +44,7 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
 	return answer.substring(0,answer.length()-1);
     }
 
-    private void normalization(Question question)
+    private void normalization(JCas jcas, Question question)
 	    throws FileNotFoundException {
 	String text = question.getText();
 	question.setText(normalizeCaseStem(text));
