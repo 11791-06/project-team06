@@ -30,53 +30,53 @@ import com.google.common.collect.Lists;
 import edu.cmu.lti.oaqa.type.input.*;
 
 public class QuestionReader extends CollectionReader_ImplBase {
-  List<TestQuestion> inputs;
-  int ptr;
-  
-  @Override
-  public void initialize() {
-  String filePath = "/BioASQ-SampleData1B.json";
-  inputs = Lists.newArrayList();
-  /*inputs = TestSet
-      .load(new FileInputStream(filePath)).stream()
-      .collect(toList());*/
-  Object value = filePath;
-  inputs = TestSet
-          .load(getClass().getResourceAsStream(
-              String.class.cast(value))).stream()
-          .collect(toList());
-  // trim question texts
-  inputs.stream()
-      .filter(input -> input.getBody() != null)
-      .forEach(
-          input -> input.setBody(input.getBody().trim()
-              .replaceAll("\\s+", " ")));
-  ptr = 0;
-  }
+    List<TestQuestion> inputs;
+    int ptr;
 
-  @Override
-  public void getNext(CAS aCAS) throws IOException, CollectionException {
-  JCas jcas = null;
-  try {
-    jcas = aCAS.getJCas();
-  } catch (CASException e) {
-    e.printStackTrace();
-  }
-  TestQuestion input = inputs.get(ptr ++);
-  JsonCollectionReaderHelper.addQuestionToIndex(input, "", jcas);
-  }
+    @Override
+    public void initialize() {
+	String filePath = "/BioASQ-SampleData1B.json";
+	inputs = Lists.newArrayList();
+	/*
+	 * inputs = TestSet .load(new FileInputStream(filePath)).stream()
+	 * .collect(toList());
+	 */
+	Object value = filePath;
+	inputs = TestSet
+		.load(getClass().getResourceAsStream(String.class.cast(value)))
+		.stream().collect(toList());
+	// trim question texts
+	inputs.stream()
+		.filter(input -> input.getBody() != null)
+		.forEach(
+			input -> input.setBody(input.getBody().trim()
+				.replaceAll("\\s+", " ")));
+	ptr = 0;
+    }
 
-  @Override
-  public boolean hasNext() throws IOException, CollectionException {
-    return ptr < inputs.size();
-  }
+    @Override
+    public void getNext(CAS aCAS) throws IOException, CollectionException {
+	JCas jcas = null;
+	try {
+	    jcas = aCAS.getJCas();
+	} catch (CASException e) {
+	    e.printStackTrace();
+	}
+	TestQuestion input = inputs.get(ptr++);
+	JsonCollectionReaderHelper.addQuestionToIndex(input, "", jcas);
+    }
 
-  @Override
-  public Progress[] getProgress() {
-    return null;
-  }
+    @Override
+    public boolean hasNext() throws IOException, CollectionException {
+	return ptr < inputs.size();
+    }
 
-  @Override
-  public void close() throws IOException {
-  }
+    @Override
+    public Progress[] getProgress() {
+	return null;
+    }
+
+    @Override
+    public void close() throws IOException {
+    }
 }
