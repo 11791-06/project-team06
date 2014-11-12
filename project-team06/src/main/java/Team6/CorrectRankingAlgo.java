@@ -4,107 +4,161 @@ package Team6;
  
 
   import java.io.IOException;
-  import java.util.ArrayList;
-  import java.util.Arrays;
-  import java.util.Comparator;
-  import java.util.HashMap;
-  import java.util.List;
-  import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
   import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-  import org.apache.uima.cas.CAS;
-  import org.apache.uima.cas.FSIterator;
-  import org.apache.uima.fit.component.JCasConsumer_ImplBase;
-  import org.apache.uima.jcas.JCas;
-  import org.apache.uima.resource.ResourceInitializationException;
-  import org.apache.uima.resource.ResourceProcessException;
-  import org.apache.uima.util.ProcessTrace;
+import org.apache.uima.cas.CAS;
+import org.apache.uima.cas.FSIterator;
+import org.apache.uima.fit.component.JCasConsumer_ImplBase;
+import org.apache.uima.jcas.JCas;
+import org.apache.uima.resource.ResourceInitializationException;
+import org.apache.uima.resource.ResourceProcessException;
+import org.apache.uima.util.ProcessTrace;
 
   import edu.cmu.lti.oaqa.type.retrieval.Document;
-  import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
-  import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
+import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
+import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
   public class CorrectRankingAlgo extends JCasConsumer_ImplBase {
+    
    
   ArrayList<String>  docList;
   ArrayList<Double> ScoreList;
+  ArrayList<String>  QuestionList;
 
 
   public void initialize(CAS aCas) throws ResourceInitializationException {
     
     docList = new ArrayList<String>();
     ScoreList = new ArrayList<Double>();
+    QuestionList= new ArrayList<String>();
     
   }
 
-  @Override
-  public void process(JCas jcas) throws AnalysisEngineProcessException {
-   /*** 
-    JCas jcas = null;
-    try {
-      jcas =aCas.getJCas();
-    } catch (CASException e) 
-    {
-      e.printStackTrace();
+  
+  public void GetDocumentScores(JCas jcas)
+  {
+    FSIterator iter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
+
+    while (iter.hasNext()) {
+         Document doc = (Document) iter.next(); 
+       
+       String query_string = doc.getQueryString();
+       String Answer = doc.getText();
+       
+       if (query_string != null && Answer != null) 
+       {
+         
+     
+       System.out.println("Printing Answers");
+       System.out.println("Query:");
+       System.out.println(query_string);
+       System.out.println("Answer:");
+       System.out.println(Answer);
+       double val = computeCosineSimilarity(createTermFreqVector(Answer),createTermFreqVector(query_string));
+       doc.setScore(val);
+       ScoreList.add(val);
+       docList.add(Answer);
+       QuestionList.add(query_string);
+       
+         } 
+      
     }
-    **/
-    
-    FSIterator iter = jcas.getAnnotationIndex(Document.type).iterator();
-    if (iter.isValid()) {
-        iter.moveToNext();
-        Document doc = (Document) iter.get(); 
+     
+   
+
+  }
+  public void GetTripleScores(JCas jcas)
+  {
+    FSIterator iter2 = jcas.getJFSIndexRepository().getAllIndexedFS(TripleSearchResult.type);
+
+    while (iter2.hasNext()) {
+      TripleSearchResult doc = (TripleSearchResult) iter2.next(); 
+       
+       String query_string = doc.getQueryString();
+       String Answer = doc.getText();
+       
+       if (query_string != null && Answer != null) 
+       {
+         
+         String svo = new String();
+         svo = doc.getTriple().getSubject() + ' ' + doc.getTriple().getPredicate() + ' ' + doc.getTriple().getObject();
+         docList.add(svo);
+         ScoreList.add(doc.getScore());
+         QuestionList.add(query_string);
+        
+       
+         } 
       
-      String query_string = doc.getQueryString();
-      String Answer = doc.getText();
-      double val = computeCosineSimilarity(createTermFreqVector(Answer),createTermFreqVector(query_string));
-      doc.setScore(val);
-      
-        } 
+    }
+     
+   
+
+  }
+  public void GetConceptScores(JCas jcas)
+  {
+  FSIterator iter3 = jcas.getJFSIndexRepository().getAllIndexedFS(SearchResult.type);
+  
+  // FSIterator iter3 = jcas.getAnnotationIndex(SearchResult.type).iterator();
+   while (iter3.hasNext()) {
+
+       SearchResult doc = (SearchResult) iter3.next();  // SHOULD ACTUALLY BE CONCEPT SEARCH RESULT
+       String query_string = doc.getQueryString();
+       String Answer = doc.getText();
+       System.out.println(query_string);
+       if (query_string != null && Answer != null) 
+       {
+     
+     docList.add(doc.getUri());
+     ScoreList.add(doc.getScore());
+     QuestionList.add(query_string);
+     
+       }
+   }
+  }
+  
+  public void process(JCas jcas) throws AnalysisEngineProcessException {
+    System.out.println("Into Process");
+ 
+  GetDocumentScores(jcas);
+  System.out.println("Got One Documents");
+  
+  //System.out.println(docList.size());
+  GetTripleScores(jcas);
+  System.out.println("Got One Triples");
+  
+//  System.out.println(docList.size());
+  GetConceptScores(jcas);
+  System.out.println("Got One Concepts");
+  
+  //System.out.println(docList.size());
+  
+  
     
 
   }
     
 public void collectionProcessComplete(ProcessTrace arg0, JCas jcas)
           throws ResourceProcessException, IOException {
+  System.out.println("Into Collection process Complete");
     double val;
+    GetDocumentScores(jcas);
+    System.out.println("Got All Documents");
+    GetTripleScores(jcas);
+    System.out.println("Got All Triples");
+    GetConceptScores(jcas);
+    System.out.println("Got All Concepts");
     
     // Need to create a Answer List.
-    FSIterator iter = jcas.getAnnotationIndex(Document.type).iterator();
-    if (iter.isValid()) {
-        iter.moveToNext();
-        Document doc = (Document) iter.get(); 
-      
-      String query_string = doc.getQueryString();
-      
-    val = doc.getScore();
-    docList.add(doc.getText());
-    ScoreList.add(val);
     
-        } 
-    FSIterator iter2 = jcas.getAnnotationIndex(TripleSearchResult.type).iterator();
-    if (iter2.isValid()) {
-        iter2.moveToNext();
-        TripleSearchResult doc = (TripleSearchResult) iter2.get(); 
-      
-      String svo = new String();
+    
+    
    
-      svo = doc.getTriple().getSubject() + ' ' + doc.getTriple().getPredicate() + ' ' + doc.getTriple().getObject();
-      docList.add(svo);
-      ScoreList.add(doc.getScore());
-      
-        } 
-    
-
-    FSIterator iter3 = jcas.getAnnotationIndex(SearchResult.type).iterator();
-    if (iter3.isValid()) {
-        iter3.moveToNext();
-        SearchResult doc = (SearchResult) iter3.get();  // SHOULD ACTUALLY BE CONCEPT SEARCH RESULT
-      
-      String query_string = doc.getQueryString();
-      docList.add(doc.getUri());
-      ScoreList.add(doc.getScore());
-      
-        }
     Integer[] ranks = new Integer[ScoreList.size()];
     Comparator<Integer> gc = new ScoreComparator(ScoreList);
     Arrays.sort(ranks, gc);
