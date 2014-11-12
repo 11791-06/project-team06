@@ -95,7 +95,8 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
         }
         
         OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(query, 0);
-        for (OntologyServiceResponse.Finding finding : goResult.getFindings()) {
+        // for (OntologyServiceResponse.Finding finding : goResult.getFindings()) {
+        for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
           SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());

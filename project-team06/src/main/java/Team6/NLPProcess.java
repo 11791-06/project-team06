@@ -10,6 +10,8 @@ import org.apache.uima.collection.CollectionReader_ImplBase;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.util.Progress;
 
+import util.TypeConstants;
+
 public class NLPProcess extends JCasAnnotator_ImplBase{
 
   @Override
