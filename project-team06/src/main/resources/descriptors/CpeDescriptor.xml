@@ -35,6 +35,20 @@
 			</errorHandling>
 		</casProcessor>
 		
+		<casProcessor deployment="integrated" name="CorrectRankingAlgo">
+			<descriptor>
+				<import location="CorrectRankingAlgo.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="terminate" value="10/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+		
+		
 	</casProcessors>
 	<cpeConfig>
 		<numToProcess>-1</numToProcess>
