@@ -37,7 +37,6 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
     FSIterator<Annotation> iter = aJCas.getAnnotationIndex().iterator();
     try {
       if (iter.isValid()) {
-        iter.moveToNext();
         Question question = (Question) iter.get();
         String query = question.getText();
         
@@ -105,6 +104,9 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
         
       }
     } catch (IOException e) {
+      e.printStackTrace();
+    }
+    catch (IllegalArgumentException e) {
       e.printStackTrace();
     }
 

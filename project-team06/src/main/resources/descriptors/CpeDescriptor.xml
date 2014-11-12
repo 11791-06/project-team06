@@ -8,10 +8,36 @@
 		</collectionIterator>
 	</collectionReader>
 	<casProcessors casPoolSize="5" processingUnitThreadCount="1">
-
+	
+		<casProcessor deployment="integrated" name="QuestionNormalization">
+			<descriptor>
+				<import location="QuestionNormalization.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="terminate" value="10/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+		
 		<casProcessor deployment="integrated" name="GoPubMedServiceCall">
 			<descriptor>
 				<import location="GoPubMedServiceCall.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="terminate" value="10/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+		
+		<casProcessor deployment="integrated" name="CorrectRankingAlgo">
+			<descriptor>
+				<import location="CorrectRankingAlgo.xml" />
 			</descriptor>
 			<filter></filter>
 			<errorHandling>
@@ -35,18 +61,7 @@
 			</errorHandling>
 		</casProcessor>
 		
-		<casProcessor deployment="integrated" name="CorrectRankingAlgo">
-			<descriptor>
-				<import location="CorrectRankingAlgo.xml" />
-			</descriptor>
-			<filter></filter>
-			<errorHandling>
-				<maxConsecutiveRestarts action="terminate"
-					value="100" />
-				<errorRateThreshold action="terminate" value="10/10000" />
-				<timeout max="10000" />
-			</errorHandling>
-		</casProcessor>
+
 		
 		
 	</casProcessors>
