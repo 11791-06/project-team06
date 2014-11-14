@@ -163,7 +163,9 @@ public void collectionProcessComplete(ProcessTrace arg0, JCas jcas)
     Integer[] ranks = new Integer[ScoreList.size()];
     Comparator<Integer> gc = new ScoreComparator(ScoreList);
     Arrays.sort(ranks, gc);
-    
+    System.out.println("######################################");
+    System.out.println(ranks);
+    System.out.println("######################################"); 
     //http://stackoverflow.com/questions/14186529/java-array-of-sorted-indexes
    
     
