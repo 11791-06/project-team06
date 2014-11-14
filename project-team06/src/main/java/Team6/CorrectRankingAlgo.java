@@ -67,6 +67,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
        QuestionList.add(query_string);
        
          } 
+       /***UPLOAD SCORE TO CAS ***/
       
     }
      
@@ -124,7 +125,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
   
   public void process(JCas jcas) throws AnalysisEngineProcessException {
     System.out.println("Into Process");
- 
+/** 
  GetDocumentScores(jcas);
   System.out.println("Got One Documents");
   
@@ -147,14 +148,13 @@ public void collectionProcessComplete(ProcessTrace arg0, JCas jcas)
           throws ResourceProcessException, IOException {
   System.out.println("Into Collection process Complete");
     double val;
-    /**
+    
     GetDocumentScores(jcas);
     System.out.println("Got All Documents");
     GetTripleScores(jcas);
     System.out.println("Got All Triples");
     GetConceptScores(jcas);
     System.out.println("Got All Concepts");
-    **/
     // Need to create a Answer List.
     
     
