@@ -447,5 +447,38 @@ public class TypeFactory {
     ret.setSearchId(searchId);
     return ret;
   }
+  /*
+   * Gold Standard 
+   * */
+  public static Document createGoldStandardDocument(JCas jcas, String uri) {
+    Document doc = createDocument(jcas, uri);
+    doc.setSearchId("__gold__");
+    return doc;
+  }
 
+  public static ConceptSearchResult createGoldStandardConceptSearchResult(
+      JCas jcas, Concept concept, String uri) {
+    ConceptSearchResult csr = createConceptSearchResult(jcas, concept, uri);
+    csr.setSearchId("__gold__");
+    return csr;
+  }
+
+  public static TripleSearchResult createGoldStandardTripleSearchResult(
+      JCas jcas, Triple triple) {
+    TripleSearchResult tsr = createTripleSearchResult(jcas, triple);
+    tsr.setSearchId("__gold__");
+    return tsr;
+  }
+  // Snippts
+  public static Passage createGoldStandardPassage(
+          JCas jcas, String uri, String text, int offsetInBeginSection,
+          int offsetInEndSection, String beginSection, String endSection){
+    Passage psr = createPassage(jcas, uri, TypeConstants.SCORE_UNKNOWN, text, TypeConstants.RANK_UNKNOWN,
+            TypeConstants.QUERY_STRING_UNKNOWN, TypeConstants.SEARCH_ID_UNKNOWN, new ArrayList<>(),
+            TypeConstants.TITLE_UNKNOWN, TypeConstants.DOC_ID_UNKNOWN, offsetInBeginSection,
+            offsetInEndSection, beginSection, endSection, TypeConstants.ASPECTS_UNKNOWN);
+    psr.setSearchId("__gold__");
+    return psr;
+   }
+  
 }

@@ -45,6 +45,8 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           edu.cmu.lti.oaqa.type.retrieval.Document doc = new edu.cmu.lti.oaqa.type.retrieval.Document(aJCas);
           doc.setText(d.getDocumentAbstract());
           doc.setTitle(d.getTitle());
+          // Change 
+          doc.setUri("http://www.ncbi.nlm.nih.gov/pubmed/" + d.getPmid());
           doc.addToIndexes();
         }
         
