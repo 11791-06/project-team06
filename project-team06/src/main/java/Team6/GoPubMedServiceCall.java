@@ -45,8 +45,10 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           edu.cmu.lti.oaqa.type.retrieval.Document doc = new edu.cmu.lti.oaqa.type.retrieval.Document(aJCas);
           doc.setText(d.getDocumentAbstract());
           doc.setTitle(d.getTitle());
-          // Change 
-          doc.setUri("http://www.ncbi.nlm.nih.gov/pubmed/" + d.getPmid());
+          if(d.isFulltextAvailable()==true) {
+            String pmid = d.getPmid();
+            //query here and add snippets once the service is online 
+          }
           doc.addToIndexes();
         }
         LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service.findLinkedLifeDataEntitiesPaged(query, 0);
