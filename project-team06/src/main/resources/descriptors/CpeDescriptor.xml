@@ -48,6 +48,7 @@
 			</errorHandling>
 		</casProcessor-->
 		
+<<<<<<< HEAD
 		<!--casProcessor deployment="integrated" name="NLPProcessDescriptor">
 			<descriptor>
 				<import location="NLPProcessDescriptor.xml" />
@@ -63,6 +64,20 @@
 		
 
 		
+=======
+		<casProcessor deployment="integrated" name="Evaluator">
+            <descriptor>
+                <import location="Evaluator.xml"/>
+            </descriptor>
+            <deploymentParameters/>
+            <errorHandling>
+                <errorRateThreshold action="terminate" value="0/1000"/>
+                <maxConsecutiveRestarts action="terminate" value="30"/>
+                <timeout max="100000" default="-1"/>
+            </errorHandling>
+            <checkpoint batch="10000" time="1000ms"/>
+        </casProcessor>
+>>>>>>> branch 'master' of https://github.com/11791-06/project-team06.git
 		
 	</casProcessors>
 	<cpeConfig>

@@ -67,6 +67,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
        QuestionList.add(query_string);
        
          } 
+       /***UPLOAD SCORE TO CAS ***/
       
     }
      
@@ -124,8 +125,8 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
   
   public void process(JCas jcas) throws AnalysisEngineProcessException {
     System.out.println("Into Process");
- 
-  GetDocumentScores(jcas);
+/** 
+ GetDocumentScores(jcas);
   System.out.println("Got One Documents");
   
   //System.out.println(docList.size());
@@ -138,7 +139,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
   
   //System.out.println(docList.size());
   
-  
+  //**/
     
 
   }
@@ -147,13 +148,13 @@ public void collectionProcessComplete(ProcessTrace arg0, JCas jcas)
           throws ResourceProcessException, IOException {
   System.out.println("Into Collection process Complete");
     double val;
+    
     GetDocumentScores(jcas);
     System.out.println("Got All Documents");
     GetTripleScores(jcas);
     System.out.println("Got All Triples");
     GetConceptScores(jcas);
     System.out.println("Got All Concepts");
-    
     // Need to create a Answer List.
     
     
@@ -162,7 +163,9 @@ public void collectionProcessComplete(ProcessTrace arg0, JCas jcas)
     Integer[] ranks = new Integer[ScoreList.size()];
     Comparator<Integer> gc = new ScoreComparator(ScoreList);
     Arrays.sort(ranks, gc);
-    
+    System.out.println("######################################");
+    System.out.println(ranks);
+    System.out.println("######################################"); 
     //http://stackoverflow.com/questions/14186529/java-array-of-sorted-indexes
    
     

@@ -80,13 +80,19 @@ public class JsonCollectionReaderHelper {
 		// then add them to CAS
 		if (input.getDocuments() != null) {
 			input.getDocuments().stream()
-					.map(uri -> TypeFactory.createDocument(jcas, uri))
+					.map(uri -> 
+					//TypeFactory.createDocument(jcas, uri))
+					//Gold Standard 
+					TypeFactory.createGoldStandardDocument(jcas, uri))
+					//
 					.forEach(Document::addToIndexes);
 		}
 		if (input.getSnippets() != null) {
 			input.getSnippets()
 					.stream()
-					.map(snippet -> TypeFactory.createPassage(jcas,
+					.map(snippet -> 
+					//TypeFactory.createPassage(jcas,
+					TypeFactory.createGoldStandardPassage(jcas,
 							snippet.getDocument(), snippet.getText(),
 							snippet.getOffsetInBeginSection(),
 							snippet.getOffsetInEndSection(),
@@ -96,14 +102,18 @@ public class JsonCollectionReaderHelper {
 		if (input.getConcepts() != null) {
 			input.getConcepts()
 					.stream()
-					.map(concept -> TypeFactory.createConceptSearchResult(jcas,
+					.map(concept -> 
+					//TypeFactory.createConceptSearchResult(jcas,
+					TypeFactory.createGoldStandardConceptSearchResult(jcas,
 							TypeFactory.createConcept(jcas, concept), concept))
 					.forEach(ConceptSearchResult::addToIndexes);
 		}
 		if (input.getTriples() != null) {
 			input.getTriples()
 					.stream()
-					.map(triple -> TypeFactory.createTripleSearchResult(jcas,
+					.map(triple -> 
+					//TypeFactory.createTripleSearchResult(jcas,
+					TypeFactory.createGoldStandardTripleSearchResult(jcas,
 							TypeFactory.createTriple(jcas, triple.getS(),
 									triple.getP(), triple.getO())))
 					.forEach(TripleSearchResult::addToIndexes);
