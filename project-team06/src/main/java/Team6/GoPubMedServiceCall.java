@@ -33,13 +33,13 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    
+    String query = null;
     FSIterator<Annotation> iter = aJCas.getAnnotationIndex().iterator();
     try {
       if (iter.isValid()) {
         Question question = (Question) iter.get();
-        String query = question.getText();
-        
+        query = question.getText();
+        System.out.println("Query = " + query);
         PubMedSearchServiceResponse.Result pubMedResult = service.findPubMedCitations(query, 0);
         for(Document d : pubMedResult.getDocuments()) {
           edu.cmu.lti.oaqa.type.retrieval.Document doc = new edu.cmu.lti.oaqa.type.retrieval.Document(aJCas);
@@ -47,7 +47,6 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           doc.setTitle(d.getTitle());
           doc.addToIndexes();
         }
-        
         LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service.findLinkedLifeDataEntitiesPaged(query, 0);
         for (LinkedLifeDataServiceResponse.Entity entity : linkedLifeDataResult.getEntities()) {
           for (LinkedLifeDataServiceResponse.Relation relation : entity.getRelations()) {
@@ -102,12 +101,14 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           c.setScore(finding.getScore());
           c.addToIndexes();
         }
-        
       }
-    } catch (IOException e) {
+    } catch (IllegalArgumentException e) {
       e.printStackTrace();
     }
-    catch (IllegalArgumentException e) {
+    catch (IOException e) {
+      e.printStackTrace();
+    }
+    catch (IllegalStateException e) {
       e.printStackTrace();
     }
 

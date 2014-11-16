@@ -15,7 +15,7 @@ public class GoPubMedServiceExample {
   public static void main(String[] args) throws ClientProtocolException, IOException,
           ConfigurationException {
     // String text = "Is Rheumatoid Arthritis more common in men or women?";
-    String text = "apple";
+    String text = "what be the methyl donor of dna cytosinemethyltransferase";
     GoPubMedService service = new GoPubMedService(args[0]);
     OntologyServiceResponse.Result diseaseOntologyResult = service
             .findDiseaseOntologyEntitiesPaged(text, 0);
@@ -31,12 +31,14 @@ public class GoPubMedServiceExample {
       System.out.println(" > " + finding.getConcept().getLabel() + " "
               + finding.getConcept().getUri());
     }
+    
     OntologyServiceResponse.Result jochemResult = service.findJochemEntitiesPaged(text, 0);
     System.out.println("Jochem: " + jochemResult.getFindings().size());
     for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
       System.out.println(" > " + finding.getConcept().getLabel() + " "
               + finding.getConcept().getUri());
     }
+    
     OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0);
     System.out.println("MeSH: " + meshResult.getFindings().size());
     for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
