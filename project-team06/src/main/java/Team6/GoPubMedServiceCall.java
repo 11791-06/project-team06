@@ -85,8 +85,10 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
             t.setSubject(relation.getSubj());
             TripleSearchResult tsr = new TripleSearchResult(aJCas);
             tsr.setTriple(t);
+            tsr.setQueryString(query);
             tsr.setScore(entity.getScore());
             tsr.addToIndexes();
+            
           }
         }
         
@@ -95,6 +97,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
+          c.setQueryString(query);
           c.addToIndexes();
         }
         
@@ -103,6 +106,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
+          c.setQueryString(query);
           c.addToIndexes();
         }
         
@@ -111,6 +115,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
+          c.setQueryString(query);
           c.addToIndexes();
         }
         
@@ -119,6 +124,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
+          c.setQueryString(query);
           c.addToIndexes();
         }
         
@@ -128,6 +134,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
+          c.setQueryString(query);
           c.addToIndexes();
         }
       }
