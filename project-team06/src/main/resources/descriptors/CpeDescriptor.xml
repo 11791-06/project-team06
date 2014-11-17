@@ -35,7 +35,7 @@
 			</errorHandling>
 		</casProcessor>
 		
-		<!--casProcessor deployment="integrated" name="CorrectRankingAlgo">
+		<casProcessor deployment="integrated" name="CorrectRankingAlgo">
 			<descriptor>
 				<import location="CorrectRankingAlgo.xml" />
 			</descriptor>
@@ -48,7 +48,7 @@
 			</errorHandling>
 		</casProcessor>
 		
-		<casProcessor deployment="integrated" name="NLPProcessDescriptor">
+		<!--casProcessor deployment="integrated" name="NLPProcessDescriptor">
 			<descriptor>
 				<import location="NLPProcessDescriptor.xml" />
 			</descriptor>
@@ -59,7 +59,7 @@
 				<errorRateThreshold action="terminate" value="10/10000" />
 				<timeout max="10000" />
 			</errorHandling>
-		</casProcessor>
+		</casProcessor-->
 		
 		<casProcessor deployment="integrated" name="Evaluator">
             <descriptor>
@@ -72,7 +72,7 @@
                 <timeout max="100000" default="-1"/>
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
-        </casProcessor-->
+        </casProcessor>
         
 	</casProcessors>
 	<cpeConfig>
