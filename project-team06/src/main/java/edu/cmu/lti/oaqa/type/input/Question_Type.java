@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** The Question and any associated meta-data.
- * Updated by JCasGen Mon Nov 10 23:34:54 EST 2014
+ * Updated by JCasGen Mon Nov 17 14:30:26 PST 2014
  * @generated */
 public class Question_Type extends Annotation_Type {
   /** @generated 
@@ -141,6 +141,30 @@ public class Question_Type extends Annotation_Type {
     ll_cas.ll_setStringValue(addr, casFeatCode_text, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_originalText;
+  /** @generated */
+  final int     casFeatCode_originalText;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getOriginalText(int addr) {
+        if (featOkTst && casFeat_originalText == null)
+      jcas.throwFeatMissing("originalText", "edu.cmu.lti.oaqa.type.input.Question");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_originalText);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setOriginalText(int addr, String v) {
+        if (featOkTst && casFeat_originalText == null)
+      jcas.throwFeatMissing("originalText", "edu.cmu.lti.oaqa.type.input.Question");
+    ll_cas.ll_setStringValue(addr, casFeatCode_originalText, v);}
+    
+  
 
 
 
@@ -168,6 +192,10 @@ public class Question_Type extends Annotation_Type {
  
     casFeat_text = jcas.getRequiredFeatureDE(casType, "text", "uima.cas.String", featOkTst);
     casFeatCode_text  = (null == casFeat_text) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_text).getCode();
+
+ 
+    casFeat_originalText = jcas.getRequiredFeatureDE(casType, "originalText", "uima.cas.String", featOkTst);
+    casFeatCode_originalText  = (null == casFeat_originalText) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_originalText).getCode();
 
   }
 }

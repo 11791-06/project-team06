@@ -11,8 +11,8 @@ import edu.cmu.lti.oaqa.type.kb.Triple;
 
 
 /** A passage search result that was the result of a search from the subject and object of a triple
- * Updated by JCasGen Mon Nov 10 23:34:55 EST 2014
- * XML source: C:/Users/rgoutam/git/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Mon Nov 17 14:30:26 PST 2014
+ * XML source: /Users/apple/CMU_Document/2014_Fall/11-791-Software_Engineering/project/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class PassageFromRelation extends Passage {
   /** @generated

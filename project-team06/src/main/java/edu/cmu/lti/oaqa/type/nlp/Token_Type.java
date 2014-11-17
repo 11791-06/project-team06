@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** Annotation on a token, which may have arguments if they are predicates; useful in transforming text into a "logical form", with affordances similar to the ones provided in Extended WordNet and the like. --- Source: Murdock
- * Updated by JCasGen Mon Nov 10 23:34:55 EST 2014
+ * Updated by JCasGen Mon Nov 17 14:30:26 PST 2014
  * @generated */
 public class Token_Type extends Annotation_Type {
   /** @generated 
@@ -315,6 +315,30 @@ public class Token_Type extends Annotation_Type {
     ll_cas.ll_setStringValue(addr, casFeatCode_determiner, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_word;
+  /** @generated */
+  final int     casFeatCode_word;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getWord(int addr) {
+        if (featOkTst && casFeat_word == null)
+      jcas.throwFeatMissing("word", "edu.cmu.lti.oaqa.type.nlp.Token");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_word);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setWord(int addr, String v) {
+        if (featOkTst && casFeat_word == null)
+      jcas.throwFeatMissing("word", "edu.cmu.lti.oaqa.type.nlp.Token");
+    ll_cas.ll_setStringValue(addr, casFeatCode_word, v);}
+    
+  
 
 
 
@@ -362,6 +386,10 @@ public class Token_Type extends Annotation_Type {
  
     casFeat_determiner = jcas.getRequiredFeatureDE(casType, "determiner", "uima.cas.String", featOkTst);
     casFeatCode_determiner  = (null == casFeat_determiner) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_determiner).getCode();
+
+ 
+    casFeat_word = jcas.getRequiredFeatureDE(casType, "word", "uima.cas.String", featOkTst);
+    casFeatCode_word  = (null == casFeat_word) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_word).getCode();
 
   }
 }

@@ -13,8 +13,8 @@ import org.apache.uima.jcas.cas.StringArray;
 
 
 /** Annotation on a token, which may have arguments if they are predicates; useful in transforming text into a "logical form", with affordances similar to the ones provided in Extended WordNet and the like. --- Source: Murdock
- * Updated by JCasGen Mon Nov 10 23:34:55 EST 2014
- * XML source: C:/Users/rgoutam/git/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Mon Nov 17 14:30:26 PST 2014
+ * XML source: /Users/apple/CMU_Document/2014_Fall/11-791-Software_Engineering/project/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Token extends Annotation {
   /** @generated
@@ -318,6 +318,28 @@ public class Token extends Annotation {
     if (Token_Type.featOkTst && ((Token_Type)jcasType).casFeat_determiner == null)
       jcasType.jcas.throwFeatMissing("determiner", "edu.cmu.lti.oaqa.type.nlp.Token");
     jcasType.ll_cas.ll_setStringValue(addr, ((Token_Type)jcasType).casFeatCode_determiner, v);}    
+   
+    
+  //*--------------*
+  //* Feature: word
+
+  /** getter for word - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public String getWord() {
+    if (Token_Type.featOkTst && ((Token_Type)jcasType).casFeat_word == null)
+      jcasType.jcas.throwFeatMissing("word", "edu.cmu.lti.oaqa.type.nlp.Token");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Token_Type)jcasType).casFeatCode_word);}
+    
+  /** setter for word - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setWord(String v) {
+    if (Token_Type.featOkTst && ((Token_Type)jcasType).casFeat_word == null)
+      jcasType.jcas.throwFeatMissing("word", "edu.cmu.lti.oaqa.type.nlp.Token");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Token_Type)jcasType).casFeatCode_word, v);}    
   }
 
     

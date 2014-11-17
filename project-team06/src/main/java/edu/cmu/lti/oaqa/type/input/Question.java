@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** The Question and any associated meta-data.
- * Updated by JCasGen Mon Nov 10 23:34:54 EST 2014
- * XML source: C:/Users/rgoutam/git/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Mon Nov 17 14:30:26 PST 2014
+ * XML source: /Users/apple/CMU_Document/2014_Fall/11-791-Software_Engineering/project/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Question extends Annotation {
   /** @generated
@@ -162,6 +162,28 @@ public class Question extends Annotation {
     if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_text == null)
       jcasType.jcas.throwFeatMissing("text", "edu.cmu.lti.oaqa.type.input.Question");
     jcasType.ll_cas.ll_setStringValue(addr, ((Question_Type)jcasType).casFeatCode_text, v);}    
+   
+    
+  //*--------------*
+  //* Feature: originalText
+
+  /** getter for originalText - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public String getOriginalText() {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_originalText == null)
+      jcasType.jcas.throwFeatMissing("originalText", "edu.cmu.lti.oaqa.type.input.Question");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Question_Type)jcasType).casFeatCode_originalText);}
+    
+  /** setter for originalText - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setOriginalText(String v) {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_originalText == null)
+      jcasType.jcas.throwFeatMissing("originalText", "edu.cmu.lti.oaqa.type.input.Question");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Question_Type)jcasType).casFeatCode_originalText, v);}    
   }
 
     
