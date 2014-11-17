@@ -48,7 +48,7 @@
 			</errorHandling>
 		</casProcessor>
 		
-		<casProcessor deployment="integrated" name="NLPProcessDescriptor">
+		<!--casProcessor deployment="integrated" name="NLPProcessDescriptor">
 			<descriptor>
 				<import location="NLPProcessDescriptor.xml" />
 			</descriptor>
@@ -59,7 +59,7 @@
 				<errorRateThreshold action="terminate" value="10/10000" />
 				<timeout max="10000" />
 			</errorHandling>
-		</casProcessor>
+		</casProcessor-->
 		
 		<casProcessor deployment="integrated" name="Evaluator">
             <descriptor>
