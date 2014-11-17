@@ -35,7 +35,7 @@
 			</errorHandling>
 		</casProcessor>
 		
-		<casProcessor deployment="integrated" name="CorrectRankingAlgo">
+		<!--casProcessor deployment="integrated" name="CorrectRankingAlgo">
 			<descriptor>
 				<import location="CorrectRankingAlgo.xml" />
 			</descriptor>
@@ -72,7 +72,7 @@
                 <timeout max="100000" default="-1"/>
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
-        </casProcessor>
+        </casProcessor-->
         
 	</casProcessors>
 	<cpeConfig>
