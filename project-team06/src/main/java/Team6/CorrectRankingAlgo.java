@@ -13,67 +13,91 @@ import java.util.Map;
 
   import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
+import org.apache.uima.cas.CASException;
 import org.apache.uima.cas.FSIterator;
+import org.apache.uima.collection.CasConsumer_ImplBase;
 import org.apache.uima.fit.component.JCasConsumer_ImplBase;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 import org.apache.uima.util.ProcessTrace;
 
-  import edu.cmu.lti.oaqa.type.retrieval.Document;
+import edu.cmu.lti.oaqa.type.input.Question;
+import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
-  public class CorrectRankingAlgo extends JCasConsumer_ImplBase {
+  public class CorrectRankingAlgo extends CasConsumer_ImplBase {
     
    
   ArrayList<String>  docList;
   ArrayList<Double> ScoreList;
   ArrayList<String>  QuestionList;
 
-
-  public void initialize(CAS aCas) throws ResourceInitializationException {
+@Override
+  public void initialize() throws ResourceInitializationException {
     
     docList = new ArrayList<String>();
     ScoreList = new ArrayList<Double>();
     QuestionList= new ArrayList<String>();
+    System.out.println("Intialized all Lists");
     
   }
-
   
-  public void GetDocumentScores(JCas jcas)
+  public String GetAllQuestions(JCas jcas)
+  {
+    String query = null;
+    FSIterator<Annotation> iter = jcas.getAnnotationIndex().iterator();
+  
+      if (iter.isValid()) {
+        Question question = (Question) iter.get();
+        query = question.getText();
+        System.out.println("Query = " + query);
+        QuestionList.add(query);
+        return query;
+      }
+      else{
+        return query;
+      }
+}
+      
+  public void GetDocumentScores(JCas jcas, String query_string)
   {
     FSIterator iter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
-
+    String Answer=null;
+    if (docList == null){
+      System.out.println("DOCLIST IS EMPTY HERE");
+    }
     while (iter.hasNext()) {
          Document doc = (Document) iter.next(); 
        
-       String query_string = doc.getQueryString();
-       String Answer = doc.getText();
        
-       if (query_string != null && Answer != null) 
+       Answer = doc.getText();
+   
+       double val = 0.0;
+       if (Answer == null){
+        
+       }
+       else
        {
-         
-     
-       System.out.println("Printing Answers");
-       System.out.println("Query:");
-       System.out.println(query_string);
-       System.out.println("Answer:");
-       System.out.println(Answer);
-       double val = computeCosineSimilarity(createTermFreqVector(Answer),createTermFreqVector(query_string));
-       doc.setScore(val);
-       ScoreList.add(val);
-       docList.add(Answer);
-       QuestionList.add(query_string);
        
-         } 
-       /***UPLOAD SCORE TO CAS ***/
+      // System.out.println("Now writing answer");
+       //System.out.println(Answer);
+       Map<String, Integer> q_vector = createTermFreqVector(query_string);
+       Map<String, Integer> a_vector = createTermFreqVector(Answer);
+       val = computeCosineSimilarity(a_vector,q_vector);
+       doc.setScore(val);
+       docList.add(Answer);
+       }
+   /***UPLOAD SCORE TO CAS ***/
       
+    }
     }
      
    
 
-  }
+  
   public void GetTripleScores(JCas jcas)
   {
     FSIterator iter2 = jcas.getJFSIndexRepository().getAllIndexedFS(TripleSearchResult.type);
@@ -91,7 +115,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
          svo = doc.getTriple().getSubject() + ' ' + doc.getTriple().getPredicate() + ' ' + doc.getTriple().getObject();
          docList.add(svo);
          ScoreList.add(doc.getScore());
-         QuestionList.add(query_string);
+       
         
        
          } 
@@ -111,20 +135,38 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
        SearchResult doc = (SearchResult) iter3.next();  // SHOULD ACTUALLY BE CONCEPT SEARCH RESULT
        String query_string = doc.getQueryString();
        String Answer = doc.getText();
-       System.out.println(query_string);
+      // System.out.println(query_string);
        if (query_string != null && Answer != null) 
        {
      
      docList.add(doc.getUri());
      ScoreList.add(doc.getScore());
-     QuestionList.add(query_string);
+
      
        }
    }
   }
   
-  public void process(JCas jcas) throws AnalysisEngineProcessException {
+  public void processCas(CAS aCas) throws ResourceProcessException {
+    JCas jcas;
+    try {
+      jcas =aCas.getJCas();
+    } catch (CASException e) {
+      throw new ResourceProcessException(e);
+    }
+ 
+    String query_string= "rheumatoid arthritis common man woman";
     System.out.println("Into Process");
+    System.out.println("Get ALL Questions");
+   // query_string = GetAllQuestions(jcas);
+    System.out.println("Get ALL Documents");
+    GetDocumentScores(jcas,query_string);
+    System.out.println("Got All Documents");
+    GetTripleScores(jcas);
+    System.out.println("Got All Triples");
+    GetConceptScores(jcas);
+    System.out.println("Got All Concepts");
+    System.out.println(QuestionList);
 /** 
  GetDocumentScores(jcas);
   System.out.println("Got One Documents");
@@ -144,11 +186,13 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
   }
     
-public void collectionProcessComplete(ProcessTrace arg0, JCas jcas)
+public void collectionProcessComplete(ProcessTrace arg0)
           throws ResourceProcessException, IOException {
   System.out.println("Into Collection process Complete");
     double val;
     
+    
+    /**
     GetDocumentScores(jcas);
     System.out.println("Got All Documents");
     GetTripleScores(jcas);
@@ -156,7 +200,7 @@ public void collectionProcessComplete(ProcessTrace arg0, JCas jcas)
     GetConceptScores(jcas);
     System.out.println("Got All Concepts");
     // Need to create a Answer List.
-    
+    **/
     
     
    
@@ -164,7 +208,7 @@ public void collectionProcessComplete(ProcessTrace arg0, JCas jcas)
     Comparator<Integer> gc = new ScoreComparator(ScoreList);
     Arrays.sort(ranks, gc);
     System.out.println("######################################");
-    System.out.println(ranks);
+   // System.out.println(ranks);
     System.out.println("######################################"); 
     //http://stackoverflow.com/questions/14186529/java-array-of-sorted-indexes
    
