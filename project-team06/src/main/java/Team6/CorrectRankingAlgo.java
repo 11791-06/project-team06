@@ -54,6 +54,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
   
       if (iter.isValid()) {
         Question question = (Question) iter.get();
+       
         query = question.getText();
         System.out.println("Query = " + query);
         //QuestionList.add(query);
@@ -105,7 +106,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
    
 
   
-  public void GetTripleScores(JCas jcas)
+  public void GetTripleScores(JCas jcas, String query_string)
   {
     FSIterator iter2 = jcas.getJFSIndexRepository().getAllIndexedFS(TripleSearchResult.type);
 
@@ -116,6 +117,14 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
          //Perhaps needs some kind of adjustment to account for Answer being null.
          String svo = new String();
          svo = doc.getTriple().getSubject() + ' ' + doc.getTriple().getPredicate() + ' ' + doc.getTriple().getObject();
+         double val = 0.0;
+        
+         Map<String, Integer> q_vector = createTermFreqVector(query_string);
+         Map<String, Integer> a_vector = createTermFreqVector(svo);
+         val = computeCosineSimilarity(a_vector,q_vector);
+
+         
+         doc.setScore(val);
          //docList.add(doc.getUri());
         // ScoreList.add(doc.getScore());
          
@@ -153,7 +162,9 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     }
  
     String query_string = GetAllQuestions(jcas); //Only caters to one question at a time.
+    
    int docId = GetDocumentScores(jcas,query_string);
+   GetTripleScores(jcas,query_string);
    System.out.println("Number of Documents Returned");
    List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docId);
    List<ConceptSearchResult> ConceptResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, ConceptSearchResult.class),docId);
