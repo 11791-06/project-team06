@@ -73,9 +73,6 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
       
       Document doc = (Document) iter.next(); 
      //if (doc.getSearchId() == "__gold__")
-      /*
-       * Use the String.equals(String other) function to compare strings, not the == operator.
-       * */
      if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__"))
      {
        continue;
@@ -188,31 +185,16 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
    
   } 
-   
 
-
-
-  
 public void collectionProcessComplete(ProcessTrace arg0)
           throws ResourceProcessException, IOException {
  // super.collectionProcessComplete(arg0);
   
 
  // System.out.println("Into Collection process Complete");
-
-
-
-
-
   
   }
-    
-      
-      
 
-      
-      
-      
       List<String> MyTokenizer(String doc) {
         List<String> res = new ArrayList<String>();
         
@@ -304,15 +286,10 @@ public void collectionProcessComplete(ProcessTrace arg0)
         tokens.put(s, new_freq);
                 
       }
-    
-      
     }
     return tokens;
   }
-
-
-
-    }
+}
 
   
   

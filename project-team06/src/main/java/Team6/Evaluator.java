@@ -64,7 +64,7 @@ public class Evaluator extends CasConsumer_ImplBase{
     }
     processDoc(aJCas);
     processCon(aJCas);
-    //processTri(aJCas);
+    processTri(aJCas);
     processSni(aJCas);
   }
   /*
@@ -88,7 +88,7 @@ public class Evaluator extends CasConsumer_ImplBase{
       maxi = Math.max(maxi, doc.getRank());
       mini = Math.min(mini, doc.getRank());
     }
-    //System.err.println("# docs in eval = " + (maxi - mini + 1));
+ 
     String[] docs = new String[Math.max(0, maxi - mini + 1)];
     for (Document doc : documents) {
     //  System.err.println("DocRank   =    " + doc.getRank());
@@ -258,6 +258,10 @@ public class Evaluator extends CasConsumer_ImplBase{
   }
   /*
    * Recall
+   * */
+  
+  /**
+   * problems existed in how to compute those metrics
    * */
   
   private double calcRecall(String[] docs, HashSet<String> groundtruthDoc) {

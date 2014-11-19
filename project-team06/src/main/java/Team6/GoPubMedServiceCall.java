@@ -99,6 +99,8 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
         
         OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(query, 0);
         for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
+          // change it to conceptSearchResult
+          // not so sure about using searchresult
           ConceptSearchResult c = new ConceptSearchResult(aJCas);
           //SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
