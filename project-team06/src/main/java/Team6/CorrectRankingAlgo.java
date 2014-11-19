@@ -29,6 +29,8 @@ import org.apache.uima.resource.ResourceProcessException;
 import org.apache.uima.util.ProcessTrace;
 
 import edu.cmu.lti.oaqa.type.input.Question;
+import edu.cmu.lti.oaqa.type.kb.Concept;
+import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
@@ -36,17 +38,10 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
   public class CorrectRankingAlgo extends CasConsumer_ImplBase {
     
    
-  ArrayList<Integer>  docList;
-  ArrayList<Double> ScoreList;
-  ArrayList<String>  QuestionList;
-  int docId;
 
 @Override
   public void initialize() throws ResourceInitializationException {
-    docId = 0;
-    docList = new ArrayList<Integer>();
-    ScoreList = new ArrayList<Double>();
-    QuestionList= new ArrayList<String>();
+  
     
     System.out.println("Intialized all Lists");
     
@@ -61,7 +56,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
         Question question = (Question) iter.get();
         query = question.getText();
         System.out.println("Query = " + query);
-        QuestionList.add(query);
+        //QuestionList.add(query);
         return query;
       }
       else{
@@ -69,9 +64,9 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
       }
 }
       
-  public void GetDocumentScores(JCas jcas, String query_string)
+  public int GetDocumentScores(JCas jcas, String query_string)
   {
-    
+    int docId = 0;
     FSIterator iter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
     String Answer=null;
     while (iter.hasNext()) {
@@ -99,11 +94,12 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
        }
        doc.setScore(val);
        
-       docList.add(docId);
-       ScoreList.add(val);
+      // docList.add(docId);
+       //ScoreList.add(val);
       // doc.addToIndexes();
       
     }
+    return docId;
     }
      
    
@@ -121,7 +117,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
          String svo = new String();
          svo = doc.getTriple().getSubject() + ' ' + doc.getTriple().getPredicate() + ' ' + doc.getTriple().getObject();
          //docList.add(doc.getUri());
-         ScoreList.add(doc.getScore());
+        // ScoreList.add(doc.getScore());
          
   }
      
@@ -137,12 +133,18 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
       String Answer = doc.getText();
       //Perhaps needs try and catch or some kind of adjustment of Answer being null.
       // docList.add(doc.getUri());
-       ScoreList.add(doc.getScore());
+     //  ScoreList.add(doc.getScore());
       
 }
   }
   
   public void processCas(CAS aCas) throws ResourceProcessException {
+    
+    /**
+    ArrayList<Integer> docList = new ArrayList<Integer>();
+    ArrayList<Double> ScoreList = new ArrayList<Double>();
+    ArrayList<String> QuestionList= new ArrayList<String>();
+    */
     JCas jcas;
     try {
       jcas =aCas.getJCas();
@@ -151,20 +153,29 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     }
  
     String query_string = GetAllQuestions(jcas); //Only caters to one question at a time.
-    GetDocumentScores(jcas,query_string);
-    System.out.println("Number of Documents Returned");
-   System.out.println(docList.size());
-   List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docList.size());
-  int i=0;
+   int docId = GetDocumentScores(jcas,query_string);
+   System.out.println("Number of Documents Returned");
+   List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docId);
+   List<ConceptSearchResult> ConceptResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, ConceptSearchResult.class),docId);
+   List<TripleSearchResult> TripleResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, TripleSearchResult.class),docId);
+    
+   int i=0;
 
-    List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docList.size());
-  
     for(Document docr : DocResults)
     {
       docr.addToIndexes(jcas);
       
     }
-    
+    for(ConceptSearchResult conr : ConceptResults)
+    {
+      conr.addToIndexes(jcas);
+      
+    } 
+    for(TripleSearchResult tripr : TripleResults)
+    {
+      tripr.addToIndexes(jcas);
+      
+    } 
  
   
     //NOT DOING TRIPLES AND CONCEPTS RIGHT NOW, NO DOCUMENT ID's added for them
