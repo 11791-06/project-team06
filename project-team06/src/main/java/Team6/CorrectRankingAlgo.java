@@ -73,7 +73,8 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     while (iter.hasNext()) {
       
       Document doc = (Document) iter.next(); 
-     if (doc.getSearchId() == "__gold__")
+     //if (doc.getSearchId() == "__gold__")
+     if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__"))
      {
        continue;
      }
@@ -135,10 +136,10 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
   }
   public void GetConceptScores(JCas jcas)
   {
-  FSIterator iter3 = jcas.getJFSIndexRepository().getAllIndexedFS(SearchResult.type);
+  FSIterator iter3 = jcas.getJFSIndexRepository().getAllIndexedFS(ConceptSearchResult.type);
   
    while (iter3.hasNext()) {
-      SearchResult doc = (SearchResult) iter3.next();  // SHOULD ACTUALLY BE CONCEPT SEARCH RESULT
+      ConceptSearchResult doc = (ConceptSearchResult) iter3.next();  // SHOULD ACTUALLY BE CONCEPT SEARCH RESULT
       String Answer = doc.getText();
       //Perhaps needs try and catch or some kind of adjustment of Answer being null.
       // docList.add(doc.getUri());
@@ -195,31 +196,16 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
    
   } 
-   
 
-
-
-  
 public void collectionProcessComplete(ProcessTrace arg0)
           throws ResourceProcessException, IOException {
  // super.collectionProcessComplete(arg0);
   
 
  // System.out.println("Into Collection process Complete");
-
-
-
-
-
   
   }
-    
-      
-      
 
-      
-      
-      
       List<String> MyTokenizer(String doc) {
         List<String> res = new ArrayList<String>();
         
@@ -311,15 +297,10 @@ public void collectionProcessComplete(ProcessTrace arg0)
         tokens.put(s, new_freq);
                 
       }
-    
-      
     }
     return tokens;
   }
-
-
-
-    }
+}
 
   
   

@@ -20,6 +20,7 @@ import edu.cmu.lti.oaqa.type.kb.Triple;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
+import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 /*
  * Project 0 
@@ -29,14 +30,25 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
  * */
 public class Evaluator extends CasConsumer_ImplBase{
   ArrayList<Double> docAPList, conAPList, triAPList, sniAPList;
-  double docRecall, conRecall, triRecall, sniRecall;
-  double docPrec, conPrec, triPrec, sniPrec;
+  
+  ArrayList<Double> docRecall, conRecall, triRecall, sniRecall;
+  ArrayList<Double>  docPrec, conPrec, triPrec, sniPrec;
   
   public void initialize() throws ResourceInitializationException {
     docAPList = new ArrayList<Double>();
     conAPList = new ArrayList<Double>();
     triAPList = new ArrayList<Double>();
     sniAPList = new ArrayList<Double>();
+    
+    docRecall = new ArrayList<Double>();
+    conRecall = new ArrayList<Double>();
+    triRecall = new ArrayList<Double>();
+    sniRecall = new ArrayList<Double>();
+    
+    docPrec = new ArrayList<Double>();
+    conPrec = new ArrayList<Double>();
+    triPrec = new ArrayList<Double>();
+    sniPrec = new ArrayList<Double>();
   }
   public void processCas(CAS aCas) throws ResourceProcessException {
     JCas aJCas;
@@ -51,8 +63,8 @@ public class Evaluator extends CasConsumer_ImplBase{
       question = (Question) qit.next();
     }
     processDoc(aJCas);
-    processTri(aJCas);
     processCon(aJCas);
+    processTri(aJCas);
     processSni(aJCas);
   }
   /*
@@ -76,51 +88,79 @@ public class Evaluator extends CasConsumer_ImplBase{
       maxi = Math.max(maxi, doc.getRank());
       mini = Math.min(mini, doc.getRank());
     }
-    //System.err.println("# docs in eval = " + (maxi - mini + 1));
+ 
     String[] docs = new String[Math.max(0, maxi - mini + 1)];
     for (Document doc : documents) {
+    //  System.err.println("DocRank   =    " + doc.getRank());
       docs[doc.getRank() - mini] = doc.getUri();
     }
-    docAPList.add(calcAP(docs, groundtruthDoc));
-    docRecall = calcRecall(docs, groundtruthDoc);
-    docPrec = calcPrecision(docs, groundtruthDoc);
+   // if( calcAP(docs, groundtruthDoc) > 0) {
+      docAPList.add(calcAP(docs, groundtruthDoc));
+    //}
+    
+   // if(calcRecall(docs, groundtruthDoc) > 0) {
+      docRecall.add(calcRecall(docs, groundtruthDoc));
+  //  }
+   // if (calcPrecision(docs, groundtruthDoc) > 0){
+      docPrec.add(calcPrecision(docs, groundtruthDoc));
+    //}
+  
   }
   /*
    * Concepts
    * */
   private void processCon(JCas aJCas) {
     HashSet<String> groundtruthDoc = new HashSet<String>();
+    //ArrayList<ConceptSearchResult> documents = new ArrayList<ConceptSearchResult>();
     ArrayList<ConceptSearchResult> documents = new ArrayList<ConceptSearchResult>();
     FSIterator<TOP> iter = aJCas.getJFSIndexRepository().getAllIndexedFS(
-        ConceptSearchResult.type);
+            ConceptSearchResult.type);
     while (iter.hasNext()) {
       ConceptSearchResult doc = (ConceptSearchResult) iter.next();
+      /*if (doc instanceof ConceptSearchResult){
+        System.err.println("Yes!!!");
+      }*/
       if (doc.getSearchId() != null
           && doc.getSearchId().equals("__gold__")) {
+        System.err.println("Gold Standard == " + doc.getUri());
         groundtruthDoc.add(doc.getUri());
       } else {
         documents.add(doc);
+        System.err.println("Doc == " + doc.getUri());
       }
     }
     
     String[] docs = new String[documents.size()];
     for (ConceptSearchResult doc : documents) {
+      //System.err.println("ConceptDoc ===" + doc.getUri());
+     
+      System.err.println("ConceptRank   =    " + doc.getRank());
       docs[doc.getRank()] = doc.getUri();
     }
-    conAPList.add(calcAP(docs, groundtruthDoc));
-    conRecall = calcRecall(docs, groundtruthDoc);
-    conPrec = calcPrecision(docs, groundtruthDoc);
+    //if( calcAP(docs, groundtruthDoc) > 0) {
+      conAPList.add(calcAP(docs, groundtruthDoc));
+    //}
+    //conRecall = calcRecall(docs, groundtruthDoc);
+    //conPrec = calcPrecision(docs, groundtruthDoc);
+    
+   // if(calcRecall(docs, groundtruthDoc) > 0) {
+      conRecall.add(calcRecall(docs, groundtruthDoc));
+    //}
+    //if (calcPrecision(docs, groundtruthDoc) > 0){
+      conPrec.add(calcPrecision(docs, groundtruthDoc));
+    //}
   }
   /*
    * Triple
    * */
   private void processTri(JCas aJCas) {
     HashSet<String> groundtruthDoc = new HashSet<String>();
-    ArrayList<TripleSearchResult> documents = new ArrayList<TripleSearchResult>();
+    ArrayList<SearchResult> documents = new ArrayList<SearchResult>();
     FSIterator<TOP> iter = aJCas.getJFSIndexRepository().getAllIndexedFS(
-        TripleSearchResult.type);
+        SearchResult.type);
     while (iter.hasNext()) {
-      TripleSearchResult doc = (TripleSearchResult) iter.next();
+      SearchResult doc = (SearchResult) iter.next();
+      
       if (doc.getSearchId() != null
           && doc.getSearchId().equals("__gold__")) {
         groundtruthDoc.add(triple2String(doc));
@@ -129,12 +169,22 @@ public class Evaluator extends CasConsumer_ImplBase{
       }
     }
     String[] docs = new String[documents.size()];
-    for (TripleSearchResult doc : documents) {
+    for (SearchResult doc : documents) {
+     // System.err.println("Triple Doc ===" + doc.getUri());
       docs[doc.getRank()] = triple2String(doc);
     }
-    triAPList.add(calcAP(docs, groundtruthDoc));
-    triRecall = calcRecall(docs, groundtruthDoc);
-    triPrec = calcPrecision(docs, groundtruthDoc);
+    if( calcAP(docs, groundtruthDoc) > 0) {
+      triAPList.add(calcAP(docs, groundtruthDoc));
+    }
+    //triRecall = calcRecall(docs, groundtruthDoc);
+    //triPrec = calcPrecision(docs, groundtruthDoc);
+    
+    if(calcRecall(docs, groundtruthDoc) > 0) {
+      triRecall.add(calcRecall(docs, groundtruthDoc));
+    }
+    if (calcPrecision(docs, groundtruthDoc) > 0){
+      triPrec.add(calcPrecision(docs, groundtruthDoc));
+    }
   }
   
   /*
@@ -158,9 +208,19 @@ public class Evaluator extends CasConsumer_ImplBase{
     for (Passage doc : documents) {
       docs[doc.getRank()] = Sni2String(doc);
     }
-    sniAPList.add(calcAP(docs, groundtruthDoc));
-    sniRecall = calcRecall(docs, groundtruthDoc);
-    sniPrec = calcPrecision(docs, groundtruthDoc);
+    if( calcAP(docs, groundtruthDoc) > 0) {
+      sniAPList.add(calcAP(docs, groundtruthDoc));
+    }
+   
+   // sniRecall = calcRecall(docs, groundtruthDoc);
+    //sniPrec = calcPrecision(docs, groundtruthDoc);
+    
+    if(calcRecall(docs, groundtruthDoc) > 0) {
+      sniRecall.add(calcRecall(docs, groundtruthDoc));
+    }
+    if (calcPrecision(docs, groundtruthDoc) > 0){
+      sniPrec.add(calcPrecision(docs, groundtruthDoc));
+    }
   }
 
   
@@ -175,8 +235,10 @@ public class Evaluator extends CasConsumer_ImplBase{
     return uri + "$" + text + "$" + begin + "$" + end + "$" + beginS + "$" + endS;
   }
   
-  private String triple2String(TripleSearchResult tsr) {
-    Triple triple = tsr.getTriple();
+  private String triple2String(SearchResult doc) {
+    doc = (TripleSearchResult)doc;
+    Triple triple = ((TripleSearchResult) doc).getTriple();
+   // System.err.println(triple);
     return triple.getSubject() + "$" + triple.getObject() + "$"
         + triple.getPredicate();
   }
@@ -198,6 +260,10 @@ public class Evaluator extends CasConsumer_ImplBase{
    * Recall
    * */
   
+  /**
+   * problems existed in how to compute those metrics
+   * */
+  
   private double calcRecall(String[] docs, HashSet<String> groundtruthDoc) {
     double correct = 0, size = 0, sum = 0;
     size = groundtruthDoc.size();
@@ -211,6 +277,7 @@ public class Evaluator extends CasConsumer_ImplBase{
     if (size > 0) {
       sum = correct/size;
     }
+   // if (size == 0) return -1;
     return sum;
   }
   
@@ -231,13 +298,14 @@ public class Evaluator extends CasConsumer_ImplBase{
     if (size > 0) {
       sum = correct/size;
     }
+    //if (size == 0) return -1;
     return sum;
   }
   
   /*
    * MAP
    * */
-  private double APList2MAP(ArrayList<Double> APList) {
+  private double List2Value(ArrayList<Double> APList) {
     double sum = 0;
     for (Double AP : APList) {
       sum += AP;
@@ -252,7 +320,7 @@ public class Evaluator extends CasConsumer_ImplBase{
    * */
   private double APList2GMAP(ArrayList<Double> APList) {
     double eps = 0.01;
-    double sum = 0;
+    double sum = 1;
     for (Double AP : APList) {
       sum *= (AP + eps);
     }
@@ -264,36 +332,42 @@ public class Evaluator extends CasConsumer_ImplBase{
   public void collectionProcessComplete(ProcessTrace arg0)
           throws ResourceProcessException, IOException {
         /*doc*/
-        System.err.println("MAP@Doc = " + APList2MAP(docAPList));
+        System.err.println("MAP@Doc = " + List2Value(docAPList));
         System.err.println("GMAP@Doc = " + APList2GMAP(docAPList));
-        System.err.println("Recall@Doc = " + docRecall);
-        System.err.println("Precision@Doc = " + docPrec);
-        double docF1 = 2*docRecall*docPrec/(docRecall + docPrec);
+        System.err.println("Recall@Doc = " + List2Value(docRecall));
+        System.err.println("Precision@Doc = " + List2Value(docPrec));
+        double docF1 = 2*List2Value(docRecall)*List2Value((docPrec))/(List2Value(docRecall) + List2Value(docPrec));
         System.err.println("F1@Doc = " + docF1);
         
         /*concept*/
-        System.err.println("MAP@Con = " + APList2MAP(conAPList));
+        System.err.println("MAP@Con = " + List2Value(conAPList));
         System.err.println("GMAP@Con = " + APList2GMAP(conAPList));
-        System.err.println("Recall@Con = " + conRecall);
-        System.err.println("Precision@Con = " + conPrec);
-        double conF1 = 2*conRecall*conPrec/(conRecall + conPrec);
+        System.err.println("Recall@Con = " + List2Value(conRecall));
+        System.err.println("Precision@Con = " + List2Value(conPrec));
+       // double conF1 = 2*conRecall*conPrec/(conRecall + conPrec);
+        double conF1 = 2*List2Value(conRecall)*List2Value((conPrec))/(List2Value(conRecall) + List2Value(conPrec));
         System.err.println("F1@Con = " + conF1);
         
+        System.err.println("Con APList Size====" + conAPList.size());
 
          /*tri*/
-        System.err.println("MAP@Tri = " + APList2MAP(triAPList));
+        System.err.println("MAP@Tri = " + List2Value(triAPList));
         System.err.println("GMAP@Tri = " + APList2GMAP(triAPList));
-        System.err.println("Recall@Tri = " + triRecall);
-        System.err.println("Precision@Tri = " + triPrec);
-        double triF1 = 2*triRecall*triPrec/(triRecall + triPrec);
+        double triR = List2Value(triRecall);
+        double triP = List2Value(triPrec);
+        System.err.println("Recall@Tri = " + triR);
+        System.err.println("Precision@Tri = " + triP);
+        double triF1 = 2*triR*triP/(triR + triP);
         System.err.println("F1@Tri = " + triF1);
         
         /*snippts*/
-        System.err.println("MAP@sni = " + APList2MAP(sniAPList));
+        System.err.println("MAP@sni = " + List2Value(sniAPList));
         System.err.println("GMAP@sni  = " + APList2GMAP(sniAPList));
-        System.err.println("Recall@sni  = " + sniRecall);
-        System.err.println("Precision@sni  = " + sniPrec);
-        double sniF1 = 2*sniRecall*sniPrec/(sniRecall + sniPrec);
+        double sniR = List2Value(sniRecall);
+        double sniP = List2Value(sniPrec);
+        System.err.println("Recall@sni  = " + sniR);
+        System.err.println("Precision@sni  = " + sniP);
+        double sniF1 = 2*sniR*sniP/(sniR + sniP);
         System.err.println("F1@sni = " + sniF1);
         
         System.err.println("[done]");
