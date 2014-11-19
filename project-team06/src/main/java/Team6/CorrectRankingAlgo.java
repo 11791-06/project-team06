@@ -147,7 +147,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     String query_string = GetAllQuestions(jcas); //Only caters to one question at a time.
     GetDocumentScores(jcas,query_string);
 
-   List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docList.size());
+    List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docList.size());
   
     for(Document docr : DocResults)
     {

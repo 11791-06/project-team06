@@ -50,7 +50,6 @@ public class Evaluator extends CasConsumer_ImplBase{
     if (qit.hasNext()) {
       question = (Question) qit.next();
     }
-
     processDoc(aJCas);
     processTri(aJCas);
     processCon(aJCas);
@@ -72,9 +71,15 @@ public class Evaluator extends CasConsumer_ImplBase{
       }
     }
     
-    String[] docs = new String[documents.size()];
+    int mini = 100000000, maxi = -1;
     for (Document doc : documents) {
-      docs[doc.getRank() - 1] = doc.getUri();
+      maxi = Math.max(maxi, doc.getRank());
+      mini = Math.min(mini, doc.getRank());
+    }
+    //System.err.println("# docs in eval = " + (maxi - mini + 1));
+    String[] docs = new String[Math.max(0, maxi - mini + 1)];
+    for (Document doc : documents) {
+      docs[doc.getRank() - mini] = doc.getUri();
     }
     docAPList.add(calcAP(docs, groundtruthDoc));
     docRecall = calcRecall(docs, groundtruthDoc);
@@ -97,9 +102,10 @@ public class Evaluator extends CasConsumer_ImplBase{
         documents.add(doc);
       }
     }
+    
     String[] docs = new String[documents.size()];
     for (ConceptSearchResult doc : documents) {
-      docs[doc.getRank() - 1] = doc.getUri();
+      docs[doc.getRank()] = doc.getUri();
     }
     conAPList.add(calcAP(docs, groundtruthDoc));
     conRecall = calcRecall(docs, groundtruthDoc);
@@ -124,7 +130,7 @@ public class Evaluator extends CasConsumer_ImplBase{
     }
     String[] docs = new String[documents.size()];
     for (TripleSearchResult doc : documents) {
-      docs[doc.getRank() - 1] = triple2String(doc);
+      docs[doc.getRank()] = triple2String(doc);
     }
     triAPList.add(calcAP(docs, groundtruthDoc));
     triRecall = calcRecall(docs, groundtruthDoc);
@@ -138,7 +144,7 @@ public class Evaluator extends CasConsumer_ImplBase{
     HashSet<String> groundtruthDoc = new HashSet<String>();
     ArrayList<Passage> documents = new ArrayList<Passage>();
     FSIterator<TOP> iter = aJCas.getJFSIndexRepository().getAllIndexedFS(
-        TripleSearchResult.type);
+        Passage.type);
     while (iter.hasNext()) {
       Passage doc = (Passage) iter.next();
       if (doc.getSearchId() != null
@@ -150,7 +156,7 @@ public class Evaluator extends CasConsumer_ImplBase{
     }
     String[] docs = new String[documents.size()];
     for (Passage doc : documents) {
-      docs[doc.getRank() - 1] = Sni2String(doc);
+      docs[doc.getRank()] = Sni2String(doc);
     }
     sniAPList.add(calcAP(docs, groundtruthDoc));
     sniRecall = calcRecall(docs, groundtruthDoc);
