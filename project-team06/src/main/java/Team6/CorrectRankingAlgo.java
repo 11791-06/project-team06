@@ -72,7 +72,11 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     while (iter.hasNext()) {
       
       Document doc = (Document) iter.next(); 
-     if (doc.getSearchId() == "__gold__")
+     //if (doc.getSearchId() == "__gold__")
+      /*
+       * Use the String.equals(String other) function to compare strings, not the == operator.
+       * */
+     if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__"))
      {
        continue;
      }
@@ -126,10 +130,10 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
   }
   public void GetConceptScores(JCas jcas)
   {
-  FSIterator iter3 = jcas.getJFSIndexRepository().getAllIndexedFS(SearchResult.type);
+  FSIterator iter3 = jcas.getJFSIndexRepository().getAllIndexedFS(ConceptSearchResult.type);
   
    while (iter3.hasNext()) {
-      SearchResult doc = (SearchResult) iter3.next();  // SHOULD ACTUALLY BE CONCEPT SEARCH RESULT
+      ConceptSearchResult doc = (ConceptSearchResult) iter3.next();  // SHOULD ACTUALLY BE CONCEPT SEARCH RESULT
       String Answer = doc.getText();
       //Perhaps needs try and catch or some kind of adjustment of Answer being null.
       // docList.add(doc.getUri());
