@@ -74,6 +74,10 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
             //query here and add snippets once the service is online 
           }
           //System.out.println("Document full text : " + (d.isFulltextAvailable()));
+          
+          // need to set this - Diyi
+          doc.setUri("http://www.ncbi.nlm.nih.gov/pubmed/" + d.getPmid());
+          
           doc.addToIndexes();
         }
         LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service.findLinkedLifeDataEntitiesPaged(query, 0);

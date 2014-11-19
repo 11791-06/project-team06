@@ -156,6 +156,9 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
    System.out.println(docList.size());
    List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docList.size());
   int i=0;
+
+    List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docList.size());
+  
     for(Document docr : DocResults)
     {
       docr.addToIndexes(jcas);
