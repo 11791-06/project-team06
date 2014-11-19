@@ -75,8 +75,14 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     FSIterator iter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
     String Answer=null;
     while (iter.hasNext()) {
-      docId += 1;
-     Document doc = (Document) iter.next(); 
+      
+      Document doc = (Document) iter.next(); 
+     if (doc.getSearchId() == "__gold__")
+     {
+       continue;
+     }
+     docId += 1;
+     
      Answer = doc.getText();
      
      doc.setDocId(Integer.toString(docId));
@@ -146,14 +152,16 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
  
     String query_string = GetAllQuestions(jcas); //Only caters to one question at a time.
     GetDocumentScores(jcas,query_string);
-
+    System.out.println("Number of Documents Returned");
+   System.out.println(docList.size());
    List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docList.size());
-  
+  int i=0;
     for(Document docr : DocResults)
     {
       docr.addToIndexes(jcas);
       
     }
+    
  
   
     //NOT DOING TRIPLES AND CONCEPTS RIGHT NOW, NO DOCUMENT ID's added for them
