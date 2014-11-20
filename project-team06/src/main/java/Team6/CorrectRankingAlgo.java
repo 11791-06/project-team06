@@ -23,6 +23,7 @@ import org.apache.uima.collection.CasConsumer_ImplBase;
 import org.apache.uima.fit.component.JCasConsumer_ImplBase;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.cas.TOP;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
@@ -30,6 +31,7 @@ import org.apache.uima.util.ProcessTrace;
 
 import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.kb.Concept;
+import edu.cmu.lti.oaqa.type.nlp.Parse;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
@@ -46,7 +48,23 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     System.out.println("Intialized all Lists");
     
   }
-  
+public String GetAllTokens(JCas jcas)
+{
+  String query = null;
+ // FSIterator<Parse> iter = jcas.getAnnotationIndex().iterator();
+  FSIterator<TOP> iter = jcas.getJFSIndexRepository().getAllIndexedFS(Parse.type);
+          if (iter.isValid()) {
+      Question question = (Question) iter.get();
+     
+      query = question.getText();
+      System.out.println("Query = " + query);
+      //QuestionList.add(query);
+      return query;
+    }
+    else{
+      return query;
+    }
+}  
   public String GetAllQuestions(JCas jcas)
   {
     String query = null;
@@ -119,6 +137,10 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
          String svo = new String();
          svo = doc.getTriple().getSubject() + ' ' + doc.getTriple().getPredicate() + ' ' + doc.getTriple().getObject();
          double val = 0.0;
+
+         System.out.println("Current SVO triple");
+        
+         System.out.println(svo);
         
          Map<String, Integer> q_vector = createTermFreqVector(query_string);
          Map<String, Integer> a_vector = createTermFreqVector(svo);
@@ -155,6 +177,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     ArrayList<Double> ScoreList = new ArrayList<Double>();
     ArrayList<String> QuestionList= new ArrayList<String>();
     */
+    System.out.println("Now to get CAS");
     JCas jcas;
     try {
       jcas =aCas.getJCas();
@@ -163,14 +186,16 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     }
  
     String query_string = GetAllQuestions(jcas); //Only caters to one question at a time.
-    
+    System.out.println("Now to get Documents");
    int docId = GetDocumentScores(jcas,query_string);
-   GetTripleScores(jcas,query_string);
+  // GetTripleScores(jcas,query_string);
    System.out.println("Number of Documents Returned");
    List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class),docId);
    List<ConceptSearchResult> ConceptResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, ConceptSearchResult.class),docId);
    List<TripleSearchResult> TripleResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, TripleSearchResult.class),docId);
     
+  // System.out.println(util.TypeUtil.getRankedTripleSearchResults(jcas));
+   //System.out.println(util.TypeUtil.getRankedConceptSearchResults(jcas));
    int i=0;
 
     for(Document docr : DocResults)
@@ -185,10 +210,15 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
     } 
     for(TripleSearchResult tripr : TripleResults)
     {
+      if (tripr.getRank() > 0){
+        System.out.println("Triples");
+        System.out.println(tripr.getScore());
+        System.out.println(tripr.getRank());
+      }
       tripr.addToIndexes(jcas);
       
     } 
- 
+  
   
     //NOT DOING TRIPLES AND CONCEPTS RIGHT NOW, NO DOCUMENT ID's added for them
     //GetTripleScores(jcas);
