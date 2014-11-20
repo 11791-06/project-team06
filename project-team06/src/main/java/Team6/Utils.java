@@ -1,8 +1,12 @@
 package Team6;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.EmptyFSList;
@@ -16,62 +20,91 @@ import org.apache.uima.jcas.tcas.Annotation;
 import org.uimafit.util.JCasUtil;
 
 public class Utils {
-	public static <T extends TOP> ArrayList<T> fromFSListToCollection(FSList list,
-			Class<T> classType) {
+  
+  private static Set<String> stopWords = new HashSet<String>();
+ 
+  static {
+    try {
+      BufferedReader br = new BufferedReader(new FileReader("src/main/java/stopword"));
+      String str = "";
+      while ((str = br.readLine()) != null) {
+        stopWords.add(str);
+      }
+      br.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public static String normalization (String str) {
+    
+    String[] strArr = str.split("\\s+");
 
-	
-		Collection<T> myCollection = JCasUtil.select(list, classType);
-		/*
-		 * for(T element:myCollection){ System.out.println(.getText()); }
-		 */
+    StringBuilder answer = new StringBuilder();
+    for (int i = 0; i < strArr.length; i++) {
+      String tmp = strArr[i].replaceAll("[^a-zA-Z ]", "").toLowerCase();
+      // stemming
+      String stemword = StanfordLemmatizer.stemWord(tmp);
+      //stop word removal
+      if (stopWords.contains(stemword))
+        continue;
+      answer.append(stemword).append(" ");
+    }
+    return answer.length() == 0? "" : answer.substring(0, answer.length() - 1);
+  }
+  
+  
+  public static <T extends TOP> ArrayList<T> fromFSListToCollection(FSList list, Class<T> classType) {
 
-		return new ArrayList<T>(myCollection);
-	}
-	public static StringList createStringList(JCas aJCas, Collection<String> aCollection)
-	 	{
-	 		if (aCollection.size() == 0) {
-	 			return new EmptyStringList(aJCas);
-	 		}
-	
-	 		NonEmptyStringList head = new NonEmptyStringList(aJCas);
-	 		NonEmptyStringList list = head;
-	 		Iterator<String> i = aCollection.iterator();
-	 		while (i.hasNext()) {
-	 			head.setHead(i.next());
-	 			if (i.hasNext()) {
-	 				head.setTail(new NonEmptyStringList(aJCas));
-	 				head = (NonEmptyStringList) head.getTail();
-	 			}
-	 			else {
-	 				head.setTail(new EmptyStringList(aJCas));
-	 			}
-	 		}
-	
-	 		return list;
-	 	}
-	
-	public static <T extends Annotation> FSList fromCollectionToFSList(JCas aJCas,
-			Collection<T> aCollection) {
-		if (aCollection.size() == 0) {
-			return new EmptyFSList(aJCas);
-		}
+    Collection<T> myCollection = JCasUtil.select(list, classType);
+    /*
+     * for(T element:myCollection){ System.out.println(.getText()); }
+     */
 
-		NonEmptyFSList head = new NonEmptyFSList(aJCas);
-		NonEmptyFSList list = head;
-		Iterator<T> i = aCollection.iterator();
-		while (i.hasNext()) {
-			head.setHead(i.next());
-			if (i.hasNext()) {
-				head.setTail(new NonEmptyFSList(aJCas));
-				head = (NonEmptyFSList) head.getTail();
-			} else {
-				head.setTail(new EmptyFSList(aJCas));
-			}
-		}
+    return new ArrayList<T>(myCollection);
+  }
 
-		return list;
-	}
+  public static StringList createStringList(JCas aJCas, Collection<String> aCollection) {
+    if (aCollection.size() == 0) {
+      return new EmptyStringList(aJCas);
+    }
 
-	
+    NonEmptyStringList head = new NonEmptyStringList(aJCas);
+    NonEmptyStringList list = head;
+    Iterator<String> i = aCollection.iterator();
+    while (i.hasNext()) {
+      head.setHead(i.next());
+      if (i.hasNext()) {
+        head.setTail(new NonEmptyStringList(aJCas));
+        head = (NonEmptyStringList) head.getTail();
+      } else {
+        head.setTail(new EmptyStringList(aJCas));
+      }
+    }
+
+    return list;
+  }
+
+  public static <T extends Annotation> FSList fromCollectionToFSList(JCas aJCas,
+          Collection<T> aCollection) {
+    if (aCollection.size() == 0) {
+      return new EmptyFSList(aJCas);
+    }
+
+    NonEmptyFSList head = new NonEmptyFSList(aJCas);
+    NonEmptyFSList list = head;
+    Iterator<T> i = aCollection.iterator();
+    while (i.hasNext()) {
+      head.setHead(i.next());
+      if (i.hasNext()) {
+        head.setTail(new NonEmptyFSList(aJCas));
+        head = (NonEmptyFSList) head.getTail();
+      } else {
+        head.setTail(new EmptyFSList(aJCas));
+      }
+    }
+
+    return list;
+  }
 
 }
