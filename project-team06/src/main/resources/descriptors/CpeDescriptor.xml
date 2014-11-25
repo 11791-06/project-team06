@@ -35,6 +35,45 @@
 			</errorHandling>
 		</casProcessor>
 		
+		<casProcessor deployment="integrated" name="DocumentNormalization">
+			<descriptor>
+				<import location="DocumentNormalization.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="continue" value="0/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+		
+		<casProcessor deployment="integrated" name="ConceptNormalization">
+			<descriptor>
+				<import location="ConceptNormalization.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="continue" value="0/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+		
+		<casProcessor deployment="integrated" name="TripleNormalization">
+			<descriptor>
+				<import location="TripleNormalization.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="continue" value="0/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+		
 		<casProcessor deployment="integrated" name="CorrectRankingAlgo">
 			<descriptor>
 				<import location="CorrectRankingAlgo.xml" />
@@ -47,19 +86,6 @@
 				<timeout max="10000" />
 			</errorHandling>
 		</casProcessor>
-		
-		<!--casProcessor deployment="integrated" name="NLPProcessDescriptor">
-			<descriptor>
-				<import location="NLPProcessDescriptor.xml" />
-			</descriptor>
-			<filter></filter>
-			<errorHandling>
-				<maxConsecutiveRestarts action="terminate"
-					value="100" />
-				<errorRateThreshold action="terminate" value="10/10000" />
-				<timeout max="10000" />
-			</errorHandling>
-		</casProcessor-->
 		
 		<casProcessor deployment="integrated" name="Evaluator">
             <descriptor>
