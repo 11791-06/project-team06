@@ -210,7 +210,7 @@ public String GetAllTokens(JCas jcas)
     } 
     for(TripleSearchResult tripr : TripleResults)
     {
-      if (tripr.getRank() > 0){
+      if (tripr.getSearchId() == "__gold__"){
         System.out.println("Triples");
         System.out.println(tripr.getScore());
         System.out.println(tripr.getRank());
