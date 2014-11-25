@@ -76,7 +76,6 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
           }
           //System.out.println("Document full text : " + (d.isFulltextAvailable()));
           
-          // need to set this - Diyi
           doc.setUri("http://www.ncbi.nlm.nih.gov/pubmed/" + d.getPmid());
           
           doc.addToIndexes();
@@ -99,10 +98,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
         
         OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(query, 0);
         for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
-          // change it to conceptSearchResult
-          // not so sure about using searchresult
           ConceptSearchResult c = new ConceptSearchResult(aJCas);
-          //SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
           c.setQueryString(query);
@@ -112,7 +108,6 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
         OntologyServiceResponse.Result jochemResult = service.findJochemEntitiesPaged(query, 0);
         for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
           ConceptSearchResult c = new ConceptSearchResult(aJCas);
-          //SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
           c.setQueryString(query);
@@ -122,7 +117,6 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
         OntologyServiceResponse.Result goResult = service.findGeneOntologyEntitiesPaged(query,  0);
         for (OntologyServiceResponse.Finding finding : goResult.getFindings()) {
           ConceptSearchResult c = new ConceptSearchResult(aJCas);
-          //SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
           c.setQueryString(query);
@@ -132,7 +126,6 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
         OntologyServiceResponse.Result doResult = service.findDiseaseOntologyEntitiesPaged(query,  0);
         for (OntologyServiceResponse.Finding finding : doResult.getFindings()) {
           ConceptSearchResult c = new ConceptSearchResult(aJCas);
-          //SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
           c.setQueryString(query);
@@ -140,10 +133,8 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
         }
         
         OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(query, 0);
-        // for (OntologyServiceResponse.Finding finding : goResult.getFindings()) {
         for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
           ConceptSearchResult c = new ConceptSearchResult(aJCas);
-          //SearchResult c = new SearchResult(aJCas);
           c.setUri(finding.getConcept().getUri());
           c.setScore(finding.getScore());
           c.setQueryString(query);

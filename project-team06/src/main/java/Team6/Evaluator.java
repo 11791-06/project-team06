@@ -157,7 +157,7 @@ public class Evaluator extends CasConsumer_ImplBase{
     HashSet<String> groundtruthDoc = new HashSet<String>();
     ArrayList<SearchResult> documents = new ArrayList<SearchResult>();
     FSIterator<TOP> iter = aJCas.getJFSIndexRepository().getAllIndexedFS(
-        SearchResult.type);
+        TripleSearchResult.type);
     while (iter.hasNext()) {
       SearchResult doc = (SearchResult) iter.next();
       

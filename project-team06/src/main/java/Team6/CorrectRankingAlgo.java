@@ -99,7 +99,7 @@ public String GetAllTokens(JCas jcas)
      docId += 1;
      
      Answer = doc.getText();
-     
+     System.out.println("Anser = " + Answer);
      doc.setDocId(Integer.toString(docId));
      double val = 0.0;
        if (Answer == null){
