@@ -39,6 +39,7 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
     try {
       BufferedReader br = new BufferedReader(new FileReader("src/main/java/stopword"));
       String str = "";
+      //initialize the stop word list
       while ((str = br.readLine()) != null) {
         stopWords.add(str);
       }
@@ -63,39 +64,41 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
     }
   }
 
-  /**
-   * perform basic normalization
-   * 
-   * @param str
-   * @return
-   */
-  public String normalizeCaseStem(String str) {
-    StringBuilder answer = new StringBuilder();
+  public void normalization(JCas jcas, Question question) throws FileNotFoundException {
+      
+      String text = question.getText();
 
-    for (String s : str.split("\\s+")) {
-      // case normalization (not sure if we are going to use this) TODO
-      String tmp = s.replaceAll("[^a-zA-Z ]", "").toLowerCase();
-
-      // stemming
-      String stemword = StanfordLemmatizer.stemWord(tmp);
-      answer.append(stemword).append(" ");
+      List<CoreMap> sentences = posTagging(text);
+      List<String> words = new ArrayList<String>();
+      List<String> posTag = new ArrayList<String>();
+      for (CoreMap sentence : sentences) {
+        for (CoreLabel token : sentence.get(TokensAnnotation.class)) {
+          String pos = token.get(PartOfSpeechAnnotation.class);
+          String tokenResult = token.get(TextAnnotation.class);
+          posTag.add(pos);
+          words.add(tokenResult);
+        }
+      }
+      //String result = stopRemoval(normalizeCaseStem(text));
+      String result = normHelper(jcas, words, posTag, question);
+      question.setRankText(result);
+      question.setText(result);
+      question.setOriginalText(text);
     }
-    return answer.substring(0, answer.length() - 1);
+
+  public String queryOperator(String str) {
+      String [] strArr = str.split(" ");
+      //use OR
+      StringBuilder answer = new StringBuilder();
+      if (strArr.length >= 1)
+	  answer.append(strArr[0]);
+      for (int i = 1; i < strArr.length; i++) {
+	  answer.append(" OR ").append(strArr[i]);
+      }
+      
+      return answer.toString();
   }
-
-  public String stopRemoval(String str) {
-    String[] strArr = str.split("\\s+");
-
-    StringBuilder answer = new StringBuilder();
-    for (int i = 0; i < strArr.length; i++) {
-      if (stopWords.contains(strArr[i]))
-        continue;
-      else
-        answer.append(strArr[i]).append(" ");
-    }
-    return answer.substring(0, answer.length() - 1);
-  }
-
+  
   public String normHelper(JCas jcas, List<String> words, List<String> posTag, Question q) {
     StringBuilder answer = new StringBuilder();
     ArrayList<Token> tokenList = new ArrayList<Token>();
@@ -119,26 +122,7 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
     return answer.substring(0, answer.length() - 1);
   }
 
-  public void normalization(JCas jcas, Question question) throws FileNotFoundException {
-    
-    String text = question.getText();
 
-    List<CoreMap> sentences = posTagging(text);
-    List<String> words = new ArrayList<String>();
-    List<String> posTag = new ArrayList<String>();
-    for (CoreMap sentence : sentences) {
-      for (CoreLabel token : sentence.get(TokensAnnotation.class)) {
-        String pos = token.get(PartOfSpeechAnnotation.class);
-        String tokenResult = token.get(TextAnnotation.class);
-        posTag.add(pos);
-        words.add(tokenResult);
-      }
-    }
-    String result = stopRemoval(normalizeCaseStem(text));
-    // String result = normHelper(jcas, words, posTag, question);
-    question.setText(result);
-    question.setOriginalText(text);
-  }
 
   public List<CoreMap> posTagging(String text) {
     edu.stanford.nlp.pipeline.Annotation document = new edu.stanford.nlp.pipeline.Annotation(text);
@@ -147,4 +131,43 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
     return sentences;
   }
 
+  
+  
+  
+  /**
+   * perform basic normalization
+   * 
+   * @param str
+   * @return
+   */
+  /*
+  public String normalizeCaseStem(String str) {
+    StringBuilder answer = new StringBuilder();
+
+    for (String s : str.split("\\s+")) {
+      // case normalization (not sure if we are going to use this) TODO
+      String tmp = s.replaceAll("[^a-zA-Z ]", "").toLowerCase();
+
+      // stemming
+      String stemword = StanfordLemmatizer.stemWord(tmp);
+      answer.append(stemword).append(" ");
+    }
+    return answer.substring(0, answer.length() - 1);
+  }*/
+
+  /*
+  public String stopRemoval(String str) {
+    String[] strArr = str.split("\\s+");
+
+    StringBuilder answer = new StringBuilder();
+    for (int i = 0; i < strArr.length; i++) {
+      if (stopWords.contains(strArr[i]))
+        continue;
+      else
+        answer.append(strArr[i]).append(" ");
+    }
+    return answer.substring(0, answer.length() - 1);
+  }*/
+  
+  
 }
