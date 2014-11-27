@@ -203,8 +203,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         int docId = GetDocumentScores(jcas, query_string);
         // GetTripleScores(jcas,query_string);
         System.out.println("Number of Documents Returned");
-        List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(
-                        JCasUtil.select(jcas, Document.class), docId);
+        //List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class), docId);
         // List<ConceptSearchResult> ConceptResults =
         // util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas,
         // ConceptSearchResult.class),docId);
@@ -212,27 +211,47 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         // util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas,
         // TripleSearchResult.class),docId);
         /**
-         * @author Diyi The docId is not the number of concepts and triples, which should lead to
-         *         very bad results Use 2 functions to get the number of concepts and triples
-         */
-        List<ConceptSearchResult> ConceptResults = util.TypeUtil.rankedSearchResultsByScore(
-                        JCasUtil.select(jcas, ConceptSearchResult.class), GetConceptSize(jcas));
-        List<TripleSearchResult> TripleResults = util.TypeUtil.rankedSearchResultsByScore(
-                        JCasUtil.select(jcas, TripleSearchResult.class), GetTripleSize(jcas));
-
+         * @author Diyi
+         * @comment we should remove the groudtruth when sorting and also need to use the correct size, instead of giving docId to concepts, and triples 
+         * */
+        List<Document> docResults = new ArrayList<Document>();
+        for (Document doc : JCasUtil.select(jcas, Document.class)) {
+            if (doc.getSearchId() == null || !doc.getSearchId().equals("__gold__")) {
+                docResults.add(doc);
+            }
+        }
+        docResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class), docResults.size());
+        
+        List<ConceptSearchResult> conceptResults = new ArrayList<ConceptSearchResult>();
+        for (ConceptSearchResult doc : JCasUtil.select(jcas, ConceptSearchResult.class)) {
+            if (doc.getSearchId() == null || !doc.getSearchId().equals("__gold__")) {
+                conceptResults.add(doc);
+            }
+        }
+        conceptResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, ConceptSearchResult.class), conceptResults.size());
+        
+        List<TripleSearchResult> triResults = new ArrayList<TripleSearchResult>();
+        for (TripleSearchResult doc : JCasUtil.select(jcas, TripleSearchResult.class)) {
+            if (doc.getSearchId() == null || !doc.getSearchId().equals("__gold__")) {
+                triResults.add(doc);
+            }
+        }
+        triResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, TripleSearchResult.class), triResults.size());
+       
         // System.out.println(util.TypeUtil.getRankedTripleSearchResults(jcas));
         // System.out.println(util.TypeUtil.getRankedConceptSearchResults(jcas));
         int i = 0;
 
-        for (Document docr : DocResults) {
+        for (Document docr : docResults) {
             docr.addToIndexes(jcas);
 
         }
-        for (ConceptSearchResult conr : ConceptResults) {
+        
+        for (ConceptSearchResult conr : conceptResults) {
             conr.addToIndexes(jcas);
 
         }
-        for (TripleSearchResult tripr : TripleResults) {
+        for (TripleSearchResult tripr : triResults) {
             /*if (tripr.getRank() > 0) {
             
                 System.out.println("Triples");
