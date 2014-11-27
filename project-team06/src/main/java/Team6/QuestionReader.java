@@ -36,6 +36,7 @@ public class QuestionReader extends CollectionReader_ImplBase {
     @Override
     public void initialize() {
 	String filePath = "/BioASQ-SampleData1B.json";
+	//String filePath = "/first.json";
 	inputs = Lists.newArrayList();
 	/*
 	 * inputs = TestSet .load(new FileInputStream(filePath)).stream()
