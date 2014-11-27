@@ -82,7 +82,7 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
       //String result = stopRemoval(normalizeCaseStem(text));
       String result = normHelper(jcas, words, posTag, question);
       question.setRankText(result);
-      question.setText(result);
+      question.setText(queryOperator(result));
       question.setOriginalText(text);
     }
 
@@ -104,7 +104,7 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
     ArrayList<Token> tokenList = new ArrayList<Token>();
     for (int i = 0; i < words.size(); i++) {
       // case normalization (not sure if we are going to use this) //TODO
-      String tmp = words.get(i).replaceAll("[^a-zA-Z ]", "").toLowerCase();
+      String tmp = words.get(i).replaceAll("[^a-zA-Z ]", "");//.toLowerCase();
       // stemming
       String stemword = StanfordLemmatizer.stemWord(tmp);
       if (stopWords.contains(stemword))

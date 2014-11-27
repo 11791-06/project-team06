@@ -42,7 +42,7 @@ public class Utils {
 
     StringBuilder answer = new StringBuilder();
     for (int i = 0; i < strArr.length; i++) {
-      String tmp = strArr[i].replaceAll("[^a-zA-Z ]", "").toLowerCase();
+      String tmp = strArr[i].replaceAll("[^a-zA-Z ]", "");//.toLowerCase();
       // stemming
       String stemword = StanfordLemmatizer.stemWord(tmp);
       //stop word removal
