@@ -68,8 +68,10 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
 
         if (iter.isValid()) {
             Question question = (Question) iter.get();
+            
 
-            query = question.getText();
+            //query = question.getText();
+              query = question.getRankText();
             System.out.println("Query = " + query);
             // QuestionList.add(query);
             return query;
@@ -92,6 +94,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             docId += 1;
 
             Answer = doc.getText();
+            
 //            System.out.println("Anser = " + Answer);
             doc.setDocId(Integer.toString(docId));
             double val = 0.0;
