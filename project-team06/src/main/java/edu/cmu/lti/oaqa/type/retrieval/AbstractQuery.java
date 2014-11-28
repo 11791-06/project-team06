@@ -12,7 +12,7 @@ import org.apache.uima.jcas.cas.TOP;
 
 
 /** An abstract search query for the question that represents query concepts and query operators over those concepts.
- * Updated by JCasGen Mon Nov 17 14:30:26 PST 2014
+ * Updated by JCasGen Tue Nov 25 22:36:23 EST 2014
  * XML source: /Users/apple/CMU_Document/2014_Fall/11-791-Software_Engineering/project/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class AbstractQuery extends TOP {

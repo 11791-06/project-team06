@@ -11,7 +11,7 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 
 /** A named relation mention that identify or define the named relation concept.
- * Updated by JCasGen Mon Nov 17 14:30:26 PST 2014
+ * Updated by JCasGen Tue Nov 25 22:36:22 EST 2014
  * @generated */
 public class RelationMention_Type extends ConceptMention_Type {
   /** @generated 
