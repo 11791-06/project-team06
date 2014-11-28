@@ -9,9 +9,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
@@ -283,6 +285,72 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             res.add(s.toLowerCase());
         return res;
     }
+    private double computeJaccardSimilarity(Map<String, Integer> queryVector,
+            Map<String, Integer> docVector) {
+          double jaccard_similarity=0.0;
+      
+         
+          Set union = new HashSet<String>();
+          Set inter = new HashSet<String>(docVector.keySet());
+          
+         // Map<String, Double> queryVector_L1 = L1_normalize(queryVector);
+          //Map<String, Double> docVector_L1 = L1_normalize(docVector);
+         // Map<String, Double> queryVector_L2 = L2_normalize(queryVector_L1);
+         // Map<String, Double> docVector_L2 = L2_normalize(docVector_L1);
+          union.addAll(docVector.keySet());
+          union.addAll(queryVector.keySet());
+          inter.retainAll(queryVector.keySet());
+          int SizeOfUnion = union.size();
+          int SizeOfInter = inter.size();
+          System.out.println("Union");
+   
+          System.out.println(union);
+          System.out.println(SizeOfUnion);
+          System.out.println("Intersection");
+          System.out.println(SizeOfInter);
+          System.out.println(inter);
+          double denom = (double) SizeOfUnion;
+          double numer = (double) SizeOfInter;
+         jaccard_similarity =   (numer)/(denom);
+         System.out.println("Similarity");
+         System.out.println(jaccard_similarity);
+         System.out.println(numer);
+         System.out.println(denom);
+          return jaccard_similarity;
+        }
+    
+    private double computeDiceSimilarity(Map<String, Integer> queryVector,
+            Map<String, Integer> docVector) {
+          double dice_similarity=0.0;
+      
+         
+          Set union = new HashSet<String>();
+          Set inter = new HashSet<String>(docVector.keySet());
+          
+         // Map<String, Double> queryVector_L1 = L1_normalize(queryVector);
+          //Map<String, Double> docVector_L1 = L1_normalize(docVector);
+         // Map<String, Double> queryVector_L2 = L2_normalize(queryVector_L1);
+         // Map<String, Double> docVector_L2 = L2_normalize(docVector_L1);
+        
+          int SizeOfUnion = queryVector.size() + docVector.size();
+          int SizeOfInter = inter.size();
+          System.out.println("Union");
+   
+        
+          System.out.println(SizeOfUnion);
+          System.out.println("Intersection");
+          System.out.println(SizeOfInter);
+          System.out.println(inter);
+          double denom = (double) SizeOfUnion;
+          double numer = (double) SizeOfInter;
+         dice_similarity =   (2*numer)/(denom);
+         System.out.println("Similarity");
+         System.out.println(dice_similarity);
+         System.out.println(numer);
+         System.out.println(denom);
+          return dice_similarity;
+        }
+
 
     private double computeCosineSimilarity(Map<String, Integer> queryVector,
                     Map<String, Integer> docVector) {
