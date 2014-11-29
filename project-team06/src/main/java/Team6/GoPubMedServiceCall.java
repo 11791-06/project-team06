@@ -76,7 +76,6 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                     if (d.isFulltextAvailable() == true) {
                         String pmid = d.getPmid();
                         getDocText(doc, pmid);
-                        // query here and add snippets once the service is online
                     }
                     // System.out.println("Document full text : " + (d.isFulltextAvailable()));
 

@@ -35,6 +35,19 @@
 			</errorHandling>
 		</casProcessor>
 		
+		<casProcessor deployment="integrated" name="SnippetExtraction">
+			<descriptor>
+				<import location="SnippetExtraction.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="continue" value="0/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+		
 		<casProcessor deployment="integrated" name="DocumentNormalization">
 			<descriptor>
 				<import location="DocumentNormalization.xml" />
