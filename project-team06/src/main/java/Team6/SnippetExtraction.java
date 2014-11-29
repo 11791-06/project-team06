@@ -31,7 +31,7 @@ public class SnippetExtraction extends JCasAnnotator_ImplBase {
     FSIterator iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Document.type);
     while(iter.hasNext()) {
       Document doc = (Document) iter.next();
-      String text = doc.getText(), docId = doc.getDocId();
+      String text = doc.getText(), docId = doc.getUri();
       if(text == null)
         continue;
       Annotation doc_annotated = new Annotation(text);
@@ -46,8 +46,9 @@ public class SnippetExtraction extends JCasAnnotator_ImplBase {
           p.setOffsetInEndSection(endOffset);
           p.setBeginSection("sections.0");
           p.setEndSection("sections.0");
-          p.setDocId(docId);
+          p.setUri(docId);
           p.setText(sentence.toString());
+          System.out.println(p.toString());
           p.addToIndexes();
         }
       }
