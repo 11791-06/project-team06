@@ -67,7 +67,7 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
   public void normalization(JCas jcas, Question question) throws FileNotFoundException {
       
       String text = question.getText();
-
+      System.out.println("Original:" + text);
       List<CoreMap> sentences = posTagging(text);
       List<String> words = new ArrayList<String>();
       List<String> posTag = new ArrayList<String>();
@@ -80,7 +80,9 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
         }
       }
       //String result = stopRemoval(normalizeCaseStem(text));
+      
       String result = normHelper(jcas, words, posTag, question);
+      System.out.println("After proceesing: " + result);
       question.setRankText(result);
       question.setText(queryOperator(result));
       question.setOriginalText(text);
