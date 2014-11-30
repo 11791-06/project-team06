@@ -100,6 +100,19 @@
 			</errorHandling>
 		</casProcessor>
 		
+		<casProcessor deployment="integrated" name="EntityExtraction">
+			<descriptor>
+				<import location="EntityExtraction.xml" />
+			</descriptor>
+			<filter></filter>
+			<errorHandling>
+				<maxConsecutiveRestarts action="terminate"
+					value="100" />
+				<errorRateThreshold action="continue" value="0/10000" />
+				<timeout max="10000" />
+			</errorHandling>
+		</casProcessor>
+		
 		<casProcessor deployment="integrated" name="Evaluator">
             <descriptor>
                 <import location="Evaluator.xml"/>
