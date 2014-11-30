@@ -66,6 +66,12 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                 System.out.println("Query = " + query);
                 PubMedSearchServiceResponse.Result pubMedResult = service.findPubMedCitations(
                                 query, 0);
+                if(pubMedResult.getDocuments().size() == 0) {
+                  query = question.getOrText();
+                  System.out.println("Query = " + query);
+                  pubMedResult = service.findPubMedCitations(
+                                  query, 0);
+                }
                 System.out.println("# of retrieved documents = "
                                 + pubMedResult.getDocuments().size());
                 for (Document d : pubMedResult.getDocuments()) {
