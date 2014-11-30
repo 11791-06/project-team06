@@ -96,8 +96,8 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
       System.out.println("After proceesing: " + result);
       
       question.setRankText(result);
-      question.setText(queryOperator(result));//use for retrieval
-      //question.setText(result);
+      question.setOrText(queryOperator(result));//use for retrieval
+      question.setText(result);
       question.setOriginalText(text);
     }
 

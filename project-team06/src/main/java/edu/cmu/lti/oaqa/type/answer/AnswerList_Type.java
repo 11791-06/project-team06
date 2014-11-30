@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 /** A ranked list of candidate answers.
- * Updated by JCasGen Tue Nov 25 22:36:22 EST 2014
+ * Updated by JCasGen Sun Nov 30 15:10:16 EST 2014
  * @generated */
 public class AnswerList_Type extends TOP_Type {
   /** @generated 
