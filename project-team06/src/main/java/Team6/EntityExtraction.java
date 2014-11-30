@@ -76,6 +76,7 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
       ans.setRank(++rank);
       ans.setText(entityName);
       //System.out.println("Entity : " + entityName + " rank : " + rank + " freq : " + entities.get(entityName));
+      ans.addToIndexes();
     }
   }
 }
