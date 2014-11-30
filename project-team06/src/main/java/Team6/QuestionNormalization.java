@@ -124,7 +124,8 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
       // case normalization 
       String tmp = words.get(i).replace("?",  "");//.replaceAll("[^a-zA-Z0-9 ]", "");//.toLowerCase();
       
-      if (tmp.equals("-LRB-") || tmp.equals("-RRB-") || tmp.length() < 2) continue; 
+      //if (tmp.equals("-LRB-") || tmp.equals("-RRB-") || tmp.length() < 2) continue; 
+      if (tmp.equals("-LRB-") || tmp.equals("-RRB-")) continue; 
       
       // remove verbs
       
