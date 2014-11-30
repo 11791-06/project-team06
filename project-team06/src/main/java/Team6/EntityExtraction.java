@@ -43,11 +43,15 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
     // TODO Auto-generated method stub
     int ranklimit = 100; 
     HashMap<String, Integer> entities = new HashMap<String, Integer>();
-    FSIterator iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Passage.type);
+    //FSIterator iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Passage.type);
+    FSIterator iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Document.type);
     while(iter.hasNext()) {
-      Passage snippet = (Passage) iter.next();
-      if(snippet.getRank() <= ranklimit) {
-        String text = snippet.getText();
+      //Passage snippet = (Passage) iter.next();
+      Document doc = (Document) iter.next();
+      //if(snippet.getRank() <= ranklimit) {
+      if(doc.getRank() <= ranklimit) {
+        //String text = snippet.getText();
+        String text = doc.getText();
         Set<Chunk> namedEntities = model.chunk(text).chunkSet();
         for(Chunk c : namedEntities) {
           String entityName = text.substring(c.start(), c.end());
