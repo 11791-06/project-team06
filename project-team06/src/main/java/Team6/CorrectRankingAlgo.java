@@ -159,9 +159,9 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
                             + doc.getTriple().getObject();
             double val = 0.0;
 
-            System.out.println("Current SVO triple");
+            //System.out.println("Current SVO triple");
 
-            System.out.println(svo);
+            //System.out.println(svo);
 
             Map<String, Integer> q_vector = createTermFreqVector(query_string);
             Map<String, Integer> a_vector = createTermFreqVector(svo);
@@ -305,20 +305,21 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
           inter.retainAll(queryVector.keySet());
           int SizeOfUnion = union.size();
           int SizeOfInter = inter.size();
-          System.out.println("Union");
+        /*  System.out.println("Union");
    
           System.out.println(union);
           System.out.println(SizeOfUnion);
           System.out.println("Intersection");
           System.out.println(SizeOfInter);
-          System.out.println(inter);
+          System.out.println(inter);*/
           double denom = (double) SizeOfUnion;
           double numer = (double) SizeOfInter;
          jaccard_similarity =   (numer)/(denom);
+         /*
          System.out.println("Similarity");
          System.out.println(jaccard_similarity);
          System.out.println(numer);
-         System.out.println(denom);
+         System.out.println(denom);*/
           return jaccard_similarity;
         }
     
@@ -337,20 +338,21 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         
           int SizeOfUnion = queryVector.size() + docVector.size();
           int SizeOfInter = inter.size();
+          /*
           System.out.println("Union");
    
         
           System.out.println(SizeOfUnion);
           System.out.println("Intersection");
           System.out.println(SizeOfInter);
-          System.out.println(inter);
+          System.out.println(inter);*/
           double denom = (double) SizeOfUnion;
           double numer = (double) SizeOfInter;
          dice_similarity =   (2*numer)/(denom);
-         System.out.println("Similarity");
+         /*System.out.println("Similarity");
          System.out.println(dice_similarity);
          System.out.println(numer);
-         System.out.println(denom);
+         System.out.println(denom);*/
           return dice_similarity;
         }
 
