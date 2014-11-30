@@ -480,5 +480,15 @@ public class TypeFactory {
     psr.setSearchId("__gold__");
     return psr;
    }
+   // Factoid
+   public static Answer createGoldStandardAnswer(JCas jcas, List<String> alternatives) {
+      String text = alternatives.get(0);
+      List<String> variants = alternatives.subList(1, alternatives.size());
+      return createAnswer(jcas, text, variants, -11791);
+   }
+   
+   public static Answer createGoldStandardAnswer(JCas jcas, String text) {
+      return createAnswer(jcas, text, new ArrayList<>(), -11791);
+   }
   
 }

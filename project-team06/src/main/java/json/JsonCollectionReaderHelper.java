@@ -12,6 +12,7 @@ import com.google.common.collect.Lists;
 
 import json.gson.Question;
 import json.gson.QuestionType;
+import json.gson.TestFactoidQuestion;
 import json.gson.TestQuestion;
 import json.gson.TestSet;
 import json.gson.TestSummaryQuestion;
@@ -121,6 +122,11 @@ public class JsonCollectionReaderHelper {
 		// add answers to CAS index
 		if (input instanceof TestQuestion) {
 			// test question should not have ideal or exact answers
+		    if (input instanceof TestFactoidQuestion) {
+		        List<String> answerVariants = ((TestFactoidQuestion) input).getExactAnswer();
+		        TypeFactory.createGoldStandardAnswer(jcas, answerVariants.get(0)).addToIndexes();
+		        //System.err.println("[Debug] factoid answer size = " + answerVariants.size());
+		    }
 		} else if (input instanceof TrainingQuestion) {
 			List<String> summaryVariants = ((TrainingQuestion) input)
 					.getIdealAnswer();
@@ -130,10 +136,11 @@ public class JsonCollectionReaderHelper {
 			if (input instanceof TrainingFactoidQuestion) {
 				List<String> answerVariants = ((TrainingFactoidQuestion) input)
 						.getExactAnswer();
-				if (answerVariants != null) {
+				/*if (answerVariants != null) {
 					TypeFactory.createAnswer(jcas, answerVariants)
 							.addToIndexes();
-				}
+				}*/
+				TypeFactory.createGoldStandardAnswer(jcas, answerVariants).addToIndexes();
 			} else if (input instanceof TrainingListQuestion) {
 				List<List<String>> answerVariantsList = ((TrainingListQuestion) input)
 						.getExactAnswer();
