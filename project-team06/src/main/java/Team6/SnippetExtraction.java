@@ -48,7 +48,7 @@ public class SnippetExtraction extends JCasAnnotator_ImplBase {
           p.setEndSection("sections.0");
           p.setUri(docId);
           p.setText(sentence.toString());
-          System.out.println(p.toString());
+          //System.out.println(p.toString());
           p.addToIndexes();
         }
       }

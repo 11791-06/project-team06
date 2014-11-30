@@ -96,8 +96,9 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
       System.out.println("After proceesing: " + result);
       
       question.setRankText(result);
-      question.setText(queryOperator(result));//use for retrieval
-      //question.setText(result);
+     // question.setText(queryOperator(result));//use for retrieval
+      
+      question.setText(result);
       question.setOriginalText(text);
     }
 
@@ -124,7 +125,8 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
       // case normalization 
       String tmp = words.get(i).replace("?",  "");//.replaceAll("[^a-zA-Z0-9 ]", "");//.toLowerCase();
       
-      if (tmp.equals("-LRB-") || tmp.equals("-RRB-") || tmp.length() < 2) continue; 
+      //if (tmp.equals("-LRB-") || tmp.equals("-RRB-") || tmp.length() < 2) continue; 
+      if (tmp.equals("-LRB-") || tmp.equals("-RRB-")) continue; 
       
       // remove verbs
       

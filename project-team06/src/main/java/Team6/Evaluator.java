@@ -128,6 +128,7 @@ public class Evaluator extends CasConsumer_ImplBase {
             Document doc = (Document) iter.next();
             if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__")) {
                 groundtruthDoc.add(doc.getUri());
+               // System.err.println("[Debug] + Doc " + doc.getUri());
             } else {
                 documents.add(doc);
             }
@@ -141,7 +142,7 @@ public class Evaluator extends CasConsumer_ImplBase {
 
         String[] docs = new String[Math.max(0, maxi - mini + 1)];
         for (Document doc : documents) {
-            // System.err.println("DocRank   =    " + doc.getRank());
+            //System.err.println("DocRank   =    " + doc.getRank());
             docs[doc.getRank() - mini] = doc.getUri();
         }
         // if( calcAP(docs, groundtruthDoc) > 0) {
