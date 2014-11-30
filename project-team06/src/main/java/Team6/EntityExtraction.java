@@ -52,6 +52,8 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
       if(doc.getRank() <= ranklimit) {
         //String text = snippet.getText();
         String text = doc.getText();
+        if(text == null)
+          continue;
         Set<Chunk> namedEntities = model.chunk(text).chunkSet();
         for(Chunk c : namedEntities) {
           String entityName = text.substring(c.start(), c.end());
