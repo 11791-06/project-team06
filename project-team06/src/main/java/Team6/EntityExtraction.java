@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 import org.apache.uima.UIMARuntimeException;
@@ -23,6 +24,12 @@ import com.aliasi.util.AbstractExternalizable;
 import edu.cmu.lti.oaqa.type.answer.Answer;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
+import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.CoreMap;
 
 public class EntityExtraction extends JCasAnnotator_ImplBase {
   Chunker model;
@@ -41,6 +48,12 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     // TODO Auto-generated method stub
+    
+    Properties props = new Properties();
+    props.put("annotators", "tokenize");
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+
+    
     int ranklimit = 100; 
     HashMap<String, Integer> entities = new HashMap<String, Integer>();
     //FSIterator iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Passage.type);
@@ -54,9 +67,21 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
         String text = doc.getText();
         if(text == null)
           continue;
-        Set<Chunk> namedEntities = model.chunk(text).chunkSet();
+        /*Set<Chunk> namedEntities = model.chunk(text).chunkSet();
         for(Chunk c : namedEntities) {
           String entityName = text.substring(c.start(), c.end());
+          if(entities.containsKey(entityName)) {
+            entities.put(entityName,  entities.get(entityName) + 1);
+          }
+          else {
+            entities.put(entityName,  1);
+          }
+        }*/
+        Annotation doc_annotated = new Annotation(text);
+        pipeline.annotate(doc_annotated);
+        List<CoreLabel> tokens = doc_annotated.get(TokensAnnotation.class);
+        for(CoreLabel token : tokens) {
+          String entityName = token.toString();
           if(entities.containsKey(entityName)) {
             entities.put(entityName,  entities.get(entityName) + 1);
           }
