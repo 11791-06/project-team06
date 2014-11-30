@@ -49,6 +49,10 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
     }
   }
 
+  
+  /**
+   * Initialization
+   */
   @Override
   public void process(JCas jcas) throws AnalysisEngineProcessException {
     FSIterator<Annotation> iter = jcas.getAnnotationIndex().iterator();
@@ -64,10 +68,17 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
     }
   }
 
+  
+  /**
+   * 
+   * @param jcas
+   * @param question
+   * @throws FileNotFoundException
+   */
   public void normalization(JCas jcas, Question question) throws FileNotFoundException {
       
       String text = question.getText();
-
+      System.out.println("Original:" + text);
       List<CoreMap> sentences = posTagging(text);
       List<String> words = new ArrayList<String>();
       List<String> posTag = new ArrayList<String>();
@@ -79,9 +90,13 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
           words.add(tokenResult);
         }
       }
-      //String result = stopRemoval(normalizeCaseStem(text));
+     
+      
       String result = normHelper(jcas, words, posTag, question);
+      System.out.println("After proceesing: " + result);
+      
       question.setRankText(result);
+      //question.setText(queryOperator(result));//use for retrieval
       question.setText(result);
       question.setOriginalText(text);
     }
@@ -99,30 +114,38 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
       return answer.toString();
   }
   
+  
   public String normHelper(JCas jcas, List<String> words, List<String> posTag, Question q) {
     StringBuilder answer = new StringBuilder();
     ArrayList<Token> tokenList = new ArrayList<Token>();
     for (int i = 0; i < words.size(); i++) {
-      // case normalization (not sure if we are going to use this) //TODO
-      String tmp = words.get(i).replaceAll("[^a-zA-Z ]", "").toLowerCase();
-      // stemming
-      String stemword = StanfordLemmatizer.stemWord(tmp);
-      if (stopWords.contains(stemword))
+      
+      if (posTag.get(i).toLowerCase().contains("v")) continue;
+      // case normalization 
+      String tmp = words.get(i).replace("?",  "");//.replaceAll("[^a-zA-Z0-9 ]", "");//.toLowerCase();
+      
+      if (tmp.equals("-LRB-") || tmp.equals("-RRB-")) continue; 
+      
+      // remove verbs
+      
+      // stemming will do case normalization automatically
+      //String stemword = StanfordLemmatizer.stemWord(tmp); 
+      String stemword = tmp;
+      if (stopWords.contains(stemword.toLowerCase())) // stop words removal
         continue;
+      
       answer.append(stemword).append(" ");
       Token tmpToken = new Token(jcas);
       tmpToken.setPartOfSpeech(posTag.get(i));
       tmpToken.setWord(stemword);
       tokenList.add(tmpToken);
     }
+    
     Parse parse = new Parse(jcas);
     parse.setTokens(Utils.fromCollectionToFSList(jcas, tokenList));
     parse.addToIndexes();
-
     return answer.substring(0, answer.length() - 1);
   }
-
-
 
   public List<CoreMap> posTagging(String text) {
     edu.stanford.nlp.pipeline.Annotation document = new edu.stanford.nlp.pipeline.Annotation(text);
@@ -130,44 +153,4 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
     List<CoreMap> sentences = document.get(SentencesAnnotation.class);
     return sentences;
   }
-
-  
-  
-  
-  /**
-   * perform basic normalization
-   * 
-   * @param str
-   * @return
-   */
-  /*
-  public String normalizeCaseStem(String str) {
-    StringBuilder answer = new StringBuilder();
-
-    for (String s : str.split("\\s+")) {
-      // case normalization (not sure if we are going to use this) TODO
-      String tmp = s.replaceAll("[^a-zA-Z ]", "").toLowerCase();
-
-      // stemming
-      String stemword = StanfordLemmatizer.stemWord(tmp);
-      answer.append(stemword).append(" ");
-    }
-    return answer.substring(0, answer.length() - 1);
-  }*/
-
-  /*
-  public String stopRemoval(String str) {
-    String[] strArr = str.split("\\s+");
-
-    StringBuilder answer = new StringBuilder();
-    for (int i = 0; i < strArr.length; i++) {
-      if (stopWords.contains(strArr[i]))
-        continue;
-      else
-        answer.append(strArr[i]).append(" ");
-    }
-    return answer.substring(0, answer.length() - 1);
-  }*/
-  
-  
 }

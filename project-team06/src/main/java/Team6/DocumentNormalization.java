@@ -17,7 +17,7 @@ public class DocumentNormalization extends JCasAnnotator_ImplBase {
       Document doc = (Document) iter.next();
       
       String text = doc.getText();
-      
+
       if(text == null)
         continue;
       
