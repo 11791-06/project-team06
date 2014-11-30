@@ -67,6 +67,7 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
       }
     }
     List<String> entityNames = new ArrayList<String>();
+    //System.out.println(entities.keySet());
     entityNames.addAll(entities.keySet());
     Collections.sort(entityNames,  new Comparator<String>() {
       public int compare(String o1, String o2) {
@@ -81,7 +82,7 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
       Answer ans = new Answer(aJCas);
       ans.setRank(++rank);
       ans.setText(entityName);
-      //System.out.println("Entity : " + entityName + " rank : " + rank + " freq : " + entities.get(entityName));
+      System.out.println("Entity : " + entityName + " rank : " + rank + " freq : " + entities.get(entityName));
       ans.addToIndexes();
     }
   }
