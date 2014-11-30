@@ -92,6 +92,9 @@ public class Evaluator extends CasConsumer_ImplBase {
                 System.err.println("[Debug] answer = " + ans.getText() + " " + ans.getRank());
             } else {
                 answerList.add(ans);
+                if (answer.equals("women")){
+                    System.err.println("WOMEN!!!");
+                }
             }
         }
         if (answer.equals("NOT_FACT")) {
