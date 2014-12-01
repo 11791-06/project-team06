@@ -89,7 +89,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
 
                     doc.addToIndexes();
                 }
-                LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
+                /*LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
                                 .findLinkedLifeDataEntitiesPaged(query, 0);
                 for (LinkedLifeDataServiceResponse.Entity entity : linkedLifeDataResult
                                 .getEntities()) {
@@ -97,16 +97,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                     double score = entity.getScore();
                     for (LinkedLifeDataServiceResponse.Relation relation : entity.getRelations()) {
                         Triple t = new Triple(aJCas);
-                        /*
-                         * t.setObject(relation.getObj()); t.setPredicate(relation.getPred());
-                         * t.setSubject(relation.getSubj()); TripleSearchResult tsr = new
-                         * TripleSearchResult(aJCas); tsr.setTriple(t); tsr.setQueryString(query);
-                         * tsr.setScore(entity.getScore()); tsr.addToIndexes();
-                         */
-                        /**
-                         * @author Diyi The null value should the entity itself, based on the
-                         *         observations by the webpages
-                         */
+                      
                         if (relation.getObj() != null) {
                             t.setObject(relation.getObj());
                         } else {
@@ -177,7 +168,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                     c.setScore(finding.getScore());
                     c.setQueryString(query);
                     c.addToIndexes();
-                }
+                }*/
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
