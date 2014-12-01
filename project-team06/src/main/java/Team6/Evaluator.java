@@ -106,10 +106,13 @@ public class Evaluator extends CasConsumer_ImplBase {
             if ((answer.toLowerCase()).equals((ans.getText()).toLowerCase())) {
                 System.err.println("[Debug] Factoid GoldStandard and Retrieval Matched!!!!");
                 //while(1);
-                mrr = 1.0 / (ans.getRank() + 1);
+                // mrr = 1.0 / (ans.getRank() + 1);
+                /* rank from 1 here*/
+                mrr = 1.0 / (ans.getRank());
                 //acc5 += 1;
                 
-                if (ans.getRank() < answerList.size()) {
+                //if (ans.getRank() < answerList.size()) {
+                if (ans.getRank() < 5) {
                     acc5 += 1;
                 }
                 if (ans.getRank() < 1) {
