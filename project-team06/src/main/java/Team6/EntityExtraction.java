@@ -81,7 +81,7 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
         pipeline.annotate(doc_annotated);
         List<CoreLabel> tokens = doc_annotated.get(TokensAnnotation.class);
         for(CoreLabel token : tokens) {
-          String entityName = token.word();
+          String entityName = token.word().toLowerCase();
           if(entities.containsKey(entityName)) {
             entities.put(entityName,  entities.get(entityName) + 1);
           }
