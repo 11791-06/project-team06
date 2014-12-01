@@ -99,6 +99,12 @@ public class Evaluator extends CasConsumer_ImplBase {
             return;
         }
         
+        System.out.println("gold : " + answer);
+        for(Answer ans : answerList) {
+          if(ans.getRank() <= 5)
+            System.out.println("ans : " + ans.getText() + " rank : " + ans.getRank());
+        }
+        
         //System.err.println("[Debug] answer list size = " + answerList.size());
         double acc1 = 0, acc5 = 0;
         double mrr = 0;
