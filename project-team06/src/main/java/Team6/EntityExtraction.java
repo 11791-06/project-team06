@@ -73,6 +73,8 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
         List<CoreLabel> tokens = doc_annotated.get(TokensAnnotation.class);
         for(CoreLabel token : tokens) {
           String entityName = token.word().toLowerCase();
+          if(entityName.length() < 3)
+            continue;
           if(entities_df.containsKey(entityName)) {
             entities_df.get(entityName).add(doc.getUri());
           }
@@ -110,6 +112,8 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
         List<CoreLabel> tokens = doc_annotated.get(TokensAnnotation.class);
         for(CoreLabel token : tokens) {
           String entityName = token.word().toLowerCase();
+          if(entityName.length() < 3)
+            continue;
           if(entities.containsKey(entityName)) {
             entities.put(entityName,  entities.get(entityName) + 1);
             max_f = Math.max(max_f,  entities.get(entityName));
