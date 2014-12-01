@@ -38,7 +38,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
             while ((line = br.readLine()) != null) {
                 text += line;
             }
-            doc.setText(text);
+            doc.setText(Utils.normalization(text));
             // System.out.println(text);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                 for (Document d : pubMedResult.getDocuments()) {
                     edu.cmu.lti.oaqa.type.retrieval.Document doc = new edu.cmu.lti.oaqa.type.retrieval.Document(
                                     aJCas);
-                    doc.setText(d.getDocumentAbstract());
+                    doc.setText(Utils.normalization(d.getDocumentAbstract()));
                     doc.setTitle(d.getTitle());
                     if (d.isFulltextAvailable() == true) {
                         String pmid = d.getPmid();
@@ -89,6 +89,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
 
                     doc.addToIndexes();
                 }
+                
                 LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
                                 .findLinkedLifeDataEntitiesPaged(query, 0);
                 for (LinkedLifeDataServiceResponse.Entity entity : linkedLifeDataResult
