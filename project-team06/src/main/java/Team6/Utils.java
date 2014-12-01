@@ -46,7 +46,7 @@ public class Utils {
       // stemming
       //String stemword = StanfordLemmatizer.stemWord(tmp);
       //stop word removal
-      if (tmp.equals("-LRB-") || tmp.equals("-RRB-") || tmp.length() < 2)
+      if (tmp.toUpperCase().equals("-LRB-") || tmp.toUpperCase().equals("-RRB-") || tmp.length() < 2)
 		continue;
       String stemword = tmp;
       if (stopWords.contains(stemword.toLowerCase()))
