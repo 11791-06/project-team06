@@ -31,7 +31,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
 
     private void getDocText(edu.cmu.lti.oaqa.type.retrieval.Document doc, String pmid) {
         try {
-            URL url = new URL("http://metal.lti.cs.cmu.edu:30002/pmc/" + pmid);
+            URL url = new URL("http://ur.lti.cs.cmu.edu:30002/pmc/" + pmid);
             URLConnection conn = url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = null, text = "";
@@ -66,6 +66,12 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                 System.out.println("Query = " + query);
                 PubMedSearchServiceResponse.Result pubMedResult = service.findPubMedCitations(
                                 query, 0);
+                if(pubMedResult.getDocuments().size() == 0) {
+                  query = question.getOrText();
+                  System.out.println("Query = " + query);
+                  pubMedResult = service.findPubMedCitations(
+                                  query, 0);
+                }
                 System.out.println("# of retrieved documents = "
                                 + pubMedResult.getDocuments().size());
                 for (Document d : pubMedResult.getDocuments()) {
@@ -76,7 +82,6 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                     if (d.isFulltextAvailable() == true) {
                         String pmid = d.getPmid();
                         getDocText(doc, pmid);
-                        // query here and add snippets once the service is online
                     }
                     // System.out.println("Document full text : " + (d.isFulltextAvailable()));
 

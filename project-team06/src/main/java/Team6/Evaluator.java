@@ -15,7 +15,9 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 import org.apache.uima.util.ProcessTrace;
 
+import edu.cmu.lti.oaqa.type.answer.Answer;
 import edu.cmu.lti.oaqa.type.input.Question;
+import edu.cmu.lti.oaqa.type.kb.Entity;
 import edu.cmu.lti.oaqa.type.kb.Triple;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
@@ -35,6 +37,8 @@ public class Evaluator extends CasConsumer_ImplBase {
     ArrayList<Double> docRecall, conRecall, triRecall, sniRecall;
 
     ArrayList<Double> docPrec, conPrec, triPrec, sniPrec;
+    
+    ArrayList<Double> factoidAcc1, factoidAcc5, factoidMRR;
 
     public void initialize() throws ResourceInitializationException {
         docAPList = new ArrayList<Double>();
@@ -51,6 +55,10 @@ public class Evaluator extends CasConsumer_ImplBase {
         conPrec = new ArrayList<Double>();
         triPrec = new ArrayList<Double>();
         sniPrec = new ArrayList<Double>();
+        
+        factoidAcc1 = new ArrayList<Double>();
+        factoidAcc5 = new ArrayList<Double>();
+        factoidMRR = new ArrayList<Double>();
     }
 
     public void processCas(CAS aCas) throws ResourceProcessException {
@@ -69,6 +77,49 @@ public class Evaluator extends CasConsumer_ImplBase {
         processCon(aJCas);
         processTri(aJCas);
         processSni(aJCas);
+        processFactoid(aJCas);
+    }
+
+    public void processFactoid(JCas aJCas)throws ResourceProcessException {
+        // TODO Auto-generated method stub
+        FSIterator<TOP> iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Answer.type);
+        String answer = "NOT_FACT";
+        ArrayList<Answer> answerList = new ArrayList<Answer>();
+        while (iter.hasNext()) {
+            Answer ans = (Answer) iter.next();
+            if (ans.getRank() == -11791) {
+                answer = ans.getText();
+                System.err.println("[Debug] Gold Standard Answer = " + ans.getText() + " " + ans.getRank());
+            } else {
+                answerList.add(ans);
+                System.err.println("[Debug] Retrieval Factoid Answer  = " + ans.getText() + " " + ans.getRank());
+            }
+        }
+        if (answer.equals("NOT_FACT")) {
+            return;
+        }
+        
+        //System.err.println("[Debug] answer list size = " + answerList.size());
+        double acc1 = 0, acc5 = 0;
+        double mrr = 0;
+        for (Answer ans : answerList) {
+            if ((answer.toLowerCase()).equals((ans.getText()).toLowerCase())) {
+                System.err.println("[Debug] Factoid GoldStandard and Retrieval Matched!!!!");
+                //while(1);
+                mrr = 1.0 / (ans.getRank() + 1);
+                acc5 += 1;
+                /*
+                if (ans.getRank() < answerList.size()) {
+                    acc5 += 1;
+                }*/
+                if (ans.getRank() < 1) {
+                    acc1 += 1;
+                }
+            }
+        }
+        factoidAcc1.add(acc1);
+        factoidAcc5.add(acc5);
+        factoidMRR.add(mrr);
     }
 
     /*
@@ -82,6 +133,7 @@ public class Evaluator extends CasConsumer_ImplBase {
             Document doc = (Document) iter.next();
             if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__")) {
                 groundtruthDoc.add(doc.getUri());
+               // System.err.println("[Debug] + Doc " + doc.getUri());
             } else {
                 documents.add(doc);
             }
@@ -95,7 +147,7 @@ public class Evaluator extends CasConsumer_ImplBase {
 
         String[] docs = new String[Math.max(0, maxi - mini + 1)];
         for (Document doc : documents) {
-            // System.err.println("DocRank   =    " + doc.getRank());
+            //System.err.println("DocRank   =    " + doc.getRank());
             docs[doc.getRank() - mini] = doc.getUri();
         }
         // if( calcAP(docs, groundtruthDoc) > 0) {
@@ -201,19 +253,19 @@ public class Evaluator extends CasConsumer_ImplBase {
         for (Passage doc : documents) {
             docs[doc.getRank()] = Sni2String(doc);
         }
-        if (calcAP(docs, groundtruthDoc) > 0) {
+        //if (calcAP(docs, groundtruthDoc) > 0) {
             sniAPList.add(calcAP(docs, groundtruthDoc));
-        }
+        //}
 
         // sniRecall = calcRecall(docs, groundtruthDoc);
         // sniPrec = calcPrecision(docs, groundtruthDoc);
 
-        if (calcRecall(docs, groundtruthDoc) > 0) {
+        //if (calcRecall(docs, groundtruthDoc) > 0) {
             sniRecall.add(calcRecall(docs, groundtruthDoc));
-        }
-        if (calcPrecision(docs, groundtruthDoc) > 0) {
+        //}
+        //if (calcPrecision(docs, groundtruthDoc) > 0) {
             sniPrec.add(calcPrecision(docs, groundtruthDoc));
-        }
+        //}
     }
 
     private String Sni2String(Passage doc) {
@@ -365,6 +417,10 @@ public class Evaluator extends CasConsumer_ImplBase {
         System.err.println("Precision@sni  = " + sniP);
         double sniF1 = 2 * sniR * sniP / (sniR + sniP);
         System.err.println("F1@sni = " + sniF1);
+        
+        System.err.println("SAcc@Factoid = " + List2Value(factoidAcc1));
+        System.err.println("LAcc@Factoid = " + List2Value(factoidAcc5));
+        System.err.println("MRR@Factoid = " + List2Value(factoidMRR));
 
         System.err.println("[done]");
     }

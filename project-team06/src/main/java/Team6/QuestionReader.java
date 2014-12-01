@@ -12,9 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import json.JsonCollectionReaderHelper;
+import json.gson.Question;
 import json.gson.QuestionType;
 import json.gson.TestQuestion;
 import json.gson.TestSet;
+import json.gson.TrainingSet;
 
 import org.apache.uima.UIMA_IllegalArgumentException;
 import org.apache.uima.cas.CAS;
@@ -27,10 +29,9 @@ import org.apache.uima.util.Progress;
 
 import com.google.common.collect.Lists;
 
-import edu.cmu.lti.oaqa.type.input.*;
 
 public class QuestionReader extends CollectionReader_ImplBase {
-    List<TestQuestion> inputs;
+    List<Question> inputs;
     int ptr;
 
     @Override
@@ -63,7 +64,7 @@ public class QuestionReader extends CollectionReader_ImplBase {
 	} catch (CASException e) {
 	    e.printStackTrace();
 	}
-	TestQuestion input = inputs.get(ptr++);
+	Question input = inputs.get(ptr++);
 	JsonCollectionReaderHelper.addQuestionToIndex(input, "", jcas);
     }
 

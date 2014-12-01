@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** The Question and any associated meta-data.
- * Updated by JCasGen Tue Nov 25 22:36:22 EST 2014
+ * Updated by JCasGen Sun Nov 30 15:10:17 EST 2014
  * XML source: /Users/apple/CMU_Document/2014_Fall/11-791-Software_Engineering/project/project-team06/project-team06/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Question extends Annotation {
@@ -206,6 +206,28 @@ public class Question extends Annotation {
     if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_rankText == null)
       jcasType.jcas.throwFeatMissing("rankText", "edu.cmu.lti.oaqa.type.input.Question");
     jcasType.ll_cas.ll_setStringValue(addr, ((Question_Type)jcasType).casFeatCode_rankText, v);}    
+   
+    
+  //*--------------*
+  //* Feature: orText
+
+  /** getter for orText - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public String getOrText() {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_orText == null)
+      jcasType.jcas.throwFeatMissing("orText", "edu.cmu.lti.oaqa.type.input.Question");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Question_Type)jcasType).casFeatCode_orText);}
+    
+  /** setter for orText - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setOrText(String v) {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_orText == null)
+      jcasType.jcas.throwFeatMissing("orText", "edu.cmu.lti.oaqa.type.input.Question");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Question_Type)jcasType).casFeatCode_orText, v);}    
   }
 
     
