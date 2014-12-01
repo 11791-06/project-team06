@@ -35,7 +35,11 @@ public class Utils {
       e.printStackTrace();
     }
   }
-  
+  /**
+   * 
+   * @param str input string
+   * @return a normalized string
+   */
   public static String normalization (String str) {
     
     String[] strArr = str.split("\\s+");
@@ -87,7 +91,8 @@ public class Utils {
 
     return list;
   }
-
+  
+ 
   public static <T extends Annotation> FSList fromCollectionToFSList(JCas aJCas,
           Collection<T> aCollection) {
     if (aCollection.size() == 0) {
