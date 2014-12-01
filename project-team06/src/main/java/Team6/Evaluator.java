@@ -112,10 +112,10 @@ public class Evaluator extends CasConsumer_ImplBase {
                 //acc5 += 1;
                 
                 //if (ans.getRank() < answerList.size()) {
-                if (ans.getRank() < 5) {
+                if (ans.getRank() <= 5) {
                     acc5 += 1;
                 }
-                if (ans.getRank() < 1) {
+                if (ans.getRank() <= 1) {
                     acc1 += 1;
                 }
             }
