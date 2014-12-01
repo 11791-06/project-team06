@@ -89,7 +89,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
 
                     doc.addToIndexes();
                 }
-                /*LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
+                LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
                                 .findLinkedLifeDataEntitiesPaged(query, 0);
                 for (LinkedLifeDataServiceResponse.Entity entity : linkedLifeDataResult
                                 .getEntities()) {
@@ -168,7 +168,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                     c.setScore(finding.getScore());
                     c.setQueryString(query);
                     c.addToIndexes();
-                }*/
+                }
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
