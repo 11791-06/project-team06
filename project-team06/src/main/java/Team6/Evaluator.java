@@ -89,7 +89,7 @@ public class Evaluator extends CasConsumer_ImplBase {
             Answer ans = (Answer) iter.next();
             if (ans.getRank() == -11791) {
                 answer = ans.getText();
-                System.err.println("[Debug] answer = " + ans.getText() + " " + ans.getRank());
+                System.err.println("[De bug] answer = " + ans.getText() + " " + ans.getRank());
             } else {
                 answerList.add(ans);
                 if (answer.equals("women")){
