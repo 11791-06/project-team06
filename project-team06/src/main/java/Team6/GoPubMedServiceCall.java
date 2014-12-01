@@ -31,7 +31,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
 
     private void getDocText(edu.cmu.lti.oaqa.type.retrieval.Document doc, String pmid) {
         try {
-            URL url = new URL("http://metal.lti.cs.cmu.edu:30002/pmc/" + pmid);
+            URL url = new URL("http://gold.lti.cs.cmu.edu:30002/pmc/" + pmid);
             URLConnection conn = url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = null, text = "";
