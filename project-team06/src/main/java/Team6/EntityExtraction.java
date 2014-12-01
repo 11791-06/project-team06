@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -53,17 +54,43 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
     props.put("annotators", "tokenize");
     StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
+    HashMap<String, Double> entityScore = new HashMap<String, Double>();
     
     int ranklimit = 100; 
-    HashMap<String, Integer> entities = new HashMap<String, Integer>();
-    //FSIterator iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Passage.type);
     FSIterator iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Document.type);
+    
+    HashMap<String, HashSet<String>> entities_df = new HashMap<String, HashSet<String>>();
+    int N = 0;
     while(iter.hasNext()) {
-      //Passage snippet = (Passage) iter.next();
       Document doc = (Document) iter.next();
-      //if(snippet.getRank() <= ranklimit) {
       if(doc.getRank() <= ranklimit) {
-        //String text = snippet.getText();
+        N++;
+        String text = doc.getText();
+        if(text == null)
+          continue;
+        Annotation doc_annotated = new Annotation(text);
+        pipeline.annotate(doc_annotated);
+        List<CoreLabel> tokens = doc_annotated.get(TokensAnnotation.class);
+        for(CoreLabel token : tokens) {
+          String entityName = token.word().toLowerCase();
+          if(entities_df.containsKey(entityName)) {
+            entities_df.get(entityName).add(doc.getUri());
+          }
+          else {
+            HashSet<String> temp = new HashSet<String>();
+            temp.add(doc.getUri());
+            entities_df.put(entityName, temp);
+          }
+        }
+      }
+    }
+    
+    iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Document.type);
+    while(iter.hasNext()) {
+      HashMap<String, Integer> entities = new HashMap<String, Integer>();
+      Document doc = (Document) iter.next();
+      int max_f = 0;
+      if(doc.getRank() <= ranklimit) {
         String text = doc.getText();
         if(text == null)
           continue;
@@ -77,6 +104,7 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
             entities.put(entityName,  1);
           }
         }*/
+        
         Annotation doc_annotated = new Annotation(text);
         pipeline.annotate(doc_annotated);
         List<CoreLabel> tokens = doc_annotated.get(TokensAnnotation.class);
@@ -84,19 +112,34 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
           String entityName = token.word().toLowerCase();
           if(entities.containsKey(entityName)) {
             entities.put(entityName,  entities.get(entityName) + 1);
+            max_f = Math.max(max_f,  entities.get(entityName));
+            entities_df.get(entityName).add(doc.getUri());
           }
           else {
             entities.put(entityName,  1);
+            max_f = Math.max(max_f,  entities.get(entityName));
+            HashSet<String> temp = new HashSet<String>();
+            temp.add(doc.getUri());
+            entities_df.put(entityName, temp);
           }
         }
+      }
+      for(String entityName : entities.keySet()) {
+        double tf = 0.5 + (0.5 * entities.get(entityName)) /((double) max_f);
+        double idf = Math.log(N/Math.max(1.0,  entities_df.get(entityName).size()));
+        double score = tf * idf;
+        if(entityScore.containsKey(entityName))
+          entityScore.put(entityName, entityScore.get(entityName) + score);
+        else
+          entityScore.put(entityName, score);
       }
     }
     List<String> entityNames = new ArrayList<String>();
     //System.out.println(entities.keySet());
-    entityNames.addAll(entities.keySet());
+    entityNames.addAll(entityScore.keySet());
     Collections.sort(entityNames,  new Comparator<String>() {
       public int compare(String o1, String o2) {
-        return entities.get(o1).compareTo(entities.get(o2));
+        return entityScore.get(o1).compareTo(entityScore.get(o2));
       }
     });
     
@@ -107,7 +150,7 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
       Answer ans = new Answer(aJCas);
       ans.setRank(++rank);
       ans.setText(entityName);
-      System.out.println("Entity : " + entityName + " rank : " + rank + " freq : " + entities.get(entityName));
+      //System.out.println("Entity : " + entityName + " rank : " + rank + " freq : " + entityScore.get(entityName));
       ans.addToIndexes();
     }
   }

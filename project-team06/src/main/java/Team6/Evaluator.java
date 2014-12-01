@@ -89,10 +89,10 @@ public class Evaluator extends CasConsumer_ImplBase {
             Answer ans = (Answer) iter.next();
             if (ans.getRank() == -11791) {
                 answer = ans.getText();
-                System.err.println("[Debug] Gold Standard Answer = " + ans.getText() + " " + ans.getRank());
+                //System.err.println("[Debug] Gold Standard Answer = " + ans.getText() + " " + ans.getRank());
             } else {
                 answerList.add(ans);
-                System.err.println("[Debug] Retrieval Factoid Answer  = " + ans.getText() + " " + ans.getRank());
+                //System.err.println("[Debug] Retrieval Factoid Answer  = " + ans.getText() + " " + ans.getRank());
             }
         }
         if (answer.equals("NOT_FACT")) {
