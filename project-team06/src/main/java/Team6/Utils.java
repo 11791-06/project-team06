@@ -37,7 +37,8 @@ public class Utils {
   }
   
   public static String normalization (String str) {
-    
+    if(str==null)
+      return null;
     String[] strArr = str.split("\\s+");
 
     StringBuilder answer = new StringBuilder();
