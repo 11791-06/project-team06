@@ -89,27 +89,29 @@ public class Evaluator extends CasConsumer_ImplBase {
             Answer ans = (Answer) iter.next();
             if (ans.getRank() == -11791) {
                 answer = ans.getText();
-                System.err.println("[De bug] answer = " + ans.getText() + " " + ans.getRank());
+                System.err.println("[Debug] Gold Standard Answer = " + ans.getText() + " " + ans.getRank());
             } else {
                 answerList.add(ans);
-                if (answer.equals("women")){
-                    System.err.println("WOMEN!!!");
-                }
+                System.err.println("[Debug] Retrieval Factoid Answer  = " + ans.getText() + " " + ans.getRank());
             }
         }
         if (answer.equals("NOT_FACT")) {
             return;
         }
         
-        System.err.println("[Debug] answer list size = " + answerList.size());
+        //System.err.println("[Debug] answer list size = " + answerList.size());
         double acc1 = 0, acc5 = 0;
         double mrr = 0;
         for (Answer ans : answerList) {
-            if (answer.equals(ans.getText())) {
+            if ((answer.toLowerCase()).equals((ans.getText()).toLowerCase())) {
+                System.err.println("[Debug] Factoid GoldStandard and Retrieval Matched!!!!");
+                //while(1);
                 mrr = 1.0 / (ans.getRank() + 1);
-                if (ans.getRank() < 5) {
+                acc5 += 1;
+                /*
+                if (ans.getRank() < answerList.size()) {
                     acc5 += 1;
-                }
+                }*/
                 if (ans.getRank() < 1) {
                     acc1 += 1;
                 }
