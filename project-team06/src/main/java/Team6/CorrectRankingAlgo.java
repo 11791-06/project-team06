@@ -34,6 +34,7 @@ import edu.cmu.lti.oaqa.type.kb.Concept;
 import edu.cmu.lti.oaqa.type.nlp.Parse;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
+import edu.cmu.lti.oaqa.type.retrieval.Passage;
 import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
@@ -79,7 +80,41 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             return query;
         }
     }
+    public int GetSnippetScores(JCas jcas, String query_string) {
+      int passId = 0;
+      FSIterator iter = jcas.getJFSIndexRepository().getAllIndexedFS(Passage.type);
+      String Answer = null;
+      while (iter.hasNext()) {
 
+          Passage doc = (Passage) iter.next();
+          // if (doc.getSearchId() == "__gold__")
+          if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__")) {
+              continue;
+          }
+          passId += 1;
+
+          Answer = doc.getText();
+          
+//          System.out.println("Anser = " + Answer);
+          doc.setDocId(Integer.toString(passId));
+          double val = 0.0;
+          if (Answer == null) {
+
+          } else {
+              Map<String, Integer> q_vector = createTermFreqVector(query_string);
+              Map<String, Integer> a_vector = createTermFreqVector(Answer);
+              val = computeCosineSimilarity(a_vector, q_vector);
+
+          }
+          doc.setScore(val);
+
+          // docList.add(docId);
+          // ScoreList.add(val);
+          // doc.addToIndexes();
+
+      }
+      return passId;
+  }
     public int GetDocumentScores(JCas jcas, String query_string) {
         int docId = 0;
         FSIterator iter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
@@ -206,15 +241,10 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         String query_string = GetAllQuestions(jcas); // Only caters to one question at a time.
         System.out.println("Now to get Documents");
         int docId = GetDocumentScores(jcas, query_string);
+        int passId = GetSnippetScores(jcas, query_string);
         // GetTripleScores(jcas,query_string);
         System.out.println("Number of Documents Returned");
-        //List<Document> DocResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class), docId);
-        // List<ConceptSearchResult> ConceptResults =
-        // util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas,
-        // ConceptSearchResult.class),docId);
-        // List<TripleSearchResult> TripleResults =
-        // util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas,
-        // TripleSearchResult.class),docId);
+ 
         /**
          * @author Diyi
          * @comment we should remove the groudtruth when sorting and also need to use the correct size, instead of giving docId to concepts, and triples 
@@ -226,6 +256,14 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             }
         }
         docResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class), docResults.size());
+        
+        List<Passage> passResults = new ArrayList<Passage>();
+        for (Passage pass : JCasUtil.select(jcas, Passage.class)) {
+            if (pass.getSearchId() == null || !pass.getSearchId().equals("__gold__")) {
+                passResults.add(pass);
+            }
+        }
+        passResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Passage.class), passResults.size());
         
         List<ConceptSearchResult> conceptResults = new ArrayList<ConceptSearchResult>();
         for (ConceptSearchResult doc : JCasUtil.select(jcas, ConceptSearchResult.class)) {
@@ -243,14 +281,17 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         }
         triResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, TripleSearchResult.class), triResults.size());
        
-        // System.out.println(util.TypeUtil.getRankedTripleSearchResults(jcas));
-        // System.out.println(util.TypeUtil.getRankedConceptSearchResults(jcas));
+        
         int i = 0;
 
         for (Document docr : docResults) {
             docr.addToIndexes(jcas);
 
         }
+        for (Passage pass : passResults) {
+          pass.addToIndexes(jcas);
+
+      }
         
         for (ConceptSearchResult conr : conceptResults) {
             conr.addToIndexes(jcas);
