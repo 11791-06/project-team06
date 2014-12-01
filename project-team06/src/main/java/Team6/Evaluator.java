@@ -99,12 +99,18 @@ public class Evaluator extends CasConsumer_ImplBase {
             return;
         }
         
+        System.out.println("gold : " + answer);
+        for(Answer ans : answerList) {
+          if(ans.getRank() <= 5)
+            System.out.println("ans : " + ans.getText() + " rank : " + ans.getRank());
+        }
+        
         //System.err.println("[Debug] answer list size = " + answerList.size());
         double acc1 = 0, acc5 = 0;
         double mrr = 0;
         for (Answer ans : answerList) {
             if ((answer.toLowerCase()).equals((ans.getText()).toLowerCase())) {
-                System.err.println("[Debug] Factoid GoldStandard and Retrieval Matched!!!!");
+                System.err.println("[Debug] Factoid GoldStandard and Retrieval Matched!!!! Answer = " + ans.getText() + " Rank = " + ans.getRank());
                 //while(1);
                 // mrr = 1.0 / (ans.getRank() + 1);
                 /* rank from 1 here*/
@@ -424,6 +430,12 @@ public class Evaluator extends CasConsumer_ImplBase {
         System.err.println("SAcc@Factoid = " + List2Value(factoidAcc1));
         System.err.println("LAcc@Factoid = " + List2Value(factoidAcc5));
         System.err.println("MRR@Factoid = " + List2Value(factoidMRR));
+        
+        System.err.println("MRR@Factoid size = " + factoidMRR.size());
+        System.err.println("MRR List");
+        for(Double d : factoidMRR)
+          System.err.print(d + " ");
+        System.err.println();
 
         System.err.println("[done]");
     }
