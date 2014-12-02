@@ -39,7 +39,9 @@ public class Evaluator extends CasConsumer_ImplBase {
     ArrayList<Double> docPrec, conPrec, triPrec, sniPrec;
     
     ArrayList<Double> factoidAcc1, factoidAcc5, factoidMRR;
-
+/**
+ * Initialization Results
+ */
     public void initialize() throws ResourceInitializationException {
         docAPList = new ArrayList<Double>();
         conAPList = new ArrayList<Double>();
@@ -81,7 +83,7 @@ public class Evaluator extends CasConsumer_ImplBase {
     }
 
     public void processFactoid(JCas aJCas)throws ResourceProcessException {
-        // TODO Auto-generated method stub
+        // Auto-generated method stub
         FSIterator<TOP> iter = aJCas.getJFSIndexRepository().getAllIndexedFS(Answer.type);
         String answer = "NOT_FACT";
         ArrayList<Answer> answerList = new ArrayList<Answer>();
@@ -99,18 +101,19 @@ public class Evaluator extends CasConsumer_ImplBase {
             return;
         }
         
-        System.out.println("gold : " + answer);
+       // System.out.println("gold : " + answer);
+        /*
         for(Answer ans : answerList) {
           if(ans.getRank() <= 5)
-            System.out.println("ans : " + ans.getText() + " rank : " + ans.getRank());
-        }
+           // System.out.println("ans : " + ans.getText() + " rank : " + ans.getRank());
+        }*/
         
         //System.err.println("[Debug] answer list size = " + answerList.size());
         double acc1 = 0, acc5 = 0;
         double mrr = 0;
         for (Answer ans : answerList) {
             if ((answer.toLowerCase()).equals((ans.getText()).toLowerCase())) {
-                System.err.println("[Debug] Factoid GoldStandard and Retrieval Matched!!!! Answer = " + ans.getText() + " Rank = " + ans.getRank());
+                // System.err.println("[Debug] Factoid GoldStandard and Retrieval Matched!!!! Answer = " + ans.getText() + " Rank = " + ans.getRank());
                 //while(1);
                 // mrr = 1.0 / (ans.getRank() + 1);
                 /* rank from 1 here*/
@@ -253,9 +256,13 @@ public class Evaluator extends CasConsumer_ImplBase {
         while (iter.hasNext()) {
             Passage doc = (Passage) iter.next();
             if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__")) {
-                groundtruthDoc.add(Sni2String(doc));
+                // doc 
+                String goldDoc =  Utils.normalization(doc.getText());
+                groundtruthDoc.add(goldDoc);
+               // System.err.println("[Debug] Snippets Gold Standard " + Sni2String(doc));
             } else {
                 documents.add(doc);
+                //System.err.println("[Debug] Snippets Retrieval " + Sni2String(doc));
             }
         }
         String[] docs = new String[documents.size()];
@@ -265,9 +272,6 @@ public class Evaluator extends CasConsumer_ImplBase {
         //if (calcAP(docs, groundtruthDoc) > 0) {
             sniAPList.add(calcAP(docs, groundtruthDoc));
         //}
-
-        // sniRecall = calcRecall(docs, groundtruthDoc);
-        // sniPrec = calcPrecision(docs, groundtruthDoc);
 
         //if (calcRecall(docs, groundtruthDoc) > 0) {
             sniRecall.add(calcRecall(docs, groundtruthDoc));
@@ -286,8 +290,8 @@ public class Evaluator extends CasConsumer_ImplBase {
         String beginS = doc.getBeginSection();
         String endS = doc.getEndSection();
 
-        //return text;
-        return text + "$" + begin + "$" + end;
+        return text;
+        // return text + "$" + begin + "$" + end;
         //return uri + "$" + text + "$" + begin + "$" + end + "$" + beginS + "$" + endS;
     }
 
@@ -312,12 +316,9 @@ public class Evaluator extends CasConsumer_ImplBase {
         return sum;
     }
 
-    /*
-     * Recall
-     */
-
+  
     /**
-     * problems existed in how to compute those metrics
+     * Calculate Recall
      * */
 
     private double calcRecall(String[] docs, HashSet<String> groundtruthDoc) {
@@ -337,9 +338,9 @@ public class Evaluator extends CasConsumer_ImplBase {
         return sum;
     }
 
-    /*
+    /**
      * Precision
-     */
+     **/
 
     private double calcPrecision(String[] docs, HashSet<String> groundtruthDoc) {
         double correct = 0, size = 0, sum = 0;
@@ -358,7 +359,7 @@ public class Evaluator extends CasConsumer_ImplBase {
         return sum;
     }
 
-    /*
+    /**
      * MAP
      */
     private double List2Value(ArrayList<Double> APList) {
@@ -372,8 +373,8 @@ public class Evaluator extends CasConsumer_ImplBase {
         return sum;
     }
 
-    /*
-     * GMAP
+    /**
+     * GMAP, with eps = 0.01
      */
     private double APList2GMAP(ArrayList<Double> APList) {
         double eps = 0.01;
@@ -436,10 +437,11 @@ public class Evaluator extends CasConsumer_ImplBase {
         
         System.err.println("MRR@Factoid size = " + factoidMRR.size());
         System.err.println("MRR List");
-        for(Double d : factoidMRR)
+        
+        /*for(Double d : factoidMRR)
           System.err.print(d + " ");
         System.err.println();
-
+*/
         System.err.println("[done]");
     }
     

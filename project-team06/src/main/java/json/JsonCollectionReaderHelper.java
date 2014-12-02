@@ -121,7 +121,8 @@ public class JsonCollectionReaderHelper {
 		}
 		// add answers to CAS index
 		if (input instanceof TestQuestion) {
-			// test question should not have ideal or exact answers
+			// Test question should not have ideal or exact answers
+		    // Whether this is a factoid type question
 		    if (input instanceof TestFactoidQuestion) {
 		        List<String> answerVariants = ((TestFactoidQuestion) input).getExactAnswer();
 		        TypeFactory.createGoldStandardAnswer(jcas, answerVariants.get(0)).addToIndexes();
