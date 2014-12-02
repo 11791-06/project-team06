@@ -87,8 +87,12 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
       while (iter.hasNext()) {
 
           Passage doc = (Passage) iter.next();
+         
+          //System.out.println(doc);
+          
           // if (doc.getSearchId() == "__gold__")
           if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__")) {
+             doc.setScore(-1.0);
               continue;
           }
           passId += 1;
@@ -99,6 +103,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
           doc.setDocId(Integer.toString(passId));
           double val = 0.0;
           if (Answer == null) {
+           
 
           } else {
               Map<String, Integer> q_vector = createTermFreqVector(query_string);
@@ -106,6 +111,15 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
               val = computeCosineSimilarity(a_vector, q_vector);
 
           }
+
+          System.out.println("Score 1:");
+          
+          System.out.println(query_string);
+          System.out.println(Answer);
+          System.out.println(val);
+          System.out.println("Score 2:");
+          
+
           doc.setScore(val);
 
           // docList.add(docId);
@@ -201,7 +215,6 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             Map<String, Integer> q_vector = createTermFreqVector(query_string);
             Map<String, Integer> a_vector = createTermFreqVector(svo);
             val = computeCosineSimilarity(a_vector, q_vector);
-
             doc.setScore(val);
             // docList.add(doc.getUri());
             // ScoreList.add(doc.getScore());
@@ -261,10 +274,11 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         for (Passage pass : JCasUtil.select(jcas, Passage.class)) {
             if (pass.getSearchId() == null || !pass.getSearchId().equals("__gold__")) {
                 passResults.add(pass);
+            
             }
         }
         passResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Passage.class), passResults.size());
-        
+      System.out.println(passResults);
         List<ConceptSearchResult> conceptResults = new ArrayList<ConceptSearchResult>();
         for (ConceptSearchResult doc : JCasUtil.select(jcas, ConceptSearchResult.class)) {
             if (doc.getSearchId() == null || !doc.getSearchId().equals("__gold__")) {
