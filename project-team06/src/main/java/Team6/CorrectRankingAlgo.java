@@ -46,6 +46,11 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
        // System.out.println("Intialized all Lists");
 
     }
+    /**
+     * 
+     * @param jcas
+     * @return Returns Query
+     */
 
     public String GetAllTokens(JCas jcas) {
         String query = null;
@@ -63,6 +68,12 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         }
     }
 
+    /**
+     * From the JCas reads the the text of the query. This text is noirmalized version of the very original query text.
+     * @param jcas
+     * @author alokkoth
+     * @return query string
+     */
     public String GetAllQuestions(JCas jcas) {
         String query = null;
         FSIterator<Annotation> iter = jcas.getAnnotationIndex().iterator();
@@ -80,6 +91,17 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             return query;
         }
     }
+    /**
+     * Compute score between snippets and the current question. 
+     * The snippets are obtained from the CAS.
+     * The snippets and question are vectorized and L1, L2 normalization are applied on them
+     * The score is calculated using Cosine Similarity.
+     * 
+     * @param jcas
+     * @param query_string
+     * @author alokkoth
+     * @return
+     */
     public int GetSnippetScores(JCas jcas, String query_string) {
       int passId = 0;
       FSIterator iter = jcas.getJFSIndexRepository().getAllIndexedFS(Passage.type);
@@ -123,7 +145,20 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
 
       }
       return passId;
+      
+      
   }
+    /**
+     * Compute score between documents  and the current question. 
+     * The documents are obtained from the CAS.
+     * The documents and question are vectorized and L1, L2 normalization are applied on them.
+     * The score is calculated using Cosine Similarity.
+     * From the jcas get the Snippets, Use the current question. Create 
+     * @param jcas
+     * @param query_string
+     * @author alokkoth
+     * @return
+     */
     public int GetDocumentScores(JCas jcas, String query_string) {
         int docId = 0;
         FSIterator iter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
@@ -161,6 +196,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
     }
 
     /**
+     * Gets the number of Triples.
      * @author Diyi
      * @param jcas
      * @return the number of triple search results
@@ -176,6 +212,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
     }
 
     /**
+     * Gets the number of Concepts.
      * @author Diyi
      * @param jcas
      * @return the number of concept search results
@@ -190,48 +227,9 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         return ret;
     }
 
-    public void GetTripleScores(JCas jcas, String query_string) {
-        FSIterator iter2 = jcas.getJFSIndexRepository().getAllIndexedFS(TripleSearchResult.type);
-
-        while (iter2.hasNext()) {
-            TripleSearchResult doc = (TripleSearchResult) iter2.next();
-            String Answer = doc.getText();
-
-            // Perhaps needs some kind of adjustment to account for Answer being null.
-            String svo = new String();
-            svo = doc.getTriple().getSubject() + ' ' + doc.getTriple().getPredicate() + ' '
-                            + doc.getTriple().getObject();
-            double val = 0.0;
-
-            //System.out.println("Current SVO triple");
-
-            //System.out.println(svo);
-
-            Map<String, Integer> q_vector = createTermFreqVector(query_string);
-            Map<String, Integer> a_vector = createTermFreqVector(svo);
-            val = computeCosineSimilarity(a_vector, q_vector);
-            doc.setScore(val);
-            // docList.add(doc.getUri());
-            // ScoreList.add(doc.getScore());
-
-        }
-
-    }
-
-    public void GetConceptScores(JCas jcas) {
-        FSIterator iter3 = jcas.getJFSIndexRepository().getAllIndexedFS(ConceptSearchResult.type);
-
-        while (iter3.hasNext()) {
-            ConceptSearchResult doc = (ConceptSearchResult) iter3.next(); // SHOULD ACTUALLY BE
-                                                                          // CONCEPT SEARCH RESULT
-            String Answer = doc.getText();
-            // Perhaps needs try and catch or some kind of adjustment of Answer being null.
-            // docList.add(doc.getUri());
-            // ScoreList.add(doc.getScore());
-
-        }
-    }
-
+    /**
+     * processCas
+     */
     public void processCas(CAS aCas) throws ResourceProcessException {
 
         /**
@@ -245,26 +243,42 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         } catch (CASException e) {
             throw new ResourceProcessException(e);
         }
-
+        
+        /**
+         * @comment Gets the Questions. Note the questions are passed one at a time.
+         */
         String query_string = GetAllQuestions(jcas); // Only caters to one question at a time.
-      //  System.out.println("Now to get Documents");
+        
+        /**
+         * @comment Computes the scores for documents and snippets. Does this with Cosine Similarity. 
+         * Other ranking functions are also available.
+         */
         int docId = GetDocumentScores(jcas, query_string);
         int passId = GetSnippetScores(jcas, query_string);
-        // GetTripleScores(jcas,query_string);
-      //  System.out.println("Number of Documents Returned");
+ 
  
         /**
-         * @author Diyi
-         * @comment we should remove the groudtruth when sorting and also need to use the correct size, instead of giving docId to concepts, and triples 
-         * */
+         * 
+         * we remove the groudtruth documents before ranking them.
+         * 
+         **/
+        
         List<Document> docResults = new ArrayList<Document>();
         for (Document doc : JCasUtil.select(jcas, Document.class)) {
             if (doc.getSearchId() == null || !doc.getSearchId().equals("__gold__")) {
                 docResults.add(doc);
             }
         }
+        /**
+         * Using the given Util function  to rank the documents by their scores.
+         */
         docResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Document.class), docResults.size());
         
+        /**
+         * 
+         * we remove the groudtruth passages before ranking them.
+         * 
+         **/
         List<Passage> passResults = new ArrayList<Passage>();
         for (Passage pass : JCasUtil.select(jcas, Passage.class)) {
             if (pass.getSearchId() == null || !pass.getSearchId().equals("__gold__")) {
@@ -272,27 +286,53 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             
             }
         }
+        
+        /**
+         * Using the given Util function  to rank the snippets (passage type system) by their scores.
+         */
         passResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Passage.class), passResults.size());
-      //System.out.println(passResults);
+  
+        /**
+         * 
+         * we remove the groudtruth concepts before ranking them.
+         * 
+         **/
         List<ConceptSearchResult> conceptResults = new ArrayList<ConceptSearchResult>();
         for (ConceptSearchResult doc : JCasUtil.select(jcas, ConceptSearchResult.class)) {
             if (doc.getSearchId() == null || !doc.getSearchId().equals("__gold__")) {
                 conceptResults.add(doc);
             }
         }
+        
+        /**
+         * Using the given Util function  to rank the snippets (passage type system) by their scores.
+         */
         conceptResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, ConceptSearchResult.class), conceptResults.size());
         
+        /**
+         * 
+         * we remove the groudtruth triples before ranking them.
+         * 
+         **/
         List<TripleSearchResult> triResults = new ArrayList<TripleSearchResult>();
         for (TripleSearchResult doc : JCasUtil.select(jcas, TripleSearchResult.class)) {
             if (doc.getSearchId() == null || !doc.getSearchId().equals("__gold__")) {
                 triResults.add(doc);
             }
         }
+        
+        /**
+         * Using the given Util function  to rank the triples (passage type system) by their scores.
+         */
         triResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, TripleSearchResult.class), triResults.size());
        
         
         int i = 0;
 
+        /**
+         * Sending documents, passages, triples, concepts back into CAS.
+         * 
+         */
         for (Document docr : docResults) {
             docr.addToIndexes(jcas);
 
@@ -307,29 +347,25 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
 
         }
         for (TripleSearchResult tripr : triResults) {
-            /*if (tripr.getRank() > 0) {
-            
-                System.out.println("Triples");
-                System.out.println(tripr.getScore());
-                System.out.println(tripr.getRank());
-            }*/
+         
             tripr.addToIndexes(jcas);
 
         }
 
-        // NOT DOING TRIPLES AND CONCEPTS RIGHT NOW, NO DOCUMENT ID's added for them
-        // GetTripleScores(jcas);
-        // GetConceptScores(jcas);
-
+     
     }
 
     public void collectionProcessComplete(ProcessTrace arg0) throws ResourceProcessException,
                     IOException {
-        // super.collectionProcessComplete(arg0);
-
-        // System.out.println("Into Collection process Complete");
+       
 
     }
+    
+    /**
+     * Tokenizer takes in document.
+     * @param doc
+     * @return tokenized list, split at punctuation and spaces.
+     */
 
     List<String> MyTokenizer(String doc) {
         List<String> res = new ArrayList<String>();
@@ -338,6 +374,12 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             res.add(s.toLowerCase());
         return res;
     }
+    /**
+     * 
+     * @param queryVector
+     * @param docVector
+     * @return Jaccard Similarity
+     */
     private double computeJaccardSimilarity(Map<String, Integer> queryVector,
             Map<String, Integer> docVector) {
           double jaccard_similarity=0.0;
@@ -373,6 +415,12 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
           return jaccard_similarity;
         }
     
+    /**
+     * 
+     * @param queryVector
+     * @param docVector
+     * @return DiceSimilarity
+     */
     private double computeDiceSimilarity(Map<String, Integer> queryVector,
             Map<String, Integer> docVector) {
           double dice_similarity=0.0;
@@ -406,7 +454,12 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
           return dice_similarity;
         }
 
-
+/**
+ * Takes in two vectors and computes the Cosine Similarity.
+ * @param queryVector (Map<String, Integer>)
+ * @param docVector (Map<String, Integer>)
+ * @return
+ */
     private double computeCosineSimilarity(Map<String, Integer> queryVector,
                     Map<String, Integer> docVector) {
         double cosine_similarity = 0.0;
@@ -465,6 +518,11 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         return termVector;
     }
 
+    /**
+     * Vectorizes text. Creates the vector from the text, by first tokenizing it.
+     * @param doctext
+     * @return
+     */
     private Map<String, Integer> createTermFreqVector(String doctext) {
 
         List<String> tokenized = MyTokenizer(doctext);
