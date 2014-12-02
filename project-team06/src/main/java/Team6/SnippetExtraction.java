@@ -18,12 +18,21 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 
+/**
+ * Extract snippets from document
+ * Use stanford corenlp sentence splitter to split document text into sentences
+ * @author rgoutam
+ *
+ */
 public class SnippetExtraction extends JCasAnnotator_ImplBase {
 
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     // Auto-generated method stub
     
+    /**
+     * Initialize stanford corenlp pipeline
+     */
     Properties props = new Properties();
     props.put("annotators", "tokenize, ssplit");
     StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
@@ -37,6 +46,9 @@ public class SnippetExtraction extends JCasAnnotator_ImplBase {
       Annotation doc_annotated = new Annotation(text);
       pipeline.annotate(doc_annotated);
       List<CoreMap> sentences = doc_annotated.get(SentencesAnnotation.class);
+      /**
+       * Get sentences from stanford corenlp pipeline
+       */
       for(CoreMap sentence : sentences) {
         Passage p = new Passage(aJCas);
         int beginOffset = text.indexOf(sentence.toString());
