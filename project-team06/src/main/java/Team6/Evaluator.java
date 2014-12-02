@@ -96,9 +96,13 @@ public class Evaluator extends CasConsumer_ImplBase {
                 //System.err.println("[Debug] Retrieval Factoid Answer  = " + ans.getText() + " " + ans.getRank());
             }
         }
+        /**
+         * Check whether it is factoid again
+         */
         if (answer.equals("NOT_FACT")) {
             return;
         }
+        
         
         double acc1 = 0, acc5 = 0;
         double mrr = 0;
