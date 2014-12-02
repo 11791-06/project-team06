@@ -24,13 +24,12 @@ import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
 import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
-
-/*
- * Project 0 
- * Ranking Results : TypeSystem :: SearchResult
- * Document, ConceptSearchResult, TripleSearchResult
- * Assume the previous Ranking gives a question with N documents
- * */
+/**
+ * 
+ * @author diyiy
+ * @return evaluation results for document, concept, triples, snippets, factoid answers
+ *
+ */
 public class Evaluator extends CasConsumer_ImplBase {
     ArrayList<Double> docAPList, conAPList, triAPList, sniAPList;
 
@@ -101,14 +100,6 @@ public class Evaluator extends CasConsumer_ImplBase {
             return;
         }
         
-       // System.out.println("gold : " + answer);
-        /*
-        for(Answer ans : answerList) {
-          if(ans.getRank() <= 5)
-           // System.out.println("ans : " + ans.getText() + " rank : " + ans.getRank());
-        }*/
-        
-        //System.err.println("[Debug] answer list size = " + answerList.size());
         double acc1 = 0, acc5 = 0;
         double mrr = 0;
         for (Answer ans : answerList) {
@@ -180,15 +171,11 @@ public class Evaluator extends CasConsumer_ImplBase {
      */
     private void processCon(JCas aJCas) {
         HashSet<String> groundtruthDoc = new HashSet<String>();
-        // ArrayList<ConceptSearchResult> documents = new ArrayList<ConceptSearchResult>();
         ArrayList<ConceptSearchResult> documents = new ArrayList<ConceptSearchResult>();
         FSIterator<TOP> iter = aJCas.getJFSIndexRepository().getAllIndexedFS(
                         ConceptSearchResult.type);
         while (iter.hasNext()) {
             ConceptSearchResult doc = (ConceptSearchResult) iter.next();
-            /*
-             * if (doc instanceof ConceptSearchResult){ System.err.println("Yes!!!"); }
-             */
             if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__")) {
                 // System.err.println("Gold Standard == " + doc.getUri());
                 groundtruthDoc.add(doc.getUri());
@@ -200,17 +187,11 @@ public class Evaluator extends CasConsumer_ImplBase {
 
         String[] docs = new String[documents.size()];
         for (ConceptSearchResult doc : documents) {
-            // System.err.println("ConceptDoc ===" + doc.getUri());
-
-            // System.err.println("ConceptRank   =    " + doc.getRank());
             docs[doc.getRank()] = doc.getUri();
         }
         // if( calcAP(docs, groundtruthDoc) > 0) {
         conAPList.add(calcAP(docs, groundtruthDoc));
         // }
-        // conRecall = calcRecall(docs, groundtruthDoc);
-        // conPrec = calcPrecision(docs, groundtruthDoc);
-
         // if(calcRecall(docs, groundtruthDoc) > 0) {
         conRecall.add(calcRecall(docs, groundtruthDoc));
         // }
@@ -438,10 +419,6 @@ public class Evaluator extends CasConsumer_ImplBase {
         System.err.println("MRR@Factoid size = " + factoidMRR.size());
         System.err.println("MRR List");
         
-        /*for(Double d : factoidMRR)
-          System.err.print(d + " ");
-        System.err.println();
-*/
         System.err.println("[done]");
     }
     

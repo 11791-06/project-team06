@@ -22,7 +22,7 @@ public class SnippetExtraction extends JCasAnnotator_ImplBase {
 
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
-    // TODO Auto-generated method stub
+    // Auto-generated method stub
     
     Properties props = new Properties();
     props.put("annotators", "tokenize, ssplit");
