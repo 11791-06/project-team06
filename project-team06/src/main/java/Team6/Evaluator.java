@@ -279,12 +279,14 @@ public class Evaluator extends CasConsumer_ImplBase {
 
     private String Sni2String(Passage doc) {
         String uri = doc.getUri();
-        String text = doc.getDocId();
+       // String text = doc.getDocId();
+        String text = doc.getText();
         int begin = doc.getOffsetInBeginSection();
         int end = doc.getOffsetInEndSection();
         String beginS = doc.getBeginSection();
         String endS = doc.getEndSection();
 
+        //return text;
         return uri + "$" + text + "$" + begin + "$" + end + "$" + beginS + "$" + endS;
     }
 
@@ -439,5 +441,5 @@ public class Evaluator extends CasConsumer_ImplBase {
 
         System.err.println("[done]");
     }
-
+    
 }
