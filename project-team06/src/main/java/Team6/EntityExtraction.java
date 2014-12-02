@@ -32,6 +32,11 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 
+/**
+ * Extract entities from document text
+ * @author rgoutam
+ *
+ */
 public class EntityExtraction extends JCasAnnotator_ImplBase {
   Chunker model;
   
@@ -50,6 +55,9 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     // TODO Auto-generated method stub
     
+    /**
+     * Use stanford corenlp to tokenize document text
+     */
     Properties props = new Properties();
     props.put("annotators", "tokenize");
     StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
@@ -61,6 +69,9 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
     
     HashMap<String, HashSet<String>> entities_df = new HashMap<String, HashSet<String>>();
     int N = 0;
+    /**
+     * Get IDF of each token
+     */
     while(iter.hasNext()) {
       Document doc = (Document) iter.next();
       if(doc.getRank() <= ranklimit) {
@@ -97,6 +108,9 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
         String text = doc.getText();
         if(text == null)
           continue;
+        /**
+         * Named entities extracted using HMM chunker model - not used in final version of code 
+         */
         /*Set<Chunk> namedEntities = model.chunk(text).chunkSet();
         for(Chunk c : namedEntities) {
           String entityName = text.substring(c.start(), c.end());
@@ -108,6 +122,9 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
           }
         }*/
         
+        /**
+         * Get term frequency of each token here
+         */
         Annotation doc_annotated = new Annotation(text);
         pipeline.annotate(doc_annotated);
         List<CoreLabel> tokens = doc_annotated.get(TokensAnnotation.class);
@@ -130,6 +147,10 @@ public class EntityExtraction extends JCasAnnotator_ImplBase {
           }
         }
       }
+      
+      /**
+       * Compute tf-idf score of each token here
+       */
       for(String entityName : entities.keySet()) {
         double tf = 0.5 + (0.5 * entities.get(entityName)) /((double) max_f);
         double idf = Math.log(N/Math.max(1.0,  entities_df.get(entityName).size()));

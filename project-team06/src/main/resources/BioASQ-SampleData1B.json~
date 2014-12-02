@@ -1,0 +1,1505 @@
+{"questions": [
+    {
+        "body": "Is Rheumatoid Arthritis more common in men or women?", 
+        "concepts": [
+            "http://www.disease-ontology.org/api/metadata/DOID:7148", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001171", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012217", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013167", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D015535"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/23217568", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22853635", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21340496", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20889597", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20810033", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19158113", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/18759162", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/17965425", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/16418123", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15083883", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/12723987", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/1563036"
+        ], 
+        "exact_answer": [
+            "Women"
+        ], 
+        "id": "5118dd1305c10fae75000001", 
+        "ideal_answer": "Disease patterns in RA vary between the sexes; the condition is more commonly seen in women, who exhibit a more aggressive disease and a poorer long-term outcome.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/23217568", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 591, 
+                "offsetInEndSection": 678, 
+                "text": "Our results show a high prevalence of RA in LAC women with a ratio of 5.2 women per man"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/23217568", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1140, 
+                "offsetInEndSection": 1394, 
+                "text": "RA in LAC women is not only more common but presents with some clinical characteristics that differ from RA presentation in men. Some of those characteristics could explain the high rates of disability and worse prognosis observed in women with RA in LAC"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22853635", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 559, 
+                "offsetInEndSection": 718, 
+                "text": "The expression and clinical course of RA are influenced by gender. In developed countries the prevalence of RA is 0,5 to 1.0%, with a male:female ratio of 1:3."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22853635", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 897, 
+                "offsetInEndSection": 1031, 
+                "text": "women were found to have higher disease activity scores, more pain and greater loss of function, both in early and established disease"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21340496", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 993, 
+                "offsetInEndSection": 1062, 
+                "text": "Intense anti-CCP2 reaction was 19.8-fold higher in females vs. males,"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20889597", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 911, 
+                "offsetInEndSection": 944, 
+                "text": " men (n = 67) and women (n = 225)"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20889597", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1808, 
+                "offsetInEndSection": 1943, 
+                "text": " Responses to treatment over time were better among men in this prebiologic era; women had worse progression despite similar treatment."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20810033", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1550, 
+                "offsetInEndSection": 1629, 
+                "text": "BMI appears to be associated with RA disease activity in women, but not in men."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20810033", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 729, 
+                "offsetInEndSection": 785, 
+                "text": "A total of 5,161 RA patients (4,082 women and 1,079 men)"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19158113", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 561, 
+                "offsetInEndSection": 744, 
+                "text": "In women the DAS28 was significantly higher than in men due to higher scores for general health and tender joints. Likewise, HAQ and VAS pain were rated significantly higher in women."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/18759162", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 263, 
+                "offsetInEndSection": 285, 
+                "text": "432 females, 125 males"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17965425", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 862, 
+                "offsetInEndSection": 1017, 
+                "text": "ESR significantly increased with age, independent of other variables of disease activity. This increase was more pronounced in male than in female patients"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/1563036", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 162, 
+                "text": "Disease patterns in RA vary between the sexes; the condition is more commonly seen in women, who exhibit a more aggressive disease and a poorer long-term outcome."
+            }, 
+            {
+                "beginSection": "sections.2", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/12723987", 
+                "endSection": "sections.2", 
+                "offsetInBeginSection": 7, 
+                "offsetInEndSection": 89, 
+                "text": "The mean age of the patients was 62 years (range 19\u201396 years) and 71% were female;"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15083883", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 688, 
+                "offsetInEndSection": 830, 
+                "text": "The female to male ratio was 2.5:1 and the mean age at diagnosis was 49.4 +/- 14.9 years for women and 55.3 +/-15.6 years for men (P < 0.0003)"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16418123", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 453, 
+                "offsetInEndSection": 514, 
+                "text": "in 244 female and 91 male patients with rheumatoid arthritis."
+            }
+        ], 
+        "type": "factoid"
+    }, 
+    {
+        "body": "Are there any DNMT3 proteins present in plants?", 
+        "concepts": [
+            "http://www.uniprot.org/uniprot/CMT1_ARATH", 
+            "http://www.uniprot.org/uniprot/CMT2_ARATH", 
+            "http://www.uniprot.org/uniprot/CMT3_ARATH"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/21150311", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21060858", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/10781108", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15946751", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20505370", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/23021223", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22058406", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/18488247", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/17660570", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/11487702", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/11459824", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15282033", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/12151602", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/12121623", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/9584105"
+        ], 
+        "exact_answer": "Yes.", 
+        "id": "511a16f9df1ebcce7d000005", 
+        "ideal_answer": "Yes. The plant DOMAINS REARRANGED METHYLTRANSFERASE2 (DRM2) is a homolog of the mammalian de novo methyltransferase DNMT3. DRM2 contains a novel arrangement of the motifs required for DNA methyltransferase catalytic activity.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21150311", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 151, 
+                "text": "De novo DNA methylation in Arabidopsis thaliana is catalyzed by the methyltransferase DRM2, a homolog of the mammalian de novo methyltransferase DNMT3."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21060858", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1131, 
+                "offsetInEndSection": 1666, 
+                "text": "Three functional classes of DNA methyltransferase exist in A.thaliana; METHYLTRANSFERASE1 (MET1) (orthologous to mammalian Dnmt1) which maintains CG methylation, CHROMOMETHYLASE3 (CMT3) (plant specific) which maintains methylation in non-CG sequence contexts and DOMAINS REARRANGED METHYLTRANSFERASE2 (DRM2) (orthologous to Dnmt3a/Dnmt3b) which both de novo methylates DNA and maintains non-CG methylation redundantly with CMT3 [2]. The drm2 mutation blocks all de novo DNA methylation driven by repeat containing transgenes [15]\u2013[17]."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21060858", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 2763, 
+                "offsetInEndSection": 2909, 
+                "text": "The mammalian DRM2 orthologs, Dnmt3a and Dnmt3b, are required to de novo methylate integrated retroviral sequences and imprinted genes [38], [39]."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/10781108", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 387, 
+                "offsetInEndSection": 851, 
+                "text": "Here we describe DNA methyltransferase genes from both Arabidopsis and maize that show a high level of sequence similarity to Dnmt3, suggesting that they encode plant de novo methyltransferases. Relative to all known eukaryotic methyltransferases, these plant proteins contain a novel arrangement of the motifs required for DNA methyltransferase catalytic activity. The N termini of these methyltransferases contain a series of ubiquitin-associated (UBA) domains. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15946751", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 365, 
+                "offsetInEndSection": 519, 
+                "text": "BLASTX searches and phylogenetic analysis suggested that five cDNAs belonged to four classes (Dnmt1, Dnmt2, CMT and Dnmt3) of DNA methyltransferase genes."
+            }
+        ], 
+        "type": "yesno"
+    }, 
+    {
+        "body": "What is the most prominent sequence consensus for the polyadenylation site?", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D026723", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011061", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D039221", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D039104", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016384", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011063", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012313", 
+            "http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0043631", 
+            "http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=1900363"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/1915889", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/1993703", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/6194440", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/7901430", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/1712333", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/2513486"
+        ], 
+        "exact_answer": [
+            [
+                "AATAAA"
+            ], 
+            [
+                "AAUAAA"
+            ]
+        ], 
+        "id": "5133b9455274a5fb0700000c", 
+        "ideal_answer": "Functional polyadenylation [poly(A)] sites consist of two sequence elements, the AAUAAA and G/U box signals, that closely flank the site of mRNA 3'-end formation. The canonical polyadenylation signal sequence AATAAA", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/1915889", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 364, 
+                "offsetInEndSection": 417, 
+                "text": "the cannonical polyadenylation signal sequence AATAAA"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/1993703", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1178, 
+                "offsetInEndSection": 1235, 
+                "text": "Two AATAAA motifs are coded in the last exon of this gene"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/6194440", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 236, 
+                "offsetInEndSection": 407, 
+                "text": "The results demonstrate that the intact AAUAAA is not required for RNA polyadenylation but is required for the cleavage step preceding polyadenylation to occur efficiently"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/7901430", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 464, 
+                "offsetInEndSection": 532, 
+                "text": "the early poly(A) consensus signal was mutated from AAUAAA to UGUAAA"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/1712333", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 161, 
+                "text": "Functional polyadenylation [poly(A)] sites consist of two sequence elements, the AAUAAA and G/U box signals, that closely flank the site of mRNA 3'-end formation"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/1712333", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 849, 
+                "offsetInEndSection": 944, 
+                "text": "the appropriate spacing of the AAUAAA and G/U box signals is critical for poly(A) site function"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/2513486", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 189, 
+                "offsetInEndSection": 320, 
+                "text": " Two AATAAA hexanucleotide sequences are present in the 2092 nucleotide interval. The first one functions as the major polyA signal"
+            }
+        ], 
+        "type": "list"
+    }, 
+    {
+        "body": "What is the function of the mammalian gene Irg1?", 
+        "concepts": [
+            "http://www.uniprot.org/uniprot/IRG1_MOUSE"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/23455712", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19014335", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21947773", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21865384", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21424586", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/16415166", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15937114", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/14500577", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/12893884", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/11356686", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/7721348"
+        ], 
+        "id": "513832a75274a5fb07000012", 
+        "ideal_answer": "Human IRG1 and mouse Irg1 mediates antiviral and antimicrobial immune responses, without its exact role having been elucidated. Irg1 has been suggested to have a role in apoptosis and to play a significant role in embryonic implantation. Irg1 is reported as the mammalian ortholog of methylcitrate dehydratase.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/23455712", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 646, 
+                "offsetInEndSection": 821, 
+                "text": "we identified three interferon-stimulated genes (ISGs; Ifi27, Irg1 and Rsad2 (also known as Viperin)) that mediated the antiviral effects against different neurotropic viruses"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19014335", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1205, 
+                "offsetInEndSection": 1440, 
+                "text": "IRG1 is highly upregulated in murine ANA-1 macrophages by several proinflammatory cytokines and Toll-like receptor (TLR) agonists, as well as in spleen and lung of Listeria monocytogenes or Toxoplasma gondii infected mice, respectively"
+            }, 
+            {
+                "beginSection": "title", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19014335", 
+                "endSection": "title", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 78, 
+                "text": "The proinflammatory cytokine-induced IRG1 protein associates with mitochondria"
+            }, 
+            {
+                "beginSection": "title", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21947773", 
+                "endSection": "title", 
+                "offsetInBeginSection": 44, 
+                "offsetInEndSection": 143, 
+                "text": "multiple genes induced by Borrelia burgdorferi in macrophages to regulate Lyme disease inflammation"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21865384", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 917, 
+                "offsetInEndSection": 1164, 
+                "text": "One of these genes, IRG1, was confirmed by single nucleotide polymorphism analysis to be involved in susceptibility. Its precise mechanism remains to be elucidated, although the analysis of gene expression data suggests it has a role in apoptosis."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21424586", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 110, 
+                "text": "Murine immune-responsive gene 1 (IRG1) plays significant roles in embryonic implantation and neurodegeneration"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21424586", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 638, 
+                "offsetInEndSection": 732, 
+                "text": "the IRG1 gene is differentially expressed in human fetal PBMCs and LPS-stimulated adult PBMCs."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16415166", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 357, 
+                "offsetInEndSection": 538, 
+                "text": "we identified the immune-responsive gene 1 (IRG1), which was expressed substantially higher in lipopolysaccharide (LPS)-stimulated than in MAP-infected murine macrophage cell lines."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15937114", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 729, 
+                "offsetInEndSection": 895, 
+                "text": "The inhibitor also blocked induction by LIF of several LIF-regulated genes in the LE including Irg1, which has been shown previously to be essential for implantation."
+            }, 
+            {
+                "beginSection": "title", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/14500577", 
+                "endSection": "title", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 127, 
+                "text": "Immune-responsive gene 1 is a novel target of progesterone receptor and plays a critical role during implantation in the mouse."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/14500577", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1510, 
+                "offsetInEndSection": 1678, 
+                "text": "our studies identified Irg1 as a novel target of PR in the pregnant uterus and also revealed that it is a critical regulator of the early events leading to implantation"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/12893884", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 370, 
+                "offsetInEndSection": 647, 
+                "text": " This resulted in the identification of one novel P4-regulated gene that had been previously found in lipopolysaccharide-stimulated macrophages and called immune response gene-1 (Irg1) and which is the mammalian ortholog of the bacterial gene encoding methylcitrate dehydratase"
+            }, 
+            {
+                "beginSection": "title", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/12893884", 
+                "endSection": "title", 
+                "offsetInBeginSection": 27, 
+                "offsetInEndSection": 103, 
+                "text": "the mammalian ortholog of methylcitrate dehydratase (immune response gene 1)"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11356686", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 358, 
+                "offsetInEndSection": 474, 
+                "text": "Here we report the isolation of a complementary DNA representing a novel gene, interferon-regulated gene 1 (IRG1). T"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11356686", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 358, 
+                "offsetInEndSection": 637, 
+                "text": "Here we report the isolation of a complementary DNA representing a novel gene, interferon-regulated gene 1 (IRG1). This gene exhibits significant homology to interferon (IFN)-alpha/beta-inducible human genes p27 and 6-16, indicating that these genes may belong to the same family"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11356686", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 975, 
+                "offsetInEndSection": 1065, 
+                "text": "The level of IRG1 mRNA again rose transiently on day 4 immediately preceding implantation."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11356686", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1678, 
+                "offsetInEndSection": 1856, 
+                "text": "Although the functional roles of IRG1 and p27 remain unclear, we describe for the first time, identification of a gene family regulated by IFNalpha in both rodent and human uteri"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/7721348", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1615, 
+                "offsetInEndSection": 1711, 
+                "text": "Hence, the induction of IRG1 by LPS is mediated by tyrosine kinase and protein kinase C pathway."
+            }
+        ], 
+        "type": "summary"
+    }, 
+    {
+        "body": "Is thrombophilia related to increased risk of miscarriage?", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D019851", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018566", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011248", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011256", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011255", 
+            "http://www.disease-ontology.org/api/metadata/DOID:10591", 
+            "http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0007565"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/22543699", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22164918", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21380983", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/7986734", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15027582", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/11583310", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19135285", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19031171", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/18845284", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/16962918", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15713144", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19165673", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20860491"
+        ], 
+        "exact_answer": "Yes", 
+        "id": "513cdc38bee46bd34c000007", 
+        "ideal_answer": "Thrombophilia has been found to be considerably more common in women with pregnancy-associated complications in comparison with the general population, and most frequently in conjunction with venous thromboembolism during pregnancy and the postpartum period. In particular there is an increased risk of pregnancy-related venous thrombosis in carriers of severe inherited thrombophilia. When counseling white women with a history of preeclampsia, screening for thrombophilia can be useful for preconceptional counseling and pregnancy management.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22543699", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1065, 
+                "offsetInEndSection": 1159, 
+                "text": "Thrombophilia does hardly increase the risk of IUGR/PMPC or if so, it can be prevented by LMWH"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22164918", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 571, 
+                "offsetInEndSection": 796, 
+                "text": "for illustrative purposes, a patient presenting with combined thrombophilia--both genetic and acquired--will be discussed. This patient had suffered severe gestational complications that led to devastating obstetrical outcome"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21380983", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 235, 
+                "text": "Thrombophilias have been implicated in complications related to ischemic placental disease including recurrent pregnancy loss, intrauterine fetal demise, preeclampsia, fetal growth restriction, placental abruption, and preterm delivery"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/7986734", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 905, 
+                "offsetInEndSection": 1061, 
+                "text": "Further information about the combined risk of aPC resistance and pregnancy is needed before guidance on the management of affected women can be formulated."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15027582", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 148, 
+                "offsetInEndSection": 263, 
+                "text": "Thrombotic risk during pregnancy and the puerperium is higher in asymptomatic women with than without thrombophilia"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15027582", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 734, 
+                "offsetInEndSection": 870, 
+                "text": "Further studies are required to assess the thrombotic risk in women with preeclampsia as well as early or late recurrent pregnancy loss."
+            }, 
+            {
+                "beginSection": "title", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11583310", 
+                "endSection": "title", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 89, 
+                "text": "Risk of pregnancy-related venous thrombosis in carriers of severe inherited thrombophilia"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11583310", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1265, 
+                "offsetInEndSection": 1532, 
+                "text": "In conclusion, homozygous carriers of factor V Leiden and, to a lesser extent, double heterozygous carriers of factor V Leiden and of the prothrombin mutation have an increased risk of venous thrombosis during pregnancy, particularly high during the postpartum period"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19135285", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 767, 
+                "offsetInEndSection": 873, 
+                "text": "Careful diagnosis, observation and monitoring can add significant benefit to LMWH therapy during pregnancy"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19031171", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 142, 
+                "text": "Pregnancy in healthy women is accompanied by hypercoagulable changes that may interact with thrombophilia risk factors and threaten pregnancy."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19031171", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1239, 
+                "offsetInEndSection": 1444, 
+                "text": "Fifty-three (13 %) women had antiphospholipid antibodies (lupus anticoagulant and/or anti-beta2-glycoprotein 1 antibodies) mainly associated with the risk of spontaneous abortion during the first trimester"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19031171", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1461, 
+                "offsetInEndSection": 1713, 
+                "text": "thrombophilia was found to be considerably more common in women with pregnancy-associated complications in comparison with the general population, and most frequently in conjunction with venous thromboembolism during pregnancy and the postpartum period"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/18845284", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1104, 
+                "offsetInEndSection": 1262, 
+                "text": "When counseling white women with a history of preeclampsia, screening for thrombophilia can be useful for preconceptional counseling and pregnancy management."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16962918", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 604, 
+                "offsetInEndSection": 779, 
+                "text": "knowledge combined with the appropriate use of thromboprophylaxis and treatment in women who have objectively confirmed VTE continue to improve maternal and perinatal outcomes"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15713144", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1508, 
+                "offsetInEndSection": 1666, 
+                "text": "The risk of having thrombophilia is doubled in men who have fathered pregnancies which ended in perinatal death as well as in the mothers of such pregnancies."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19165673", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 560, 
+                "offsetInEndSection": 707, 
+                "text": "The prevalence of thrombophilic variants is of possible public health significance for other morbidity; but perhaps not in relation to preeclampsia"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20860491", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 694, 
+                "offsetInEndSection": 826, 
+                "text": "This study suggests that thrombophilia \"mediates\" in lowering of cardiovascular risk factors in women with a history of preeclampsia"
+            }
+        ], 
+        "type": "yesno"
+    }, 
+    {
+        "body": "Which extra thyroid tissues have thyrotropin (TSH) receptors?", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011989", 
+            "http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0004996", 
+            "http://www.biosemantics.org/jochem#4250044"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/22517745", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22496347", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22399514", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22289392", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21956421"
+        ], 
+        "exact_answer": [
+            [
+                "adipose tissue"
+            ], 
+            [
+                "fibrotic tissue"
+            ]
+        ], 
+        "id": "513f45abbee46bd34c000013", 
+        "ideal_answer": "TSH receptors are expressed also in extrathyroid tissues. TSH receptors seem to be functional. Extrathyroid tissues include fibrobasts of the orbit and adipose tissue\nThe principal tissues with TSH receptors are:\nadippose tissue\n orbital fibrotic tissue", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22517745", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1217, 
+                "offsetInEndSection": 1336, 
+                "text": "GD orbital fibroblasts, which comprise a mixture of CD34(+) and CD34(-) cells, express much lower levels of Tg and TSHR"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22517745", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 552, 
+                "offsetInEndSection": 731, 
+                "text": "Previously, we found that CD34(+) progenitor cells, known as fibrocytes, express functional TSHR, infiltrate the orbit, and comprise a large subset of orbital fibroblasts in TAO. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22496347", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 882, 
+                "offsetInEndSection": 923, 
+                "text": "TSH induced lipolysis in adipose tissues."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22496347", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1376, 
+                "offsetInEndSection": 1434, 
+                "text": "TSH worked as a lipolytic factor in white adipose tissues,"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21956421", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 303, 
+                "offsetInEndSection": 439, 
+                "text": "These fibrocytes infiltrate orbital connective tissues in thyroid-associated ophthalmopathy and express functional TSH receptor (TSHR). "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21956421", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1047, 
+                "offsetInEndSection": 1104, 
+                "text": "TSHR levels are higher than those in orbital fibroblasts."
+            }
+        ], 
+        "type": "list"
+    }, 
+    {
+        "body": "What is the methyl donor of DNA (cytosine-5)-methyltransferases?", 
+        "concepts": [
+            "http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0003886", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004248", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D019175"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/8441638", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/11208790", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/7607467", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/8065896", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/7578083", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/1584813", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15273274"
+        ], 
+        "exact_answer": [
+            "S-adenosyl-L-methionine"
+        ], 
+        "id": "51404dd723fec90375000002", 
+        "ideal_answer": "S-adenosyl-L-methionine (AdoMet, SAM) is the methyl donor of DNA (cytosine-5)-methyltransferases. DNA (cytosine-5)-methyltransferases catalyze the transfer of a methyl group from S-adenosyl-L-methionine to the C-5 position of cytosine residues in DNA.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/8441638", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 256, 
+                "text": "The product of the dcm gene is the only DNA cytosine-C5 methyltransferase of Escherichia coli K-12; it catalyses transfer of a methyl group from S-adenosyl methionine (SAM) to the C-5 position of the inner cytosine residue of the cognate sequence CCA/TGG. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11208790", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 284, 
+                "text": "Deoxycytosine methylase (Dcm) enzyme activity causes mutagenesis in vitro either directly by enzyme-induced deamination of cytosine to uracil in the absence of the methyl donor, S-adenosylmethionine (SAM), or indirectly through spontaneous deamination of [5-methyl]cytosine to thymine"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/7607467", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 218, 
+                "text": "In the absence of DNA substrate, the DNA methyltransferase (MTase) M.BspRI can methylate itself using the methyl donor S-adenosyl-L-methionine (AdoMet). The methyl group is transferred to two Cys residues of the MTase."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/7578083", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 446, 
+                "offsetInEndSection": 539, 
+                "text": "The reaction is fairly insensitive to the methyl donor in the reaction, S-adenosylmethionine."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/1584813", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 641, 
+                "offsetInEndSection": 831, 
+                "text": "Formation of the complex was dependent upon the presence of the methyl donor S-adenosylmethionine, suggesting that it comprises an enzyme-linked 5-substituted dihydrocytosine moiety in DNA. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/8065896", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 264, 
+                "text": "The DNA (cytosine-5)-methyltransferase (m5C-MTase) M.BspRI is able to accept the methyl group from the methyl donor S-adenosyl-L-methionine (AdoMet) in the absence of DNA. Transfer of the methyl group to the enzyme is a slow reaction relative to DNA methylation. S"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15273274", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 170, 
+                "offsetInEndSection": 374, 
+                "text": "Here, we report the structure of HhaI methyltransferase in complex with DNA containing a south-constrained abasic carbocyclic sugar at the target site in the presence of the methyl donor byproduct AdoHcy."
+            }
+        ], 
+        "type": "factoid"
+    }, 
+    {
+        "body": "Super-SILAC is a method used in quantitative proteomics. What is the super-SILAC mix?\n(SILAC: Stable Isotopic labelling by aminoacids in cell culture)", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D040901", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020543", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007553"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/23090970", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22623409", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22442255", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22278370", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21293456", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20431548", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20364148"
+        ], 
+        "id": "51430930d24251bc0500000b", 
+        "ideal_answer": "The Super-SILAC mix consists of the combination of multiple SILAC-labeled cell lines.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21293456", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1289, 
+                "offsetInEndSection": 1371, 
+                "text": ", a mixture of five SILAC-labeled cell lines that accurately represents the tissue"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20364148", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 208, 
+                "text": "We describe a method to accurately quantify human tumor proteomes by combining a mixture of five stable-isotope labeling by amino acids in cell culture (SILAC)-labeled cell lines with human carcinoma tissue. "
+            }, 
+            {
+                "beginSection": "sections.1", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22442255", 
+                "endSection": "sections.1", 
+                "offsetInBeginSection": 965, 
+                "offsetInEndSection": 1074, 
+                "text": "the use of a mix of multiple SILAC-labeled cell lines as an internal standard, a technique called super-SILAC"
+            }, 
+            {
+                "beginSection": "sections.4", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22442255", 
+                "endSection": "sections.4", 
+                "offsetInBeginSection": 1149, 
+                "offsetInEndSection": 1226, 
+                "text": "Equal amounts of the heavy lysates were mixed to generate the super-SILAC mix"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/23090970", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 441, 
+                "offsetInEndSection": 599, 
+                "text": "For accurate quantification we developed a super-SILAC mix from several labeled breast cancer cell lines and used it as an internal standard for all samples. "
+            }, 
+            {
+                "beginSection": "sections.4", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22278370", 
+                "endSection": "sections.4", 
+                "offsetInBeginSection": 1010, 
+                "offsetInEndSection": 1171, 
+                "text": "For the preparation of super-SILAC mix (18) equal amounts of heavy lysates were mixed and then combined with nonlabeled cells as described in the RESULTS section"
+            }, 
+            {
+                "beginSection": "sections.5", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22278370", 
+                "endSection": "sections.5", 
+                "offsetInBeginSection": 20616, 
+                "offsetInEndSection": 21220, 
+                "text": "to select five cell lines, chosen to be as dissimilar to each other as possible (Jurkat, HEK293, LnCap, HeLa, and K562).As expected from the high correlations, even the SILAC quantification experiments between binary combinations of heavy and light labeled cell lines resulted in narrow ratio distributions (Fig. 6A, 6B). This was further improved in the quantification of the heavy super-SILAC mix against a single cell line (Fig. 6C). These experiments also suggest a general strategy to construct super-SILAC mixes and to evaluate their suitability for quantifying any cell line (or tissue) of interes"
+            }, 
+            {
+                "beginSection": "sections.5", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22278370", 
+                "endSection": "sections.5", 
+                "offsetInBeginSection": 21465, 
+                "offsetInEndSection": 21609, 
+                "text": " Knowledge of the overall similarities of the proteomes was used to construct a five cell line, heavy labeled \u201csuper-SILAC\u201d reference standard. "
+            }, 
+            {
+                "beginSection": "sections.5", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22442255", 
+                "endSection": "sections.5", 
+                "offsetInBeginSection": 22657, 
+                "offsetInEndSection": 22790, 
+                "text": "We developed and used a super-SILAC mix of labeled B-cell lymphoma cell lines as an internal standard to segregate subtypes of DLBCL."
+            }
+        ], 
+        "type": "summary"
+    }, 
+    {
+        "body": "Is Mammaprint approved by the United States Food and Drug Administration?", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017321", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017322", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017326", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017327"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/21479927", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19879448", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19546609", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19506735", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/18786252", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/18515733", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/17462970"
+        ], 
+        "exact_answer": "Yes", 
+        "id": "51487821d24251bc0500002f", 
+        "ideal_answer": "Yes, Mammaprint has been approved by the US Food and Drug Administration.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21479927", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1432, 
+                "offsetInEndSection": 1485, 
+                "text": "an FDA-cleared 70-gene signature of MammaPrint panel "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19879448", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 460, 
+                "offsetInEndSection": 562, 
+                "text": "on MammaPrint, the first and only assay for breast cancer management that has been cleared by the FDA."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19546609", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1614, 
+                "offsetInEndSection": 1862, 
+                "text": "The MammaPrint assay has the advantages of a 510(k) clearance by the US Food and Drug Administration, a larger gene number which may enhance further utility, and the potentially wider patient eligibility including lymph node-positive, ER-negative, "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19506735", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1806, 
+                "offsetInEndSection": 1909, 
+                "text": "MammaPrint from Agendia are the first FDA approved microarray-based tests for diagnostic applications. "
+            }, 
+            {
+                "beginSection": "sections.1", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19506735", 
+                "endSection": "sections.1", 
+                "offsetInBeginSection": 2899, 
+                "offsetInEndSection": 3099, 
+                "text": "MammaPrint is the first FDA approved, gene expression-based prognostic test which assess patients\u2019 risk for distant metastasis in women under age 61 with Stage I-II lymph node negative breast cancer. "
+            }, 
+            {
+                "beginSection": "sections.3", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/18786252", 
+                "endSection": "sections.3", 
+                "offsetInBeginSection": 4677, 
+                "offsetInEndSection": 4869, 
+                "text": "The Amsterdam 70-gene expression signature as breast cancer prognosis marker has been validated in follow-up studies [39,40], and a clinical assay MammaPrint\u00ae has recently been cleared by FDA."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/18515733", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1391, 
+                "offsetInEndSection": 1785, 
+                "text": "The MammaPrint assay has the advantages of a 510(k) clearance by the U.S. Food and Drug Administration, a larger gene number, which may enhance further utility, and a potentially wider patient eligibility, including lymph node-positive, estrogen receptor (ER)-negative, and younger patients being accrued into the prospective trial (Microarray in Node-Negative Disease May Avoid Chemotherapy). "
+            }
+        ], 
+        "triples": [
+            {
+                "o": "http://linkedlifedata.com/resource/umls/label/A17680439", 
+                "p": "http://www.w3.org/2008/05/skos-xl#prefLabel", 
+                "s": "http://linkedlifedata.com/resource/umls/id/C2827401"
+            }, 
+            {
+                "o": "fda", 
+                "p": "http://www.w3.org/2004/02/skos/core#altLabel", 
+                "s": "http://linkedlifedata.com/resource/#_4434464B59390011"
+            }, 
+            {
+                "o": "fda", 
+                "p": "http://www.w3.org/2004/02/skos/core#altLabel", 
+                "s": "http://linkedlifedata.com/resource/#_51395844503300D"
+            }, 
+            {
+                "o": "fda", 
+                "p": "http://www.w3.org/2004/02/skos/core#altLabel", 
+                "s": "http://linkedlifedata.com/resource/#_4F383737393600D"
+            }, 
+            {
+                "o": "fda", 
+                "p": "http://www.w3.org/2004/02/skos/core#altLabel", 
+                "s": "http://linkedlifedata.com/resource/#_4530503539300011"
+            }
+        ], 
+        "type": "yesno"
+    }, 
+    {
+        "body": "Which acetylcholinesterase inhibitors are used for treatment of myasthenia gravis?", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009157", 
+            "http://www.disease-ontology.org/api/metadata/DOID:437", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D002800", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000110", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004791"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/21328290", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21133188", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20663605", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21815707", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15610702", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21845054"
+        ], 
+        "exact_answer": [
+            [
+                "neostigmine"
+            ], 
+            [
+                "pyridostigmine"
+            ]
+        ], 
+        "id": "5149199dd24251bc05000040", 
+        "ideal_answer": "Pyridostigmine and neostygmine are acetylcholinesterase inhibitors that are used as first-line therapy for symptomatic treatment of myasthenia gravis. Pyridostigmine is the most widely used acetylcholinesterase inhibitor. Extended release pyridotsygmine and novel acetylcholinesterase inhibitors inhibitors with oral antisense oligonucleotides are being studied.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21133188", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1251, 
+                "offsetInEndSection": 1321, 
+                "text": "Pyridostigmine is the most widely used acetylcholinesterase inhibitor."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20663605", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 12, 
+                "offsetInEndSection": 171, 
+                "text": "For more than 50 years the acetylcholinesterase inhibitor pyridostigmine bromide has been the drug of choice in the symptomatic therapy for myasthenia gravis. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20663605", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 871, 
+                "offsetInEndSection": 1229, 
+                "text": "The switch to SR-Pyr ameliorated the total quantified myasthenia gravis (QMG) score from 0.9 \u00b1 0.5 to 0.6 \u00b1 0.4 (p<0.001) in all patients and in the younger subgroup. This was accompanied by a significant improvement in the quality of life parameters. The health status valued by EuroQoL questionnaire improved from 0.626 \u00b1 0.286 to 0.782 \u00b1 0.186 (p<0.001). "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20663605", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1412, 
+                "offsetInEndSection": 1578, 
+                "text": "Our results support the usefulness of SR-Pyr in an individualized therapeutic regimen to improve quality of life regardless of the patient's age in myasthenia gravis."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21815707", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 476, 
+                "offsetInEndSection": 571, 
+                "text": "This review focuses on treatment of MG, mainly on the use of the AChE inhibitor pyridostigmine."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21815707", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 572, 
+                "offsetInEndSection": 768, 
+                "text": "Despite a lack of data from well controlled clinical trials to support their use, AChE inhibitors, of which pyridostigmine is the most commonly used, are recommended as first-line therapy for MG. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21815707", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1071, 
+                "offsetInEndSection": 1197, 
+                "text": "Novel AChE inhibitors with oral antisense oligonucleotides have been developed and preliminary results appear to be promising."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21328290", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 2418, 
+                "offsetInEndSection": 2808, 
+                "text": "Except for one small and inconclusive trial of intranasal neostigmine, no randomised controlled trial has been conducted on the use of acetylcholinesterase inhibitors in myasthenia gravis. Response to acetylcholinesterase inhibitors in observational studies is so clear that a randomised controlled trial depriving participants in the placebo arm of treatment would be difficult to justify."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21815707", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 178, 
+                "offsetInEndSection": 475, 
+                "text": " Current guidelines and recommendations for MG treatment are based largely on clinical experience, retrospective analyses and expert consensus. Available therapies include oral acetylcholinesterase (AChE) inhibitors for symptomatic treatment, and short- and long-term disease-modifying treatments."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21815707", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 768, 
+                "offsetInEndSection": 1071, 
+                "text": "Pyridostigmine has been used as a treatment for MG for over 50 years and is generally considered safe. It is suitable as a long-term treatment in patients with generalized non-progressive milder disease, and as an adjunctive therapy in patients with severe disease who are also receiving immunotherapy. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15610702", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 343, 
+                "offsetInEndSection": 452, 
+                "text": "Acetylcholinesterase inhibitors provide temporary, symptomatic treatment for all forms of myasthenia gravis. "
+            }, 
+            {
+                "beginSection": "sections.1", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21845054", 
+                "endSection": "sections.1", 
+                "offsetInBeginSection": 52, 
+                "offsetInEndSection": 340, 
+                "text": "In MG, the first-line option is symptomatic treatment with acetylcholinesterase inhibitors. Pyridostigmine bromide is the most commonly used drug. Other acetylcholinesterase inhibitors such as neostigmine are rarely used because of their poorer pharmacodynamic profiles and tolerability. "
+            }, 
+            {
+                "beginSection": "sections.1", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21845054", 
+                "endSection": "sections.1", 
+                "offsetInBeginSection": 339, 
+                "offsetInEndSection": 659, 
+                "text": " In an observational study of 14 MG patients comparing pyridostigmine with neostigmine, it was concluded that over 1 year, pyridostigmine was more effective with less adverse events.5 Similar conclusions were reached in another observational study of 69 patients which compared the use of pyridostigmine with neostigmine"
+            }
+        ], 
+        "type": "list"
+    }, 
+    {
+        "body": "Which medication should be administered when managing patients with suspected acute opioid overdose?", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000701", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009292", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D062787"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/21044832", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/17849242", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/11130352", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/11015242", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/9562190", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/8907145", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/1470965"
+        ], 
+        "exact_answer": [
+            "naloxone"
+        ], 
+        "id": "5149f494d24251bc0500004c", 
+        "ideal_answer": "Naloxone is opioid anagonist that should be administered for all patients with suspected acute opioid overdose. Intravenous naltrexone hydrochloride is usually administered, however, other formulations, including enteral methylnaltrexone, nebulized naloxone and subcutaneous naloxone, are under investigation and can be used under certain circumstances.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21044832", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 12, 
+                "offsetInEndSection": 145, 
+                "text": "Opioid overdose has a high mortality, but is often reversible with appropriate overdose management and naloxone (opioid antagonist). "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21044832", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1691, 
+                "offsetInEndSection": 1782, 
+                "text": "Training clinicians how to manage an opioid overdose and administer naloxone was effective."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17849242", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 2841, 
+                "offsetInEndSection": 3085, 
+                "text": "For patients who have ingested dextromethorphan and are sedated or comatose, naloxone, in the usual doses for treatment of opioid overdose, can be considered for prehospital administration, particularly if the patient has respiratory depression"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11130352", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 200, 
+                "offsetInEndSection": 394, 
+                "text": "Naloxone hydrochloride, an injectable opioid antagonist which reverses the respiratory depression, sedation and hypotension associated with opioids, has long been used to treat opioid overdose. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11130352", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 394, 
+                "offsetInEndSection": 567, 
+                "text": "Experts have suggested that, as part of a comprehensive overdose prevention strategy, naloxone should be provided to heroin users for peer administration after an overdose. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11015242", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 184, 
+                "offsetInEndSection": 336, 
+                "text": "Patients who received naloxone for known or presumed opioid overdose were formally evaluated one hour later for multiple potential predictor variables. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/11015242", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 741, 
+                "offsetInEndSection": 843, 
+                "text": "Patients with presumed opioid overdose can be safely discharged one hour after naloxone administration"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/9562190", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 11, 
+                "offsetInEndSection": 202, 
+                "text": "To determine whether naloxone administered i.v. to out-of-hospital patients with suspected opioid overdose would have a more rapid therapeutic onset than naloxone given subcutaneously (s.q.)."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/9562190", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 540, 
+                "offsetInEndSection": 677, 
+                "text": "Subjects received either naloxone 0.4 mg i.v. (n = 74) or naloxone 0.8 mg s.q. (n = 122), for respiratory depression of <10 breaths/min. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/9562190", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1143, 
+                "offsetInEndSection": 1371, 
+                "text": "There was no clinical difference in the time interval to respiratory rate > or =10 breaths/min between naloxone 0.8 mg s.q. and naloxone 0.4 mg i.v. for the out-of-hospital management of patients with suspected opioid overdose. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/8907145", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 243, 
+                "offsetInEndSection": 518, 
+                "text": "To illustrate this problem, we report the case of a patient inappropriately treated with naloxone and the results of a retrospective review of the medical records of 15 consecutive patients with cancer treated with naloxone in the emergency department over a 5-month period. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/1470965", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1150, 
+                "offsetInEndSection": 1360, 
+                "text": "Management of opioid overdose, whether illicit or iatrogenic, requires the prompt and skillful use of opioid overdose, whether illicit or iatrogenic, requires the prompt and skillful use of opioid antagonists. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21044832", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1431, 
+                "offsetInEndSection": 1677, 
+                "text": " The proportion of clinicians willing to use naloxone in an opioid overdose rose from 77% to 99% after training. Barriers to implementing training were clinician time and confidence, service resources, client willingness and naloxone formulation."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/8907145", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 243, 
+                "text": "Opioid overdose is rarely the primary cause of altered mental status in cancer patients receiving opioid therapy. The inappropriate administration of naloxone to reverse an abnormal mental status can cause severe withdrawal symptoms and pain. "
+            }
+        ], 
+        "type": "factoid"
+    }, 
+    {
+        "body": "Does the Oncotype DX test work with paraffin embedded tissues?", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016612"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/23074401", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/18922117", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/17463177", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/17140367", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/17039265", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/16361546"
+        ], 
+        "exact_answer": "Yes", 
+        "id": "514a0f0ad24251bc05000052", 
+        "ideal_answer": "Yes, the Oncotype DX test works with paraffin embedded tissue.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/23074401", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 2732, 
+                "offsetInEndSection": 3135, 
+                "text": "The Oncotype-DX Breast Cancer Assay (Genomic Health, Redwood City, CA) quantifies gene expression for 21 genes in breast cancer tissue by performing reverse transcription polymerase chain reaction (RT-PCR) on formalin-fixed paraffin-embedded (FFPE) tumour blocks that are obtained during initial surgery (lumpectomy, mastectomy, or core biopsy) of women with early breast cancer that is newly diagnosed."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/18922117", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 211, 
+                "offsetInEndSection": 546, 
+                "text": "Oncotype DXtrade mark, is a diagnostic test comprised of a 21-gene assay applied to paraffin-embedded breast cancer tissue, which allows physicians to predict subgroups of hormone-receptor-positive, node-negative patients who may benefit from hormonal therapy alone or require adjuvant chemotherapy to attain the best survival outcome."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17463177", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 12, 
+                "offsetInEndSection": 250, 
+                "text": "Oncotype DX is a clinically validated, high-complexity, multianalyte reverse transcription-PCR genomic test that predicts the likelihood of breast cancer recurrence in early-stage, node-negative, estrogen receptor-positive breast cancer. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17463177", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 512, 
+                "offsetInEndSection": 578, 
+                "text": "We therefore investigated the analytical performance of the assay."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17463177", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 588, 
+                "offsetInEndSection": 848, 
+                "text": "Assays used a pooled RNA sample from fixed paraffin-embedded tissues to evaluate the analytical performance of a 21-gene panel with respect to amplification efficiency, precision, linearity, and dynamic range, as well as limits of detection and quantification."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17140367", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 726, 
+                "offsetInEndSection": 960, 
+                "text": "One such strategy is the 21-gene assay (Oncotype DX), which is currently in commercial use in the USA. One advantage of this test is the use of paraffin-embedded blocks instead of previous methods, which required fresh frozen tissue. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17039265", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 119, 
+                "offsetInEndSection": 263, 
+                "text": "We used paraffin-embedded core biopsies from a completed phase II trial to identify genes that correlate with response to primary chemotherapy. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17039265", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 590, 
+                "offsetInEndSection": 700, 
+                "text": "In addition to the individual genes, the correlation of the Oncotype DX Recurrence Score with pCR was examined"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16361546", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 377, 
+                "offsetInEndSection": 415, 
+                "text": "RNA was extracted from paraffin blocks"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16361546", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 55, 
+                "offsetInEndSection": 114, 
+                "text": "to develop the 21-gene Recurrence Score assay (Oncotype DX)"
+            }
+        ], 
+        "triples": [
+            {
+                "o": "Paraffin", 
+                "p": "http://www.w3.org/2008/05/skos-xl#literalForm", 
+                "s": "http://linkedlifedata.com/resource/umls/label/A7572812"
+            }, 
+            {
+                "o": "http://linkedlifedata.com/resource/umls/label/A9424108", 
+                "p": "http://www.w3.org/2008/05/skos-xl#altLabel", 
+                "s": "http://linkedlifedata.com/resource/umls/id/C0030415"
+            }, 
+            {
+                "o": "Paraffin", 
+                "p": "http://www.w3.org/2008/05/skos-xl#literalForm", 
+                "s": "http://linkedlifedata.com/resource/umls/label/A17999423"
+            }, 
+            {
+                "o": "PARAFFIN", 
+                "p": "http://www.w3.org/2008/05/skos-xl#literalForm", 
+                "s": "http://linkedlifedata.com/resource/umls/label/A8438050"
+            }, 
+            {
+                "o": "http://www.w3.org/2008/05/skos-xl#Label", 
+                "p": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", 
+                "s": "http://linkedlifedata.com/resource/umls/label/A16755941"
+            }
+        ], 
+        "type": "yesno"
+    }, 
+    {
+        "body": "Is depression associated with poor prognosis of brain tumor patients?", 
+        "concepts": [
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001932", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011379", 
+            "http://www.disease-ontology.org/api/metadata/DOID:1319", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D003863", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016019", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017063"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/16304988", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/16960653", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15918939", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15072475"
+        ], 
+        "exact_answer": "yes", 
+        "id": "514cc8dcd24251bc05000066", 
+        "ideal_answer": "Yes. In brain tumor patients depression is associated with shorter survival and worse functional outcomes.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16304988", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 583, 
+                "offsetInEndSection": 820, 
+                "text": "Before surgery 27 patients (35%) had BDI scores indicating the presence of depression. These scores were significantly higher in patients with a history of depression (p = 0.017) and in those with a lower functional outcome (p = 0.015). "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16304988", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 949, 
+                "offsetInEndSection": 1129, 
+                "text": "A lower functional status (KPS score < or = 70) in patients was significantly associated with high depression scores at the 3-month (p = 0.000) and 1-year (p = 0.005) assessments. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16960653", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 782, 
+                "offsetInEndSection": 965, 
+                "text": "At all follow-ups, depressed low-grade glioma patients had a significantly shorter survival time, 3.3-5.8 years, compared to non-depressed low-grade glioma patients, 10.0-11.7 years. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16960653", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1083, 
+                "offsetInEndSection": 1224, 
+                "text": "The results suggest that depression and decreased QOL among low-grade glioma patients is related to shorter survival at long-term follow-up. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15918939", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 11, 
+                "offsetInEndSection": 144, 
+                "text": "The adverse impact of depression in relation to survival among cancer patients is currently a subject of great interest in research. "
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15918939", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1192, 
+                "offsetInEndSection": 1388, 
+                "text": " In the subgroup of patients with low-grade gliomas, depressive patients had a significantly shorter survival time compared with nondepressive subjects (P = 0.031, Kaplan-Meier survival analysis)."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15918939", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1731, 
+                "offsetInEndSection": 1848, 
+                "text": "Preoperative depression seemed to be a significant prognostic factor for worse survival in low-grade glioma patients."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15072475", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1075, 
+                "offsetInEndSection": 1245, 
+                "text": "Major depressive disorder was marginally associated with outcomes, while surgical interventions and radiotherapy did not show strong associations with test performances. "
+            }
+        ], 
+        "type": "yesno"
+    }
+]}

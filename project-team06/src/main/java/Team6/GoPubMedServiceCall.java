@@ -27,8 +27,17 @@ import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.SearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
+/**
+ * Use the GoPubMed api to query KBs and retrieve documents, concepts, triples.
+ * @author rgoutam
+ *
+ */
 public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
-
+    /**
+     * get document text if full text is available
+     * @param doc
+     * @param pmid
+     */
     private void getDocText(edu.cmu.lti.oaqa.type.retrieval.Document doc, String pmid) {
         try {
             URL url = new URL("http://gold.lti.cs.cmu.edu:30002/pmc/" + pmid);
@@ -64,6 +73,10 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                 Question question = (Question) iter.get();
                 query = question.getText();
                 System.out.println("Query = " + query);
+                
+                /*
+                 * Document retrieval
+                 */
                 PubMedSearchServiceResponse.Result pubMedResult = service.findPubMedCitations(
                                 query, 0);
                 if(pubMedResult.getDocuments().size() == 0) {
@@ -90,6 +103,10 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                     doc.addToIndexes();
                 }
                 
+                
+                /*
+                 * Triple retrieval
+                 */
                 LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
                                 .findLinkedLifeDataEntitiesPaged(query, 0);
                 for (LinkedLifeDataServiceResponse.Entity entity : linkedLifeDataResult
@@ -122,6 +139,9 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                     }
                 }
 
+                /*
+                 * Concept retrieval
+                 */
                 OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(
                                 query, 0);
                 for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
