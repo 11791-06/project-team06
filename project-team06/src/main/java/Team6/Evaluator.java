@@ -287,7 +287,8 @@ public class Evaluator extends CasConsumer_ImplBase {
         String endS = doc.getEndSection();
 
         //return text;
-        return uri + "$" + text + "$" + begin + "$" + end + "$" + beginS + "$" + endS;
+        return text + "$" + begin + "$" + end;
+        //return uri + "$" + text + "$" + begin + "$" + end + "$" + beginS + "$" + endS;
     }
 
     private String triple2String(TripleSearchResult doc) {
@@ -441,5 +442,6 @@ public class Evaluator extends CasConsumer_ImplBase {
 
         System.err.println("[done]");
     }
+    
     
 }
