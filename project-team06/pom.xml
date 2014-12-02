@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.cmu.lti.11791.f14.project</groupId>
 	<artifactId>project-team791-06</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>project-team06.git</name>
 	<build>
 		<extensions>
@@ -184,7 +184,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:11791-06/project-team06.git</connection>
 		<developerConnection>scm:git:git@github.com:11791-06/project-team06.git</developerConnection>
-		<tag>done2</tag>
+		<tag>4th try</tag>
 	</scm>
 	<repositories>
 		<repository>
