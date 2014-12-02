@@ -278,7 +278,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             }
         }
         passResults = util.TypeUtil.rankedSearchResultsByScore(JCasUtil.select(jcas, Passage.class), passResults.size());
-      System.out.println(passResults);
+      //System.out.println(passResults);
         List<ConceptSearchResult> conceptResults = new ArrayList<ConceptSearchResult>();
         for (ConceptSearchResult doc : JCasUtil.select(jcas, ConceptSearchResult.class)) {
             if (doc.getSearchId() == null || !doc.getSearchId().equals("__gold__")) {

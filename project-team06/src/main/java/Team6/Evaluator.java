@@ -253,9 +253,13 @@ public class Evaluator extends CasConsumer_ImplBase {
         while (iter.hasNext()) {
             Passage doc = (Passage) iter.next();
             if (doc.getSearchId() != null && doc.getSearchId().equals("__gold__")) {
-                groundtruthDoc.add(Sni2String(doc));
+                // doc 
+                String goldDoc =  Utils.normalization(doc.getText());
+                groundtruthDoc.add(goldDoc);
+                System.err.println("[Debug] Snippets Gold Standard " + Sni2String(doc));
             } else {
                 documents.add(doc);
+                //System.err.println("[Debug] Snippets Retrieval " + Sni2String(doc));
             }
         }
         String[] docs = new String[documents.size()];
@@ -286,8 +290,8 @@ public class Evaluator extends CasConsumer_ImplBase {
         String beginS = doc.getBeginSection();
         String endS = doc.getEndSection();
 
-        //return text;
-        return text + "$" + begin + "$" + end;
+        return text;
+        // return text + "$" + begin + "$" + end;
         //return uri + "$" + text + "$" + begin + "$" + end + "$" + beginS + "$" + endS;
     }
 

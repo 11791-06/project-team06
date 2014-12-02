@@ -121,7 +121,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                         tsr.addToIndexes();
                     }
                 }
-
+/*
                 OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(
                                 query, 0);
                 for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
@@ -169,7 +169,7 @@ public class GoPubMedServiceCall extends JCasAnnotator_ImplBase {
                     c.setScore(finding.getScore());
                     c.setQueryString(query);
                     c.addToIndexes();
-                }
+                }*/
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
