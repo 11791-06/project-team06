@@ -43,7 +43,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
     @Override
     public void initialize() throws ResourceInitializationException {
 
-        System.out.println("Intialized all Lists");
+       // System.out.println("Intialized all Lists");
 
     }
 
@@ -55,7 +55,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
             Question question = (Question) iter.get();
 
             query = question.getText();
-            System.out.println("Query = " + query);
+           // System.out.println("Query = " + query);
             // QuestionList.add(query);
             return query;
         } else {
@@ -73,7 +73,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
 
             //query = question.getText();
               query = question.getRankText();
-            System.out.println("Query = " + query);
+           // System.out.println("Query = " + query);
             // QuestionList.add(query);
             return query;
         } else {
@@ -112,12 +112,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
 
           }
 
-          System.out.println("Score 1:");
-          
-          System.out.println(query_string);
-          System.out.println(Answer);
-          System.out.println(val);
-          System.out.println("Score 2:");
+        
           
 
           doc.setScore(val);
@@ -243,7 +238,7 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
          * ArrayList<Integer> docList = new ArrayList<Integer>(); ArrayList<Double> ScoreList = new
          * ArrayList<Double>(); ArrayList<String> QuestionList= new ArrayList<String>();
          */
-        System.out.println("Now to get CAS");
+     //   System.out.println("Now to get CAS");
         JCas jcas;
         try {
             jcas = aCas.getJCas();
@@ -252,11 +247,11 @@ public class CorrectRankingAlgo extends CasConsumer_ImplBase {
         }
 
         String query_string = GetAllQuestions(jcas); // Only caters to one question at a time.
-        System.out.println("Now to get Documents");
+      //  System.out.println("Now to get Documents");
         int docId = GetDocumentScores(jcas, query_string);
         int passId = GetSnippetScores(jcas, query_string);
         // GetTripleScores(jcas,query_string);
-        System.out.println("Number of Documents Returned");
+      //  System.out.println("Number of Documents Returned");
  
         /**
          * @author Diyi

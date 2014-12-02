@@ -132,6 +132,20 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
 	return answer.toString();
     }
 
+    /**
+     * 
+     * @param jcas
+     *            the JCas containing the inputs to the processing. Analysis
+     *            results will also be written to this JCas.
+     * @param words
+     *            a list of string that are in the original question
+     * @param posTag
+     *            a list of POS of the original quesition which is aligned with
+     *            words
+     * @param q
+     *            Question type object
+     * @return
+     */
     public String normHelper(JCas jcas, List<String> words,
 	    List<String> posTag, Question q) {
 	StringBuilder answer = new StringBuilder();
@@ -149,10 +163,10 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
 
 	    // stemming will do case normalization automatically
 	    // String stemword = StanfordLemmatizer.stemWord(tmp);
-	    
+
 	    String stemword = tmp;
 	    // stop words removal
-	    if (stopWords.contains(stemword.toLowerCase())) 
+	    if (stopWords.contains(stemword.toLowerCase()))
 		continue;
 
 	    answer.append(stemword).append(" ");
@@ -167,6 +181,13 @@ public class QuestionNormalization extends JCasAnnotator_ImplBase {
 	return answer.substring(0, answer.length() - 1);
     }
 
+    /**
+     * Do part-of-speech tagging
+     * 
+     * @param text
+     *            text
+     * @return a list of CoreMap
+     */
     public List<CoreMap> posTagging(String text) {
 	edu.stanford.nlp.pipeline.Annotation document = new edu.stanford.nlp.pipeline.Annotation(
 		text);
