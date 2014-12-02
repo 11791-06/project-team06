@@ -447,15 +447,19 @@ public class TypeFactory {
     ret.setSearchId(searchId);
     return ret;
   }
-  /*
-   * Gold Standard 
+  /**
+   * @author diyiy
+   * Deal with Gold Standard 
    * */
+  
+  // create gold standard document 
   public static Document createGoldStandardDocument(JCas jcas, String uri) {
     Document doc = createDocument(jcas, uri);
     doc.setSearchId("__gold__");
     return doc;
   }
 
+  // create gold standard concept 
   public static ConceptSearchResult createGoldStandardConceptSearchResult(
       JCas jcas, Concept concept, String uri) {
     ConceptSearchResult csr = createConceptSearchResult(jcas, concept, uri);
@@ -463,13 +467,14 @@ public class TypeFactory {
     return csr;
   }
 
+  // create gold standard triples
   public static TripleSearchResult createGoldStandardTripleSearchResult(
       JCas jcas, Triple triple) {
     TripleSearchResult tsr = createTripleSearchResult(jcas, triple);
     tsr.setSearchId("__gold__");
     return tsr;
   }
-  // Snippts
+  // create gold standard snippts
   public static Passage createGoldStandardPassage(
           JCas jcas, String uri, String text, int offsetInBeginSection,
           int offsetInEndSection, String beginSection, String endSection){
@@ -480,7 +485,7 @@ public class TypeFactory {
     psr.setSearchId("__gold__");
     return psr;
    }
-   // Factoid
+   // create gold standard factoid-answering
    public static Answer createGoldStandardAnswer(JCas jcas, List<String> alternatives) {
       String text = alternatives.get(0);
       List<String> variants = alternatives.subList(1, alternatives.size());
