@@ -176,7 +176,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:11791-06/project-team06.git</connection>
 		<developerConnection>scm:git:git@github.com:11791-06/project-team06.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>1st try</tag>
 	</scm>
 	<repositories>
 		<repository>
